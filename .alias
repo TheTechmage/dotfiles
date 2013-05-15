@@ -1,6 +1,2 @@
 #!/bin/bash
-alias htdocs="cd /opt/lampp/htdocs"
-alias sshtunnel="ssh -ND 4711 -v colton@174.52.210.47"
-alias sshtunnel="ssh -N 4711 -v colton@shell.frostyfrog.net"
-alias vnctunnel="ssh -L 5901:127.0.0.1:5901 -N -f -l colton shell.frostyfrog.net"
 alias svim="sudo vim -u /home/colton/.vimrc"
