@@ -1,0 +1,12 @@
+#!/bin/bash
+file=~/.wallpapers/fb.png
+options="-f 8888ff"
+
+convert .wallpapers/vocaloid-megpoid-gumi.jpg +normalize -level 0%,100%,0.25 .wallpapers/fb.png
+echo -ne "\e[?251" # hide cursor
+fbv -ciuker "$file" << EOF
+q
+EOF
+shift
+export FBTERM_BACKGROUND_IMAGE=1
+fbterm $options

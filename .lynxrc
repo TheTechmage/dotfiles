@@ -1,0 +1,26 @@
+accept_all_cookies=on
+cookie_file=/home/colton/.lynx_cookies
+bookmark_file=/home/colton/.lynx_bookmarks
+case_sensitive_searching=off
+character_set=Western (ISO-8859-1)
+dir_list_order=ORDER_BY_NAME
+dir_list_style=MIXED_STYLE
+emacs_keys=off
+file_editor=/usr/bin/nano
+file_sorting_method=BY_FILENAME
+keypad_mode=LINKS_ARE_NOT_NUMBERED
+lineedit_mode=Default Binding
+preferred_language=en
+select_popups=on
+show_color=default
+show_cursor=on
+show_dotfiles=on
+sub_bookmarks=OFF
+user_mode=NOVICE
+verbose_images=off
+vi_keys=off
+visited_links=LAST_REVERSED
+STARTFILE:http://www.askapache.com/
+HELPFILE:http://lynx.isc.org/release/lynx2-8-6/lynx_help/lynx_help_main.html
+HELPFILE:http://lynx.isc.org/lynx2.8.7/lynx2-8-7/lynx_help/lynx_help_main.html
+DEFAULT_INDEX_FILE:http://www.askapache.com/
