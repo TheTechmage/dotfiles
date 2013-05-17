@@ -1,0 +1,49 @@
+#!/usr/bin/python2
+import sys
+import re
+
+def hilite(string, status, bold=False, underline=False, bg=False):
+	#options = { 0:black,1:red,2:green,3:yellow,4:blue,5:purple,
+	#	6:cyan,7:white }
+	attr = []
+	#if status:
+	try:
+		status = int(status)
+	except:
+		print >> sys.stderr, "hilite: status is not a number"
+		sys.exit(1)
+	if bold:
+		attr.append('1')
+	elif underline:
+		attr.append('4')
+	elif not bg:
+		attr.append('0')
+	if 0 <= status or status <= 7:
+		attr.append(str(30+status))
+	elif status == -1:
+		attr.append('0')
+	else:
+		attr.append('30')
+	return '\033[%sm%s\033[0m' % (';'.join(attr), string)
+	#return '\x1b[%sm%s\x1b[0m' % (';'.join(attr), string)
+h = hilite
+
+if sys.stdin.isatty():
+	print "Must pipe in log file with 'tail -f'"
+	sys.exit(1)
+else:
+	regex = re.compile(r'^(\(([0-9]+):([0-9]+):([0-9]+)\) )?([^:\["]+): (.*)<br.*$', re.I)
+	#re.compile(r'\([0-9:]+\) ([^:]+):', re.I)
+	while True:
+	#for line in sys.stdin:
+		line = sys.stdin.readline()
+		if not line:
+			break
+		match = regex.search(line)
+		if match is not None:
+			m = match.groups()
+			sys.stdout.write('(%s:%s:%s) %s: %s\n' % (h(m[1], 5), h(m[2], 5),
+				h(m[3], 5), h(m[4], 6), h(m[5], -1)))
+		else:
+			sys.stdout.write(h(line, 3)+'')
+# vim: si ts=2 sw=2
