@@ -1,1 +1,3 @@
 URxvt.perl-ext-common: default,clipboard
+URxvt*keysym.Home: \033[1~
+URxvt*keysym.End: \033[4~
