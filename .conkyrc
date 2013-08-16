@@ -56,6 +56,7 @@ ${cpugraph cpu2 12,250 00ff00 ff0000 -t}
 
 ${font winks:size=20}${color Tan1}RAM${color DarkSlateGray}${hr 2}${color}${font}
 RAM : ${membar 4,100} $memperc%$alignr$mem
+${exec ~/.conky/ramusage.sh}
 ${font winks:size=20}${color Tan1}HDD${color DarkSlateGray}${hr 2}${color}${font}
 Root : ${fs_bar 4,120 /}$alignr${fs_free /}
 Home : ${fs_bar 4,120 /home}$alignr${fs_free /home}
@@ -72,8 +73,10 @@ ${mpd_bar 4,250}
 ${mpd_status} ${mpd_elapsed}/${mpd_length}
 
 
+${font winks:size=20}${color Tan1}Misc${color DarkSlateGray}${hr 2}${color}${font}
 ${font wargames:size=16}
-${time %H:%M, %A %d %b}${color fea63c}
+${time %H:%M, %A %d %b}
 ${font}
+${color fea63c}${exec ~/.conky/misc.sh}
                         
 
