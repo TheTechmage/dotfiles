@@ -110,3 +110,4 @@ autocmd BufReadPost *
 
 filetype indent on
 filetype plugin indent on
+set nocompatible

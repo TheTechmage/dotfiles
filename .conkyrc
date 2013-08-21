@@ -1,0 +1,82 @@
+# vim: set nowrap :
+######
+## conky behaviour
+#background yes
+# 
+own_window yes                                                                  # window for conky
+own_window_class conky-system                                                   # 
+own_window_type normal                                                          # normal window
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
+
+
+background yes
+use_xft yes
+xftfont Tamsyn:pixelsize=12
+xftalpha 0.6
+update_interval 1.0
+total_run_times 0
+own_window no
+double_buffer yes
+draw_shades yes
+draw_borders no
+draw_graph_borders yes
+default_bar_size 100 4
+minimum_size 100 5
+maximum_width 250
+default_color f1f1f1
+draw_outline no
+alignment tr
+gap_x 20
+gap_y  40
+no_buffers yes
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale yes
+uppercase no
+use_spacer none
+
+#${image ~/.conky/icons/Television-Alt.png -s 32x32} ${image ~/.conky/icons/Task-Manager.png -p 225 -s 32x32}         ${image ~/.conky/icons/Memory.png -p 390 -s 32x32}  ${image ~/.conky/icons/Hard-Drive.png -p 655 -s 32x32}                                             ${image ~/.conky/icons/Connectiions.png -p 980 -s 32x32}                               ${image ~/.conky/icons/Gear.png -p 1230 -s 32x32}    ${image ~/.conky/icons/Media-Player.png -p 1385 -s 32x32}
+#${image ~/.conky/icons/Background.png -p 0,75}
+TEXT
+${font winks:size=20}${color Tan1}SYSTEM${color DarkSlateGray}${hr 2}${color}${font}
+$nodename - $sysname $kernel on $machine
+$stippled_hr
+Uptime$alignr${uptime_short}${color cd5c5c}${color}
+Updates$alignr${texeci 43200 checkupdates|wc -l}
+Vol$alignr${execi 20 ~/.conky/vol.sh}
+FAN$alignr${hwmon fan 1}RPM
+Mobo$alignr${if_existing /sys/class/hwmon/hwmon0/temp2_input}${hwmon 0 temp 2}${else}${hwmon 1 temp 2}${endif}C
+${font winks:size=20}${color Tan1}Processors${color DarkSlateGray}${hr 2}${color}${font}
+Proc: $processes
+CPU$alignr${if_existing /sys/class/hwmon/hwmon0/temp1_input}${hwmon 0 temp 1}${else}${hwmon 1 temp 1}${endif}C
+CPU1$alignr${cpu 1}
+CPU2$alignr${cpu 2}
+${cpugraph cpu1 12,250 00ff00 ff0000 -t}
+${cpugraph cpu2 12,250 00ff00 ff0000 -t}
+
+${font winks:size=20}${color Tan1}RAM${color DarkSlateGray}${hr 2}${color}${font}
+RAM : ${membar 4,100} $memperc%$alignr$mem
+${exec ~/.conky/ramusage.sh}
+${font winks:size=20}${color Tan1}HDD${color DarkSlateGray}${hr 2}${color}${font}
+Root : ${fs_bar 4,120 /}$alignr${fs_free /}
+Home : ${fs_bar 4,120 /home}$alignr${fs_free /home}
+sda: ${hddtemp /dev/sda}C
+${font winks:size=20}${color Tan1}Network${color DarkSlateGray}${hr 2}${color}${font}
+IP addr$alignr${if_up enp5s0}${addr enp5s0}${else}${color red}down${endif}${color}
+Tx Rate$alignr${upspeed enp5s0}
+Rx Rate$alignr${downspeed enp5s0}
+Rx Total$alignr${totaldown enp5s0}
+${font winks:size=20}${color Tan1}MPD${color DarkSlateGray}${hr 2}${color}${font}
+${mpd_smart}
+${mpd_album}
+${mpd_bar 4,250}
+${mpd_status} ${mpd_elapsed}/${mpd_length}
+
+
+${font winks:size=20}${color Tan1}Misc${color DarkSlateGray}${hr 2}${color}${font}
+${font wargames:size=16}
+${time %H:%M, %A %d %b}
+${font}
+${color fea63c}${exec ~/.conky/misc.sh}
+                        
+
