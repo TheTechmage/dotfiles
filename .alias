@@ -1,2 +1,3 @@
 #!/bin/bash
 alias svim="sudo vim -u /home/colton/.vimrc"
+alias sssh="env TERM=xterm ssh"
