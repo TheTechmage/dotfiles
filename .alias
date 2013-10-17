@@ -1,4 +1,4 @@
 #!/bin/bash
 alias svim="sudo vim -u /home/colton/.vimrc"
 alias sssh="env TERM=xterm ssh"
-alias gotoo='cd.py $1; if [ $? -eq 0 ]; then; cd $(cd.py $1); fi'
+gotoo() {cd.py "$1"; if [ $? -eq 0 ]; then; cd $(cd.py "$1"); fi}
