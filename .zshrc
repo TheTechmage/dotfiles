@@ -35,7 +35,17 @@ ZSH_THEME="eastwood"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source ~/.alias
+if [ -f .alias ]; then
+	source ~/.alias
+fi
+if [ -f .zshhacks ]; then
+	source ~/.zshhacks
+fi
+if [[ "$(hostname)" == "Toronto" ]]; then
+#	eval $(ssh-agent)
+	eval $(keychain --eval --agents ssh -Q --quiet)
+fi
 
 # Customize to your needs...
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/java/bin:/opt/java/db/bin:/opt/java/jre/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/colton/bin:/home/colton/fbin:/usr/lib/surfraw
+export PATH=/usr/lib/surfraw:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/java/bin:/opt/java/db/bin:/opt/java/jre/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/colton/bin:/home/colton/fbin:/usr/lib/surfraw:~/.gem/ruby/2.0.0/bin
+source ~/.alias
