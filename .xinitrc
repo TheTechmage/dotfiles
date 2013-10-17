@@ -18,9 +18,20 @@ function sxmonad() {
 function sgnome() {
 	#gnome-session
 	xautolock -time 10 -locker "slimlock" &
-	feh --bg-fill ~/.wallpapers/archlinux-wallpaper-1.3/archlinux-deep-aurora.jpg &
+	if [[ "$(hostname)" == "Toronto" ]]; then
+		xrandr --output DVI-I-2 --right-of DVI-I-1 &
+	fi
+	sbg &
 	subtle
 	synclient MaxTapTime=0
+}
+function sbg() {
+	sleep 1;
+	if [ "$(hostname)" == "Toronto" ]; then
+		feh --bg-fill ~/bg.jpg;
+	else
+		feh --bg-fill ~/.wallpapers/archlinux-wallpaper-1.3/archlinux-deep-aurora.jpg;
+	fi;
 }
 
 xset +fp /usr/share/fonts/local
@@ -32,7 +43,7 @@ gnome)
 	sgnome
 	;;
 bg)
-	feh --bg-fill ~/.wallpapers/archlinux-wallpaper-1.3/archlinux-deep-aurora.jpg &
+	sbg
 	;;
 *)
 	#exec $0 $DEFAULT_SESSION

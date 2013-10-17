@@ -1,0 +1,2 @@
+echo "We are now posting to twitter: $@"
+ttytter -status="$@"

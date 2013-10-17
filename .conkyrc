@@ -49,10 +49,18 @@ Mobo$alignr${if_existing /sys/class/hwmon/hwmon0/temp2_input}${hwmon 0 temp 2}${
 ${font winks:size=20}${color Tan1}Processors${color DarkSlateGray}${hr 2}${color}${font}
 Proc: $processes
 CPU$alignr${if_existing /sys/class/hwmon/hwmon0/temp1_input}${hwmon 0 temp 1}${else}${hwmon 1 temp 1}${endif}C
-CPU1$alignr${cpu 1}
-CPU2$alignr${cpu 2}
+CPU1 ${cpubar cpu1 4,100}$alignr${cpu cpu1}
+CPU2 ${cpubar cpu2 4,100}$alignr${cpu cpu2}
+CPU3 ${cpubar cpu3 4,100}$alignr${cpu cpu3}
+CPU4 ${cpubar cpu4 4,100}$alignr${cpu cpu4}
 ${cpugraph cpu1 12,250 00ff00 ff0000 -t}
 ${cpugraph cpu2 12,250 00ff00 ff0000 -t}
+${cpugraph cpu3 12,250 00ff00 ff0000 -t}
+${cpugraph cpu4 12,250 00ff00 ff0000 -t}
+${cpugraph cpu5 12,250 00ff00 ff0000 -t}
+${cpugraph cpu6 12,250 00ff00 ff0000 -t}
+${cpugraph cpu7 12,250 00ff00 ff0000 -t}
+${cpugraph cpu8 12,250 00ff00 ff0000 -t}
 
 ${font winks:size=20}${color Tan1}RAM${color DarkSlateGray}${hr 2}${color}${font}
 RAM : ${membar 4,100} $memperc%$alignr$mem
@@ -62,10 +70,10 @@ Root : ${fs_bar 4,120 /}$alignr${fs_free /}
 Home : ${fs_bar 4,120 /home}$alignr${fs_free /home}
 sda: ${hddtemp /dev/sda}C
 ${font winks:size=20}${color Tan1}Network${color DarkSlateGray}${hr 2}${color}${font}
-IP addr$alignr${if_up enp5s0}${addr enp5s0}${else}${color red}down${endif}${color}
-Tx Rate$alignr${upspeed enp5s0}
-Rx Rate$alignr${downspeed enp5s0}
-Rx Total$alignr${totaldown enp5s0}
+IP addr$alignr${if_up enp6s0}${addr enp6s0}${else}${color red}down${endif}${color}
+Tx Rate$alignr${upspeed enp6s0}
+Rx Rate$alignr${downspeed enp6s0}
+Rx Total$alignr${totaldown enp6s0}
 ${font winks:size=20}${color Tan1}MPD${color DarkSlateGray}${hr 2}${color}${font}
 ${mpd_smart}
 ${mpd_album}
@@ -77,6 +85,6 @@ ${font winks:size=20}${color Tan1}Misc${color DarkSlateGray}${hr 2}${color}${fon
 ${font wargames:size=16}
 ${time %H:%M, %A %d %b}
 ${font}
-${color fea63c}${exec ~/.conky/misc.sh}
-                        
+${color fea63c}Furcadia LW Status: ${color 21face}${texeci 480 ~/.conky/misc.sh}$color
+${execi 1280 cal}                        
 

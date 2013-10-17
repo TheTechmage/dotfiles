@@ -1,2 +1,5 @@
 #!/bin/bash
 alias svim="sudo vim -u /home/colton/.vimrc"
+alias sssh="env TERM='xterm' ssh"
+alias atlanta="ssh shell.frostyfrog.net"
+alias music="ncmpcpp"
