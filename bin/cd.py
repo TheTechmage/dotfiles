@@ -4,11 +4,13 @@ import os
 
 aliases = {
     'scribes': '~/.Scribes/files/dev/' + 'e/i/e/i/o',
+    'sb': '~/build/sb/src/',
+    'df': '~/.files/',
 }
 
 
-def traverse_path(path, debug=False):
-    if debug:
+def traverse_path(path, debug=False, test=False):
+    if debug and not test:
         print(path)
     if os.path.isdir(path):
         return path
@@ -28,6 +30,8 @@ def arguments():
     # .:. Arguments .:.
     parser.add_argument('-d', '--debug', action='store_true', required=False,
                         help="Debug mode!")
+    parser.add_argument('-t', '--test', action='store_true', required=False,
+                        help="Testing mode! (Returns status code only)")
     parser.add_argument('alias', choices=aliases.keys(), type=str,
                         help="Your special alias ^.^")
 
@@ -43,10 +47,12 @@ if __name__ == '__main__':
                     os.path.expandvars(aliases[args.alias])
                     )
                 ),
-            args.debug)
-        sys.stdout.write(path)
+            args.debug, args.test)
+        if not args.test:
+            sys.stdout.write(path)
     else:
-        sys.stderr('Error: Invalid alias!')
+        if not args.test:
+            sys.stderr('Error: Invalid alias!')
         sys.exit(1)
 
 # vim: set sw=4 ts=4 ai et :

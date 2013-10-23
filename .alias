@@ -3,4 +3,5 @@ alias svim="sudo vim -u /home/colton/.vimrc"
 alias sssh="env TERM='xterm' ssh"
 alias atlanta="ssh shell.frostyfrog.net"
 alias music="ncmpcpp"
-gotoo() {cd.py "$1"; if [ $? -eq 0 ]; then; cd $(cd.py "$1"); fi}
+gt() {cd.py -t "$1"; if [ $? -eq 0 ]; then; cd $(cd.py "$1"); fi}
+killwine(){wineserver -k; killall -9 wine wineserver; for i in `ps ax|egrep "*\.exe"|grep -v 'egrep'|awk '{print $1 }'`;do kill -9 $i;done}
