@@ -1,9 +1,11 @@
 #compdef gt
-#autoload
 
-	_arguments "$(gt -l "$@")"
+#	_arguments "$(~/.files/bin/cd.py -l "$@")"
 _gt() {
-	_arguments "$(gt -l "$@")"
+	args=($(~/.files/bin/cd.py -l "$@" | xargs -n1 | sort -u | xargs))
+	typeset -A opt_args
+	#_arguments -C "1:Firectory:($args)" && ret=0
+	_arguments -C "1:completion:($args)" && ret=0
 }
 
 _gt "$@"

@@ -45,13 +45,13 @@ if __name__ == '__main__':
     if args.list != False:
         if args.list is None:
             for a in aliases.keys():
-                print(a)
+                sys.stdout.write(a + " ")
             sys.exit(0)
         for a in aliases.keys():
             if a.startswith(args.list):
                 inlist = True
                 if not args.test:
-                    print(a)
+                    sys.stdout.write(a + " ")
         if inlist:
             sys.exit(0)
         else:
