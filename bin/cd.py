@@ -32,7 +32,9 @@ def arguments():
                         help="Debug mode!")
     parser.add_argument('-t', '--test', action='store_true', required=False,
                         help="Testing mode! (Returns status code only)")
-    parser.add_argument('alias', choices=aliases.keys(), type=str,
+    parser.add_argument('-l', '--list', action='store', required=False,
+                        nargs='?', default=False, help="Returns list of valid aliases")
+    parser.add_argument('alias', choices=aliases.keys(), type=str, nargs='?',
                         help="Your special alias ^.^")
 
     # .:. Return dem arrrrrrgs! .:.
@@ -40,7 +42,22 @@ def arguments():
 
 if __name__ == '__main__':
     args = arguments()
-    if args.alias in aliases.keys():
+    if args.list != False:
+        if args.list is None:
+            for a in aliases.keys():
+                print(a)
+            sys.exit(0)
+        for a in aliases.keys():
+            if a.startswith(args.list):
+                inlist = True
+                if not args.test:
+                    print(a)
+        if inlist:
+            sys.exit(0)
+        else:
+            sys.exit(1)
+
+    if args.alias and args.alias in aliases.keys():
         path = traverse_path(
             os.path.abspath(
                 os.path.expanduser(
@@ -52,7 +69,7 @@ if __name__ == '__main__':
             sys.stdout.write(path)
     else:
         if not args.test:
-            sys.stderr('Error: Invalid alias!')
+            sys.stderr.write('Error: Invalid alias!')
         sys.exit(1)
 
 # vim: set sw=4 ts=4 ai et :

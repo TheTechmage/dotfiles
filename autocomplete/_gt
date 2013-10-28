@@ -1,0 +1,9 @@
+#compdef gt
+#autoload
+
+	_arguments "$(gt -l "$@")"
+_gt() {
+	_arguments "$(gt -l "$@")"
+}
+
+_gt "$@"
