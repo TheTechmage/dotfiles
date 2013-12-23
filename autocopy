@@ -25,6 +25,7 @@ function relink() {
 	fi
 	printf "Symlinking %s to %s\n" "$1" "$2"
 	printf "  ln -sn %s %s" "$file1" "$file2"
+	ret=0
 	ln -sn "$file1" "$file2" || ret=$?
 	if [ $ret -eq 0 ]; then
 		printf " [\e[1;32mSUCCESS\e[0m]\n"
