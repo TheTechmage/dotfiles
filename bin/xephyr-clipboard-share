@@ -8,45 +8,52 @@ clipboard=.
 
 while [ 1 ]
 do
-#get the values of the clipboard
-firstdislpayclipboard=$(xsel --display $firstxserver -b -o)
-seconddislpayclipboard=$(xsel --display $secondxserver -b -o)
+	#get the values of the clipboard
+	firstdislpayclipboard=$(xsel --display $firstxserver -b -o)
+	seconddislpayclipboard=$(xsel --display $secondxserver -b -o)
 
-#if the first x servers clipboad chages
-if [ "$firstdislpayclipboard" != "$clipboard" ]
-then
+	#if the first x servers clipboad chages
+	if [ "$firstdislpayclipboard" != "$clipboard" ]
+	then
+		echo "$firstdislpayclipboard"
 
-#if it doesnt change to be blank
-if [ $(echo $firstdislpayclipboard | grep ^$ -c) -ne 1 ]
-then
-#set the appropriate variables to be the contents of the first comand
-seconddislpayclipboard=$firstdislpayclipboard
-clipboard=$firstdislpayclipboard
-xsel --display $firstxserver -b -o | xsel --display $secondxserver -b -i
-else
-#if it is blank set it to be .in case if its because the x server went down
-echo . | xsel --display $firstxserver -b -i 
-fi
+		echo  [ $(echo "$firstdislpayclipboard" | grep ^$ -c) -ne 1 ]
+		echo  [ $(echo "$firstdislpayclipboard" | wc -c) -ne 1 ]
+		#if it doesnt change to be blank
+		if [ $(echo "$firstdislpayclipboard" | wc -c) -ge 2 ]
+		then
+			#set the appropriate variables to be the contents of the first comand
+			seconddislpayclipboard=$firstdislpayclipboard
+			clipboard=$firstdislpayclipboard
+			xsel --display $firstxserver -b -o | xsel --display $secondxserver -b -i
+		else
+			echo 'RESET!'
+			#if it is blank set it to be .in case if its because the x server went down
+			echo . | xsel --display $firstxserver -b -i 
+		fi
 
-fi
+	fi
 
-#if the second x servers clipboad chages
-if [ "$seconddislpayclipboard" != "$clipboard" ]
-then
+	#if the second x servers clipboad chages
+	if [ "$seconddislpayclipboard" != "$clipboard" ]
+	then
+		echo "$seconddislpayclipboard"
 
-#if it doesnt change to be blank
-if [ $(echo $seconddislpayclipboard | grep ^$ -c) -ne 1 ]
-then
-#set the appropriate variables to be the contents of the first comand
-firstdislpayclipboard=$seconddislpayclipboard
-clipboard=$seconddislpayclipboard
-xsel --display $secondxserver -b -o | xsel --display $firstxserver -b -i
-else
-#if it is blank set it to be .in case if its because the x server went down
-echo . | xsel --display $secondxserver -b -i 
-fi
+		#if it doesnt change to be blank
+		echo [ $(echo "$seconddislpayclipboard" | grep ^$ -c) -ne 1 ]
+		if [ $(echo "$seconddislpayclipboard" | wc -c) -ge 2 ]
+		then
+			#set the appropriate variables to be the contents of the first comand
+			firstdislpayclipboard=$seconddislpayclipboard
+			clipboard=$seconddislpayclipboard
+			xsel --display $secondxserver -b -o | xsel --display $firstxserver -b -i
+		else
+			echo 'RESET!'
+			#if it is blank set it to be .in case if its because the x server went down
+			echo . | xsel --display $secondxserver -b -i 
+		fi
 
-fi
+	fi
 
-sleep 1
+	sleep 1
 done
