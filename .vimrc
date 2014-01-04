@@ -3,10 +3,13 @@ syntax on
 filetype indent on
 set modeline
 
-set rnu
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<,nbsp:%
-set list
+
+if hostname() == 'Toronto'
+	set rnu
+	set list
+endif
 
 set ts=2 sw=2 ai
 
