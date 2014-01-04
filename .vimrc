@@ -30,3 +30,22 @@ nnoremap <C-U> :call SmoothScroll(1)<Enter>
 nnoremap <C-D> :call SmoothScroll(0)<Enter>
 inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>i
 inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
+
+"Line 80 "Helpful Correction Reminder"
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/
+
+
+" TODO implement this when I get a chance
+"
+" In your vimrc you can read an environment variable to allow
+" different command depending on which OS or PC you're on and
+" thus have same vimrc.
+"
+"if $USER == 'davidr'
+"	echo "on home pc"
+"	set .. etc
+"else
+"	echo "on work pc"
+"	set .. etc
+"endif
