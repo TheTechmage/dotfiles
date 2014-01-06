@@ -6,7 +6,7 @@ set modeline
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<,nbsp:%
 
-if hostname() == 'Toronto'
+if hostname() == 'Toronto' || split(hostname(), '.')[0] == 'ipa'
 	set rnu
 	set list
 endif
