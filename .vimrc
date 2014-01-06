@@ -6,8 +6,12 @@ set modeline
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<,nbsp:%
 
-if hostname() == 'Toronto' || split(hostname(), '.')[0] == 'ipa'
+if hostname() == 'Toronto'
 	set rnu
+	set list
+endif
+let b:domainhost = split(hostname(), '\.')
+if len(b:domainhost) >= 1 && b:domainhost[0] == 'ipa'
 	set list
 endif
 
