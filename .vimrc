@@ -1,6 +1,5 @@
 "set number
 syntax on
-filetype indent on
 set modeline
 
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -39,24 +38,38 @@ nnoremap <C-D> :call SmoothScroll(0)<Enter>
 inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>i
 inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
 
-filetype plugin indent on
 "let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
 let &titlestring = "vim(" . expand("%:t") . ")"
 let &titleold="-vim"
-if &term == "screen"
+if &term == "screen" || &term == "screen-256color"
   set t_ts=k
   set t_fs=\
 endif
-if &term == "screen" || &term == "xterm"
-  "set title
+if &term == "screen" || &term == "xterm" || &term == "screen-256color"
+  set title
 endif
 
 au BufRead,BufNewFile *.less setfiletype css
 
-"Line 80 "Helpful Correction Reminder"
+" Line 80 "Helpful Correction Reminder"
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+" Vundle Stuff "{{{
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+" Bundles!
+Bundle 'gmarik/vundle'
+Bundle 'msanders/snipmate.vim'
+"Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
+" Arch disabled python
+Bundle 'szw/vim-tags'
+
+filetype indent on
+filetype plugin indent on
+" "}}}
 
 " TODO implement this when I get a chance
 "

@@ -37,6 +37,7 @@ function relink() {
 #relink .tmp
 relink .nanorc $HOME/.nanorc
 relink .vimrc $HOME/.vimrc
+relink .vim $HOME/.vim
 relink .screenrc $HOME/.screenrc
 relink .tmux.conf $HOME/.tmux.conf
 relink .Xdefaults $HOME/.Xdefaults
