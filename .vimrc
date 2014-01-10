@@ -5,16 +5,16 @@ set modeline
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<,nbsp:%
 
+set ts=2 sw=2 ai
+
 if hostname() == 'Toronto'
 	set rnu
 	set list
 endif
 let b:domainhost = split(hostname(), '\.')
 if len(b:domainhost) >= 1 && b:domainhost[0] == 'ipa'
-	set list
+	set list ts=4 sw=4 et
 endif
-
-set ts=2 sw=2 ai
 
 function SmoothScroll(up)
 	if a:up
@@ -70,6 +70,11 @@ Bundle 'szw/vim-tags'
 filetype indent on
 filetype plugin indent on
 " "}}}
+
+" Return to our last position in the file
+if has("autocmd")
+	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " TODO implement this when I get a chance
 "
