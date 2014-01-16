@@ -19,3 +19,10 @@ diff_folder() {
 	fi
 	diff -rqb $1 $2|grep differ|grep -v .bzr|awk '{print $2 " -> " $4;}'|grep '\->'
 }
+alias killwindow='kill -15 $(DISPLAY=:0 xprop _NET_WM_PID | cut -d" " -f3)'
+alias xephyrclip='reset; xephyr-clipboard-share :0 :1'
+alias copyclip='xsel -po|xsel --display :0 -bi'
+alias resetmon='xrandr --output DVI-I-3 --auto --right-of DVI-I-2 --output DVI-I-2 --auto'
+alias league='killwine; playonlinux --run "League of Legends"'
+alias xeph='Xephyr :1 -ac -br -noreset -screen 1905x1045 &> /dev/null &; sleep 4; DISPLAY=:1.0 xfce4-session &> /dev/null &;'
+alias disabletitle='export DISABLE_AUTO_TITLE="true"'

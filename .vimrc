@@ -1,6 +1,7 @@
 "set number
 syntax on
 set modeline
+set mouse=nv
 
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<,nbsp:%

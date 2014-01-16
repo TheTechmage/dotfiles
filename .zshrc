@@ -51,3 +51,5 @@ export PATH=/usr/lib/surfraw:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/s
 source ~/.alias
 
 FPATH="$HOME/.files/.zsh_autocomplete:$FPATH"
+HISTSIZE=100000 # 10000
+SAVEHIST=100000
