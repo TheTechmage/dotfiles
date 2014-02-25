@@ -3,6 +3,10 @@ syntax on
 set modeline
 set mouse=nv
 
+"Droplets don't have utf-8 by default >_>
+scriptencoding utf-8
+set encoding=utf-8
+
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<,nbsp:%
 
