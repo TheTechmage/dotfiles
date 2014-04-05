@@ -1,6 +1,9 @@
 #!/bin/bash
 
-DEFAULT_SESSION='sgnome'
+DEFAULT_SESSION='ssubtle'
+if [[ "$(hostname)" == "Ogre" ]]; then
+	DEFAULT_SESSION='sdwm'
+fi
 
 function sxmonad() {
 	PATH=$PATH:~/bin:~/fbin
@@ -15,7 +18,7 @@ function sxmonad() {
         xmonad
 }
 
-function sgnome() {
+function ssubtle() {
 	#gnome-session
 	xautolock -time 10 -locker "slimlock" &
 	if [[ "$(hostname)" == "Toronto" ]]; then
@@ -24,6 +27,14 @@ function sgnome() {
 	sbg &
 	subtle
 	synclient MaxTapTime=0
+}
+function sdwm() {
+	xautolock -time 10 -locker "slimlock" &
+	sbg &
+	if [[ "$(hostname)" == "Ogre" ]]; then
+		xscreensaver &
+	fi
+	dwm
 }
 function sbg() {
 	sleep 1;
@@ -39,8 +50,11 @@ case $1 in
 xmonad)
 	sxmonad
 	;;
-gnome)
-	sgnome
+subtle)
+	ssubtle
+	;;
+dwm)
+	sdwm
 	;;
 bg)
 	sbg
