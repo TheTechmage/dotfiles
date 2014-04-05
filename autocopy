@@ -35,21 +35,25 @@ function relink() {
 }
 
 #relink .tmp
-relink .nanorc $HOME/.nanorc
-relink .vimrc $HOME/.vimrc
-relink .vim $HOME/.vim
-relink .screenrc $HOME/.screenrc
-relink .tmux.conf $HOME/.tmux.conf
-relink .Xdefaults $HOME/.Xdefaults
-relink .Xresources $HOME/.Xresources
-relink .zshrc $HOME/.zshrc
-relink .oh-my-zsh $HOME/.oh-my-zsh
-relink .bashrc $HOME/.bashrc
 relink bin $HOME/bin
+relink .oh-my-zsh $HOME/.oh-my-zsh
+relink .vim $HOME/.vim
+
 relink .alias $HOME/.alias
-relink .dircolors $HOME/.dircolors
+relink .bashrc $HOME/.bashrc
 relink .conky $HOME/.conky
 relink .conkyrc $HOME/.conkyrc
+relink .dircolors $HOME/.dircolors
+relink .lynxrc $HOME/.lynxrc
+relink .nanorc $HOME/.nanorc
+relink .screenrc $HOME/.screenrc
+relink .surfraw.conf $HOME/.surfraw.conf
+relink .tmux.conf $HOME/.tmux.conf
+relink .vimrc $HOME/.vimrc
+relink .Xdefaults $HOME/.Xdefaults
+relink .xinitrc $HOME/.xinitrc
+relink .Xresources $HOME/.Xresources
+relink .zshrc $HOME/.zshrc
 
 
 exit # Exit so we don't hit our template line
