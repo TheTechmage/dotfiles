@@ -2,13 +2,16 @@
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-. ~/fb/autocomplete.sh
+if [ -f $HOME/fb/autocomplete.sh ]; then
+	. $HOME/fb/autocomplete.sh
+fi
 
 alias ls='ls --color=auto'
 PS1='[\u@\h \W]\$ '
-alias java='/opt/java/jre/bin/java'
+#alias java='/opt/java/jre/bin/java'
 alias srls='sr -elvi|less'
-PATH=$PATH:~/bin:~/fbin:/usr/lib/surfraw:~/.gem/ruby/2.0.0/bin
+GOPATH=$HOME/go
+PATH=$PATH:$HOME/bin:$HOME/fbin:/usr/lib/surfraw:$HOME/.gem/ruby/2.0.0/bin:$HOME/go/bin
 PS1='\[\e[1;34m\]Frostyfrog\[\e[0;31m\]\w\[\e[0;32m\]\$\[\e[0m\] '
 export EDITOR="vim"
 export pi=$(echo "scale=10; 4*a(1)" | bc -l)
