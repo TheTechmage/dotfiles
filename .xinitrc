@@ -3,6 +3,7 @@
 DEFAULT_SESSION='ssubtle'
 if [[ "$(hostname)" == "Ogre" ]]; then
 	DEFAULT_SESSION='sdwm'
+	/usr/bin/start-pulseaudio-x11 &
 fi
 
 function sxmonad() {
