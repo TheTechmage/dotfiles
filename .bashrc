@@ -15,6 +15,7 @@ PATH=$PATH:$HOME/bin:$HOME/fbin:/usr/lib/surfraw:$HOME/.gem/ruby/2.0.0/bin:$HOME
 PS1='\[\e[1;34m\]Frostyfrog\[\e[0;31m\]\w\[\e[0;32m\]\$\[\e[0m\] '
 export EDITOR="vim"
 export pi=$(echo "scale=10; 4*a(1)" | bc -l)
+export HISTFILESIZE= HISTSIZE= HISTFILE=~/.bash4_history
 
 calc() {
 	echo "$*" | bc -l;
