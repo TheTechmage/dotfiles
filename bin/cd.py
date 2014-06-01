@@ -6,6 +6,7 @@ aliases = {
     'scribes': '~/.Scribes/files/dev/' + 'e/i/e/i/o',
     'sb': '~/build/sb/src/',
     'df': '~/.files/',
+    'f.net': '~/build/DropFrog/main/',
 }
 
 
