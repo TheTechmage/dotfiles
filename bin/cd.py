@@ -44,15 +44,17 @@ def arguments():
 if __name__ == '__main__':
     args = arguments()
     if args.list != False:
+        inlist = False
         if args.list is None:
-            for a in aliases.keys():
-                sys.stdout.write(a + " ")
+            for (a, b) in aliases.items():
+                sys.stdout.write("%s[%s] " % (a, b))
             sys.exit(0)
-        for a in aliases.keys():
+        for (a, b) in aliases.items():
             if a.startswith(args.list):
                 inlist = True
                 if not args.test:
-                    sys.stdout.write(a + " ")
+                    sys.stdout.write("%s[%s] " % (a, b))
+                    #sys.stdout.write(a + " ")
         if inlist:
             sys.exit(0)
         else:
