@@ -9,8 +9,8 @@ alias music="ncmpcpp"
 
 
 # Functions
-gt() {cd.py -t "$1"; if [ $? -eq 0 ]; then; cd $(cd.py "$1"); fi}
-killwine(){wineserver -k; killall -9 wine wineserver; for i in `ps ax|egrep "*\.exe"|grep -v 'egrep'|awk '{print $1 }'`;do kill -9 $i;done}
+gt() { cd.py -t "$1";if [ $? -eq 0 ]; then cd $(cd.py "$1");fi }
+killwine(){ wineserver -k; killall -9 wine wineserver; for i in `ps ax|egrep "*\.exe"|grep -v 'egrep'|awk '{print $1 }'`;do kill -9 $i;done }
 diff_folder() {
 	if [ $# -ne 2 ]; then
 		echo "Must Specify 2 arguments."
