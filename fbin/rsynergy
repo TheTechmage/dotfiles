@@ -1,0 +1,4 @@
+echo Restarting synergyc...
+pkill synergyc
+synergyc 192.168.0.140
+echo Done.

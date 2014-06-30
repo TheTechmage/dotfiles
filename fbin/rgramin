@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo wpa_supplicant -B -Dwext -i wlan0 -c /etc/wpa_supplicant.gramin
+sleep 10
+sudo dhcpcd wlan0

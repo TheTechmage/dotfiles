@@ -1,0 +1,11 @@
+#!/bin/bash
+help()
+{
+	echo <<EOF Help:
+rvnc
+EOF
+}
+if [ "$1" = "" ]; then
+	help
+fi
+echo fo

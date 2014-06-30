@@ -1,0 +1,37 @@
+#!/bin/bash
+while true
+do
+	LF="\n\n"
+	STATE=`mocp -Q %state 2>/dev/null`
+	ARTIST=`mocp -Q %artist 2>/dev/null`
+	SONG=`mocp -Q %song 2>/dev/null`
+
+	clear 
+
+	echo `uname -r -s` "on" $HOSTNAME > $HOME/.scripts/header.txt
+	date +"%F %T %P" >> $HOME/.scripts/header.txt
+	sed  -e :a -e 's/^.\{1,133\}$/ &/;ta' -e 's/\( *\)\1/\1/' $HOME/.scripts/header.txt
+
+	echo -e $LF
+
+	case "$STATE" in 
+	PLAY)
+		figlet -tkc -f mini ${STATE}
+
+		echo -e $LF$LF	
+
+		figlet -tc ${ARTIST}
+		figlet -tc ${SONG}
+
+		echo -e $LF$LF	
+
+		mocp -Q %ct\ \:\:\ %tt 2>/dev/null | figlet -tc
+	;;
+	*)
+		echo hi
+		figlet -tkc -f mini.flf ${STATE}
+	;;
+	esac
+
+	sleep 10s
+done

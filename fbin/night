@@ -1,0 +1,5 @@
+#!/bin/bash
+mplayer Music/C418\ -\ Minecraft\ -\ Volume\ Alpha/C418\ -\ Minecraft\ -\ Volume\ Alpha\ -\ 08\ Minecraft.ogg &>/dev/null &
+sleep 10;
+screenlock;
+echo 'Welcome Back Frosty! =D';

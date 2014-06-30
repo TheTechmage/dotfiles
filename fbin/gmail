@@ -1,0 +1,12 @@
+#!/bin/bash
+## Quickly checks if I have new gmail
+echo -e "Checking for new messages... \c"
+
+atomlines=`curl -su ${1}:${2} https://mail.google.com/mail/feed/atom | wc -l`
+
+echo -e "\r\n"
+
+[ $atomlines -gt "248" ] \
+&& echo -e "New Mail  \c" \
+|| echo -e "No New Mail  \c\r\r"
+##echo $atomlines
