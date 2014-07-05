@@ -1,4 +1,6 @@
 #!/bin/bash
+xrandr --setprovideroutputsource modesetting NVIDIA-0
+xrandr --auto
 
 DEFAULT_SESSION='ssubtle'
 if [[ "$(hostname)" == "Ogre" ]]; then
@@ -35,6 +37,7 @@ function sdwm() {
 	if [[ "$(hostname)" == "Ogre" ]]; then
 		xscreensaver &
 	fi
+	dwmstatus &
 	dwm
 }
 function sbg() {
@@ -47,6 +50,7 @@ function sbg() {
 }
 
 xset +fp /usr/share/fonts/local
+xset +fp /usr/share/fonts/100dpi/
 case $1 in
 xmonad)
 	sxmonad

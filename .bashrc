@@ -30,3 +30,7 @@ complete -cf sudo
 #└%{\e[41;30m%} %% %{\e[0m%}¬ '
 
 #PS1='C:\W>'
+
+# If you get distorted sound in skype, try adding PULSE_LATENCY_MSEC=60 to your
+# env before starting skype. Something like 'export PULSE_LATENCY_MSEC=60' in .bashrc, for example.
+
