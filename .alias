@@ -26,3 +26,4 @@ alias resetmon='xrandr --output DVI-I-3 --auto --right-of DVI-I-2 --output DVI-I
 alias league='killwine; playonlinux --run "League of Legends"'
 alias xeph='Xephyr :1 -ac -br -noreset -screen 1905x1045 &> /dev/null &; sleep 4; DISPLAY=:1.0 xfce4-session &> /dev/null &;'
 alias disabletitle='export DISABLE_AUTO_TITLE="true"'
+alias resynergy='pkill synergyc; synergyc troll'
