@@ -7,6 +7,8 @@ aliases = {
     'sb': '~/build/sb/src/',
     'df': '~/.files/',
     'f.net': '~/build/DropFrog/main/',
+    'proxy': '/mnt/RAID/media/Aeirnieth/tmp/',
+    'b': '~/build/',
 }
 
 

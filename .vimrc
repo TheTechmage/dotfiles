@@ -3,6 +3,9 @@ syntax on
 set modeline
 set mouse=nv
 
+"File type specific settings
+au BufNewFile,BufRead *.ejs set filetype=html
+
 "Droplets don't have utf-8 by default >_>
 scriptencoding utf-8
 set encoding=utf-8
