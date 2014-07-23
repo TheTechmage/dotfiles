@@ -6,6 +6,7 @@ alias sssh="env TERM='xterm' ssh"
 alias atlanta="ssh shell.frostyfrog.net"
 alias music="ncmpcpp"
 #alias gt='nocorrect gt'
+alias psgrep='ps aux | grep '
 
 
 # Functions
