@@ -1,10 +1,10 @@
 #!/bin/bash
-xrandr --setprovideroutputsource modesetting NVIDIA-0
-xrandr --auto
 
 DEFAULT_SESSION='ssubtle'
 if [[ "$(hostname)" == "Ogre" ]]; then
 	DEFAULT_SESSION='sdwm'
+	xrandr --setprovideroutputsource modesetting NVIDIA-0
+	xrandr --auto
 	/usr/bin/start-pulseaudio-x11 &
 fi
 #if [[ "$(hostname)" == "Troll" ]]; then
