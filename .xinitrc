@@ -7,6 +7,9 @@ if [[ "$(hostname)" == "Ogre" ]]; then
 	DEFAULT_SESSION='sdwm'
 	/usr/bin/start-pulseaudio-x11 &
 fi
+#if [[ "$(hostname)" == "Troll" ]]; then
+#	DEFAULT_SESSION='sxfce'
+#fi
 
 function sxmonad() {
 	PATH=$PATH:~/bin:~/fbin
@@ -24,7 +27,7 @@ function sxmonad() {
 function ssubtle() {
 	#gnome-session
 	xautolock -time 10 -locker "slimlock" &
-	if [[ "$(hostname)" == "Toronto" ]]; then
+	if [[ "$(hostname)" == "Troll" ]]; then
 		xrandr --output DVI-I-2 --right-of DVI-I-1 &
 	fi
 	sbg &
@@ -40,9 +43,13 @@ function sdwm() {
 	dwmstatus &
 	dwm
 }
+function sxfce() {
+	xscreensaver &
+	xfce4-session
+}
 function sbg() {
 	sleep 1;
-	if [ "$(hostname)" == "Toronto" ]; then
+	if [ "$(hostname)" == "Troll" ]; then
 		feh --bg-fill ~/bg.jpg;
 	else
 		feh --bg-fill ~/.wallpapers/archlinux-wallpaper-1.3/archlinux-deep-aurora.jpg;
@@ -60,6 +67,9 @@ subtle)
 	;;
 dwm)
 	sdwm
+	;;
+xfce)
+	sxfce
 	;;
 bg)
 	sbg

@@ -1,0 +1,5 @@
+#!/bin/bash
+command=scrot
+mkdir ~/gifgrab
+cd ~/gifgrab
+sleep 3; for i in {001..999} ; do $command `date +%Y-%m-%d`-${HOSTNAME}-${1}-${i}.png; done

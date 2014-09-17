@@ -4,7 +4,7 @@
 
 #	_arguments "$(~/.files/bin/cd.py -l "$@")"
 zstyle ':completion:*:*:gt:*:descriptions' format \
-	"%{$fg[red]%}=== %{$fg[green]%}%d %{$fg[red]%}===%{$fg[reset_color]%}"
+	"%{$fg[red]%}=== %{$fg[green]%}%d %{$fg[red]%}===%{$reset_color%}"
 __goto_python_complete() {
 	#local curcontext=$curcontext state line
 	#echo $state
@@ -27,8 +27,8 @@ __goto_python_complete() {
 		local alias_opts
 		declare -a alias_opts
 		alias_opts=($(cd.py -l ${words[$CURRENT]}))
-		if [ ! -z $alias_opts ]; then
-			_values 'Alias Listing' ${alias_opts[@]}
+		if [ ! -z "$alias_opts" ]; then
+			_values 'Alias Listing' ${alias_opts}
 		else
 			_message -r 'Unable to find alias'
 		fi
