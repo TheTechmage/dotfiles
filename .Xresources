@@ -1,6 +1,9 @@
 URxvt.perl-ext-common: default,clipboard
 !Xcursor.theme: Steampunk
 
+xscreensaver.logFile:/var/log/xscreensaver.log
+xscreensaver.verbose:true
+
 ! Nasty hack to act more like XTerm
 *URxvt*termName:		xterm-256color
 
