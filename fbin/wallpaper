@@ -1,0 +1,26 @@
+#!/bin/bash
+
+DIR=$HOME/.wallpapers/multi\ monitor
+FLOOR=1
+RANGE=`ls -1 "$DIR"/*.jpg "$DIR"/*.png | wc | awk '// {print $1}'`
+
+number=0
+
+while [ 1 -eq 1 ]; do
+	
+	number=$RANDOM
+	while [ "$number" -le $FLOOR ]; do
+  		number=$RANDOM
+	done
+	let "number %= $RANGE"  # Scales $number down within $RANGE.
+	COUNTER=1
+	for X in "$DIR"/*.jpg "$DIR"/*.png
+	do
+		if [ $number -eq $COUNTER ]; then
+			feh --bg-fill "$X"
+		fi
+	COUNTER=$(($COUNTER+1))
+	done
+	COUNTER=1
+	sleep 1m
+done &

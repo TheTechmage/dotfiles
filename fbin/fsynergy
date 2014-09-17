@@ -1,0 +1,7 @@
+#!/bin/bash
+echo "Killing Synergy (if running)"
+pkill synergyc
+echo "Sleeping for 2 seconds..."
+sleep 2
+echo "Starting Synergy"
+synergyc 192.168.0.140

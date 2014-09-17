@@ -1,0 +1,57 @@
+#!/bin/bash
+
+if [ -n "${DISPLAY+x}" ]; then
+	echo 'Display set :D'
+else
+	export DISPLAY=:0
+fi
+
+function projector() {
+	xrandr --output LVDS1 --off --output VGA1 --auto
+	synergyf
+}
+function smallProjector() {
+	xrandr --output VGA1 --mode 1024x768 --output LVDS1 --off
+	synergyf
+}
+function netbook() {
+	xrandr --output VGA1 --off --output LVDS1 --auto
+	synergyf
+}
+function both() {
+        xrandr --output VGA1 --auto --pos 1024x0
+	xrandr --output LVDS1 --auto
+        synergyf
+}
+
+function bothr() {
+	xrandr --output LVDS1 --auto --pos 1280x0
+	xrandr --output VGA1 --auto
+	synergyf
+}
+
+function  synergyf() {
+	PID=`pidof -o %PPID synergyc`
+	[ ! -z "$PID" ] && kill $PID &> /dev/null
+	if [ $? -gt 0 ] && [ ! -z "$PID" ]; then
+		echo "Failed to stop Synergy"
+	else
+		sleep 1
+		#synergyc 192.168.0.140
+		#synergyc --crypto-mode cfb --crypto-pass SoRaNoWoTo 10.10.9.88
+		synergyc 10.10.9.88
+	fi
+}
+case $@ in
+	n2p)
+		projector;;
+	n2sp)
+		smallProjector;;
+	p2n)
+		netbook;;
+	both)
+		both;;
+	bothr)
+		bothr;;
+	*);;
+esac

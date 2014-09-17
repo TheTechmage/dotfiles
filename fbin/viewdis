@@ -1,0 +1,31 @@
+#!/bin/bash
+
+case "$1" in
+  set)
+    case "$2" in
+      home)
+        echo "home"
+        ;;
+      projector)
+        
+        ;;
+      *)
+        $0 --help
+        ;;
+    esac
+    ;;
+  off)
+    echo "off"
+    ;;
+  list)
+    xrandr
+    ;;
+  -h)
+    echo "Usage: {commands}"
+    ;;
+  --help)
+    $0 -h
+    ;;
+  *)
+    $0 -h
+esac

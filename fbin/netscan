@@ -1,0 +1,33 @@
+#!/bin/bash
+num=1
+if [ -n $1 ]; then
+	num=$1
+else
+	echo "$0 <number of scan times>"
+	exit 1
+fi
+function list {
+	while [ $num -gt 0 ]; do
+		(
+			echo -n "${num}. "
+			sudo iwlist wlan0 scan|
+			grep ESSID|
+			sed -e "s/[ \t]*ESSID://"|
+			sed 's/^"\|"$//g'|
+			sort -f|
+			tr '\n' '$'|
+			sed 's/\$/,\ /g'
+		)>>$TMPDIR
+		echo -en "\n" >> $TMPDIR
+		echo $num
+		let num=num-1
+	done
+}
+
+export TMPDIR=`mktemp /tmp/netscan.XXXXXX`
+sudo ifconfig wlan0 up
+sleep 4;
+list
+sudo ifconfig wlan0 down
+cat $TMPDIR | less
+rm $TMPDIR

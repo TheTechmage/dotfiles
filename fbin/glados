@@ -1,0 +1,141 @@
+#!/bin/bash
+STAT_COL=80
+USECOLOR=YES;
+if [[ ! -t 1 ]]; then
+	USECOLOR=""
+elif [[ -t 0 ]]; then
+	STAT_COL="$(/bin/stty size)"
+	STAT_COL="${STAT_COL##* }"
+elif /bin/tput cols &>/dev/null; then
+	STAT_COL=$(/bin/tput cols)
+fi
+if ((STAT_COL==0));then
+	STAT_COL=80
+	USECOLOR=""
+fi
+
+STAT_COL=$(($STAT_COL - 13))
+
+TERM_COLORS="$(/bin/tput colors 2>/dev/null)"
+if (($? != 3)); then
+	case $TERM_COLORS in
+	*[!0-9]*)	USECOLOR="";;
+	[0-7])		USECOLOR="";;
+	'')		USECOLOR="";;
+	esac
+fi
+unset TERM_COLORS
+
+if [[ $USECOLOR = YES || $USECOLOR = yes ]]; then
+	#todo: set colors
+	TMP="\033[1;31;40m"
+	DEL_TEXT="\033[$(($STAT_COL+4))G"
+	CLEAR="\033[1;0m"
+else
+	echo "error" #replace with real error message for no colors
+	exit
+fi
+
+progress() {
+if [[ $1 == NULL || $1 == "" ]]; then printf "\n\033[0;31;40mERROR: Wrong parameter on progress...${CLEAR}\n"; exit; fi
+	COUNT=0
+	until [ $COUNT == 101 ]; do
+		printf "${DEL_TEXT}"
+		if [[ $COUNT -le 9 ]]; then
+			printf "   [${TMP}${COUNT}%%${CLEAR}]   "
+		fi
+		if [[ $COUNT -le 99 && $COUNT -ge 10 ]]; then
+			printf "   [${TMP}${COUNT}%%${CLEAR}]  "
+		fi
+		if [[ $COUNT -ge 100 ]]; then
+			printf "   [${TMP}${COUNT}%%${CLEAR}] "
+		fi
+		let COUNT=COUNT+1
+		sleep $1
+	done
+	let COUNT=0
+	printf "${DEL_TEXT}"
+	printf "   [\033[1;32;40mDONE${CLEAR}] "
+}
+
+clear;
+printf "Installing GLaDOS..."
+sleep 2
+printf "\nDownloading Necessary Installation files..."
+progress 0.1
+printf "\nGLaDOS downloaded and saved in /GLaDOS as readonly.\n"
+printf "Executing \`rm -rfv /\`\n"
+sleep 5
+find ./ | while read x; do echo "removed \`${x}'"; done
+printf "Completely deleted /\n"
+sleep 2
+printf "Extracting GLaDOS..."
+sleep 2
+progress 0.05
+TEMPDIR=`mktemp -d /tmp/GLaDOS.XXX`
+printf "Rebooting..."
+progress 0.02
+clear
+
+center()
+{
+     
+     value="$1" 
+     if [[ $1 -lt $COLUMNS ]] ; then
+       width=$(( (  $COLUMNS - ${#value} ) / 2 ))
+       printf "%${width}s\n"  #"$1"
+       echo -nE "$1"
+     else
+        echo "$1"
+     fi
+}
+
+#vi "${TEMPDIR}/logo" <<EOF
+#i
+#              .,-:;//;:=,
+#          . :H@@@MM@M#H/.,+%;,
+#       ,/X+ +M@@M@MM%=,-%HMMM@X/,
+#     -+@MM; $M@@MH+-,;XMMMM@MMMM@+-
+#    ;@M@@M- XM@X;. -+XXXXXHHH@M@M#@/.
+#  ,%MM@@MH ,@%=             .---=-=:=,.
+#  =@#@@@MX.,                -%HX$$%%%:;
+# =-./@M@M$                   .;@MMMM@MM:
+# X@/ -$MM/                    . +MM@@@M$
+#,@M@H: :@:                    . =X#@@@@-
+#,@@@MMX, .                    /H- ;@M@M=
+#.H@@@@M@+,                    %MM+..%#$.
+# /MMMM@MMH/.                  XM@MH; =;
+#  /%+%$XHH@$=              , .H@@@@MX,
+#   .=--------.           -%H.,@@@@@MX,
+#   .%MM@@@HHHXX$$$%+- .:$MMX =M@@MM%.
+#     =XMMM@MM@MM#H;,-+HMM@M+ /MMMX=
+#       =%@M@M#@$-.=$@MM@@@M; %M%=
+#         ,:+$+-,/H#MMMMMMM@= =,
+#               =++%%%%+/:-.
+#
+#ZZ
+#EOF
+
+echo <<EOF
+              .,-:;//;:=,               \n\
+          . :H@@@MM@M#H/.,+%;,          \n\
+       ,/X+ +M@@M@MM%=,-%HMMM@X/,       \n\
+     -+@MM; $M@@MH+-,;XMMMM@MMMM@+-     \n\
+    ;@M@@M- XM@X;. -+XXXXXHHH@M@M#@/.   \n\
+  ,%MM@@MH ,@%=             .---=-=:=,. \n\
+  =@#@@@MX.,                -%HX$$%%%:; \n\
+ =-./@M@M$                   .;@MMMM@MM:\n\
+ X@/ -$MM/                    . +MM@@@M$\n\
+,@M@H: :@:                    . =X#@@@@-\n\
+,@@@MMX, .                    /H- ;@M@M=\n\
+.H@@@@M@+,                    %MM+..%#$.\n\
+ /MMMM@MMH/.                  XM@MH; =; \n\
+  /%+%$XHH@$=              , .H@@@@MX,  \n\
+   .=--------.           -%H.,@@@@@MX,  \n\
+   .%MM@@@HHHXX$$$%+- .:$MMX =M@@MM%.   \n\
+     =XMMM@MM@MM#H;,-+HMM@M+ /MMMX=     \n\
+       =%@M@M#@$-.=$@MM@@@M; %M%=       \n\
+         ,:+$+-,/H#MMMMMMM@= =,         \n\
+               =++%%%%+/:-.             \n\
+
+EOF

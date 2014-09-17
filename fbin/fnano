@@ -1,0 +1,15 @@
+#!/bin/bash
+Path="$HOME/fbin/$1"
+EXISTS=false
+if [ -f $Path ];then EXISTS=true;fi
+nano $Path
+if [ $EXISTS = false ]; then
+if [ -f $Path ];
+then
+	chown frosty:users $Path
+	chmod +x $Path
+	echo "$1 successfully created."
+else
+	echo "$1 not created."
+fi
+fi

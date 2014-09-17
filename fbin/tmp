@@ -1,0 +1,40 @@
+#!/bin/bash
+NPLAY=TRUE
+while getopts “n” OPTION
+do
+     case $OPTION in
+         n)
+	   let NPLAY=false;;
+     esac
+done
+mocp -S
+echo -e -n "\033[s"
+echo -n "Starting Trine in MOC..."
+sleep 1
+if [  NPLAY -eq false ]; then
+ mocp -c
+ mocp -a ~/Music/Trine\ OST/
+ mocp -p
+ mocp --on repeat
+ echo -e -n "\033[u"
+ echo -e "\e[4;35mStarted!\e[0m"
+else
+ echo -e "\e[4;35mFAILED! \e[0m"
+fi
+sleep 1
+
+
+current_epoch=$(date +%s)
+target_epoch=$(date -d '05/3/2011 5:00' +%s)
+
+#mocp -a ~/Music/Trine\ OST/
+
+sleep_seconds=$(( $target_epoch - $current_epoch ))
+echo "Sleeping for $sleep_seconds till we switch playlists..."
+sleep $sleep_seconds
+mocp -c
+sleep 2
+mocp -a ~/Music/SG\ OST/
+sleep 2
+mocp -p
+mocp --on repeat

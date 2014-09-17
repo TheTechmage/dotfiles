@@ -1,0 +1,22 @@
+#!/bin/bash
+sudo echo BEEPS
+#sudo bash -c ""
+sudo beep
+sudo beep
+sudo beep
+sudo beep
+sudo beep
+sudo beep -f 900
+sudo sleep 1
+sudo beep -f 600
+sudo sleep 0.5
+sudo beep -f 700
+sudo sleep 1
+sudo beep -f 900
+sudo sleep 1
+sudo beep -f 600
+sudo sleep 0.5
+sudo beep -f 900
+sudo sleep 1
+sudo beep -f 600
+sudo sleep 0.5

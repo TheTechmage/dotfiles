@@ -1,0 +1,10 @@
+#xscreensaver-command -watch | while read x; do 
+#	if [ "`echo $x | grep -i UNBLANK`" != "" ]; then
+#		blank=1;
+#		date; 
+#	fi
+#done;
+( slock && (xset dpms 0 0 60; xset -dpms;xset s off; xset s noblank) ) &
+xset dpms 0 0 2
+xset dpms force off
+xset s on
