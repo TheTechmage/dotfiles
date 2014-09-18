@@ -39,7 +39,7 @@ alias xeph='Xephyr :1 -ac -br -noreset -screen 1905x1045 &> /dev/null &; sleep 4
 alias disabletitle='export DISABLE_AUTO_TITLE="true"'
 alias resynergy='pkill synergyc; synergyc troll'
 
-if [ "$SHELL" == "/bin/bash" ]; then
+if [[ "$SHELL" == "/bin/bash" ]]; then
 	# Git aliases from oh-my-zsh (for bash)
 	alias g=git
 	alias ga='git add'
