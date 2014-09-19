@@ -38,6 +38,7 @@ alias league='killwine; playonlinux --run "League of Legends"'
 alias xeph='Xephyr :1 -ac -br -noreset -screen 1905x1045 &> /dev/null &; sleep 4; DISPLAY=:1.0 xfce4-session &> /dev/null &;'
 alias disabletitle='export DISABLE_AUTO_TITLE="true"'
 alias resynergy='pkill synergyc; synergyc troll'
+alias tmuxda='tmux -S /var/run/user/$(id -ru)/tmux-daemons'
 
 if [[ "$SHELL" == "/bin/bash" ]]; then
 	# Git aliases from oh-my-zsh (for bash)
