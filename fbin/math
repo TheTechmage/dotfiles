@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -n $1 ]; then
+	echo $1 | bc;
+else
+	echo <<TEST
+Usage: $0 {math arguments here (no spaces)}
+TEST
+fi

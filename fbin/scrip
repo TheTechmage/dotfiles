@@ -1,0 +1,2 @@
+#!/bin/bash
+wine ~/.wine/drive_c/Program\ Files/Intellectual\ Reserve/LDS\ Scriptures\ CD-ROM\ Edition/Resource/wcView.exe

@@ -6,11 +6,22 @@ alias sssh="env TERM='xterm' ssh"
 alias atlanta="ssh shell.frostyfrog.net"
 alias music="ncmpcpp"
 #alias gt='nocorrect gt'
+alias psgrep='ps aux | grep '
 
 
 # Functions
-gt() {cd.py -t "$1"; if [ $? -eq 0 ]; then; cd $(cd.py "$1"); fi}
-killwine(){wineserver -k; killall -9 wine wineserver; for i in `ps ax|egrep "*\.exe"|grep -v 'egrep'|awk '{print $1 }'`;do kill -9 $i;done}
+gt() {
+	if [[ $1 == "edit" ]]; then
+		$EDITOR `which cd.py`
+		return
+	fi
+	cd.py -t "$1"
+	if [ $? -eq 0 ]; then
+		cd $(cd.py "$1")
+	fi
+}
+function join { local IFS="$1"; shift; echo "$*"; }
+killwine(){ wineserver -k; killall -9 wine wineserver; for i in `ps ax|egrep "*\.exe"|grep -v 'egrep'|awk '{print $1 }'`;do kill -9 $i;done }
 diff_folder() {
 	if [ $# -ne 2 ]; then
 		echo "Must Specify 2 arguments."
@@ -19,3 +30,79 @@ diff_folder() {
 	fi
 	diff -rqb $1 $2|grep differ|grep -v .bzr|awk '{print $2 " -> " $4;}'|grep '\->'
 }
+alias killwindow='kill -15 $(DISPLAY=:0 xprop _NET_WM_PID | cut -d" " -f3)'
+alias xephyrclip='reset; xephyr-clipboard-share :0 :1'
+alias copyclip='xsel -po|xsel --display :0 -bi'
+alias resetmon='xrandr --output DVI-I-3 --auto --right-of DVI-I-2 --output DVI-I-2 --auto'
+alias league='killwine; playonlinux --run "League of Legends"'
+alias xeph='Xephyr :1 -ac -br -noreset -screen 1905x1045 &> /dev/null &; sleep 4; DISPLAY=:1.0 xfce4-session &> /dev/null &;'
+alias disabletitle='export DISABLE_AUTO_TITLE="true"'
+alias resynergy='pkill synergyc; synergyc troll'
+alias tmuxda='tmux -S /var/run/user/$(id -ru)/tmux-daemons'
+
+if [[ "$SHELL" == "/bin/bash" ]]; then
+	# Git aliases from oh-my-zsh (for bash)
+	alias g=git
+	alias ga='git add'
+	alias gb='git branch'
+	alias gba='git branch -a'
+	alias gc='git commit -v'
+	alias 'gc!'='git commit -v --amend'
+	alias gca='git commit -v -a'
+	alias 'gca!'='git commit -v -a --amend'
+	alias gcl='git config --list'
+	alias gclean='git reset --hard && git clean -dfx'
+	alias gcm='git checkout master'
+	alias gcmsg='git commit -m'
+	alias gco='git checkout'
+	alias gcount='git shortlog -sn'
+	alias gcp='git cherry-pick'
+	alias gd='git diff'
+	alias gdc='git diff --cached'
+	alias gg='git gui citool'
+	alias gga='git gui citool --amend'
+	alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
+	alias ggpull='git pull origin $(current_branch)'
+	alias ggpur='git pull --rebase origin $(current_branch)'
+	alias ggpush='git push origin $(current_branch)'
+	alias gignore='git update-index --assume-unchanged'
+	alias gignored='git ls-files -v | grep "^[[:lower:]]"'
+	alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
+	alias gk='gitk --all --branches'
+	alias gl='git pull'
+	alias glg='git log --stat --max-count=10'
+	alias glgg='git log --graph --max-count=10'
+	alias glgga='git log --graph --decorate --all'
+	alias glo='git log --oneline --decorate --color'
+	alias glog='git log --oneline --decorate --color --graph'
+	alias glp=_git_log_prettily
+	alias gm='git merge'
+	alias gmt='git mergetool --no-prompt'
+	alias gp='git push'
+	alias gpoat='git push origin --all && git push origin --tags'
+	alias gr='git remote'
+	alias grba='git rebase --abort'
+	alias grbc='git rebase --continue'
+	alias grbi='git rebase -i'
+	alias grh='git reset HEAD'
+	alias grhh='git reset HEAD --hard'
+	alias grmv='git remote rename'
+	alias grrm='git remote remove'
+	alias grset='git remote set-url'
+	alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
+	alias grup='git remote update'
+	alias grv='git remote -v'
+	alias gsd='git svn dcommit'
+	alias gsr='git svn rebase'
+	alias gss='git status -s'
+	alias gst='git status'
+	alias gsta='git stash'
+	alias gstd='git stash drop'
+	alias gstp='git stash pop'
+	alias gsts='git stash show --text'
+	alias gunignore='git update-index --no-assume-unchanged'
+	alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
+	alias gup='git pull --rebase'
+	alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
+	alias gwip='git add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"'
+fi

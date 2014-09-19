@@ -1,6 +1,15 @@
 #!/bin/bash
 
-DEFAULT_SESSION='sgnome'
+DEFAULT_SESSION='ssubtle'
+if [[ "$(hostname)" == "Ogre" ]]; then
+	DEFAULT_SESSION='sdwm'
+	xrandr --setprovideroutputsource modesetting NVIDIA-0
+	xrandr --auto
+	/usr/bin/start-pulseaudio-x11 &
+fi
+#if [[ "$(hostname)" == "Troll" ]]; then
+#	DEFAULT_SESSION='sxfce'
+#fi
 
 function sxmonad() {
 	PATH=$PATH:~/bin:~/fbin
@@ -15,19 +24,32 @@ function sxmonad() {
         xmonad
 }
 
-function sgnome() {
+function ssubtle() {
 	#gnome-session
 	xautolock -time 10 -locker "slimlock" &
-	if [[ "$(hostname)" == "Toronto" ]]; then
+	if [[ "$(hostname)" == "Troll" ]]; then
 		xrandr --output DVI-I-2 --right-of DVI-I-1 &
 	fi
 	sbg &
 	subtle
 	synclient MaxTapTime=0
 }
+function sdwm() {
+	xautolock -time 10 -locker "slimlock" &
+	sbg &
+	if [[ "$(hostname)" == "Ogre" ]]; then
+		xscreensaver &
+	fi
+	dwmstatus &
+	dwm
+}
+function sxfce() {
+	xscreensaver &
+	xfce4-session
+}
 function sbg() {
 	sleep 1;
-	if [ "$(hostname)" == "Toronto" ]; then
+	if [ "$(hostname)" == "Troll" ]; then
 		feh --bg-fill ~/bg.jpg;
 	else
 		feh --bg-fill ~/.wallpapers/archlinux-wallpaper-1.3/archlinux-deep-aurora.jpg;
@@ -35,12 +57,19 @@ function sbg() {
 }
 
 xset +fp /usr/share/fonts/local
+xset +fp /usr/share/fonts/100dpi/
 case $1 in
 xmonad)
 	sxmonad
 	;;
-gnome)
-	sgnome
+subtle)
+	ssubtle
+	;;
+dwm)
+	sdwm
+	;;
+xfce)
+	sxfce
 	;;
 bg)
 	sbg

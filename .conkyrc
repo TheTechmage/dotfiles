@@ -37,6 +37,13 @@ use_spacer none
 
 #${image ~/.conky/icons/Television-Alt.png -s 32x32} ${image ~/.conky/icons/Task-Manager.png -p 225 -s 32x32}         ${image ~/.conky/icons/Memory.png -p 390 -s 32x32}  ${image ~/.conky/icons/Hard-Drive.png -p 655 -s 32x32}                                             ${image ~/.conky/icons/Connectiions.png -p 980 -s 32x32}                               ${image ~/.conky/icons/Gear.png -p 1230 -s 32x32}    ${image ~/.conky/icons/Media-Player.png -p 1385 -s 32x32}
 #${image ~/.conky/icons/Background.png -p 0,75}
+
+# Taken from cpu section under CPU$alignr...
+#CPU1 ${cpubar cpu1 4,100}$alignr${cpu cpu1}
+#CPU2 ${cpubar cpu2 4,100}$alignr${cpu cpu2}
+#CPU3 ${cpubar cpu3 4,100}$alignr${cpu cpu3}
+#CPU4 ${cpubar cpu4 4,100}$alignr${cpu cpu4}
+
 TEXT
 ${font winks:size=20}${color Tan1}SYSTEM${color DarkSlateGray}${hr 2}${color}${font}
 $nodename - $sysname $kernel on $machine
@@ -49,10 +56,6 @@ Mobo$alignr${if_existing /sys/class/hwmon/hwmon0/temp2_input}${hwmon 0 temp 2}${
 ${font winks:size=20}${color Tan1}Processors${color DarkSlateGray}${hr 2}${color}${font}
 Proc: $processes
 CPU$alignr${if_existing /sys/class/hwmon/hwmon0/temp1_input}${hwmon 0 temp 1}${else}${hwmon 1 temp 1}${endif}C
-CPU1 ${cpubar cpu1 4,100}$alignr${cpu cpu1}
-CPU2 ${cpubar cpu2 4,100}$alignr${cpu cpu2}
-CPU3 ${cpubar cpu3 4,100}$alignr${cpu cpu3}
-CPU4 ${cpubar cpu4 4,100}$alignr${cpu cpu4}
 ${cpugraph cpu1 12,250 00ff00 ff0000 -t}
 ${cpugraph cpu2 12,250 00ff00 ff0000 -t}
 ${cpugraph cpu3 12,250 00ff00 ff0000 -t}
@@ -86,5 +89,7 @@ ${font wargames:size=16}
 ${time %H:%M, %A %d %b}
 ${font}
 ${color fea63c}Furcadia LW Status: ${color 21face}${texeci 480 ~/.conky/misc.sh}$color
+${color fea63c}Furcadia Pounce:
+${color 21face}${texeci 480 echo "REPLACE ME"}$color
 ${execi 1280 cal}                        
 

@@ -48,6 +48,7 @@ fi
 
 # Customize to your needs...
 export PATH=/usr/lib/surfraw:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/java/bin:/opt/java/db/bin:/opt/java/jre/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/colton/bin:/home/colton/fbin:/usr/lib/surfraw:~/.gem/ruby/2.0.0/bin
-source ~/.alias
 
 FPATH="$HOME/.files/.zsh_autocomplete:$FPATH"
+HISTSIZE=100000 # 10000
+SAVEHIST=100000

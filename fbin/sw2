@@ -1,0 +1,4 @@
+sleep 5;
+xdotool type "Username"
+xdotool key "Tab"
+xdotool type `sw`

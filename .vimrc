@@ -1,6 +1,14 @@
 "set number
 syntax on
 set modeline
+set mouse=nv
+
+"File type specific settings
+au BufNewFile,BufRead *.ejs set filetype=html
+
+"Droplets don't have utf-8 by default >_>
+scriptencoding utf-8
+set encoding=utf-8
 
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<,nbsp:%
@@ -11,6 +19,25 @@ if hostname() == 'Toronto'
 	set rnu
 	set list
 endif
+
+" Use LaTeX configuration if on Ogre
+if hostname() == 'Ogre'
+	"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	"% Set the following lines in your ~/.vimrc or the systemwide /etc/vimrc:
+	"% filetype plugin indent on
+	"% set grepprg=grep\ -nH\ $*
+	"% let g:tex_flavor = "latex"
+	"% 
+	"% Also, this installs to /usr/share/vim/vimfiles, which may not be in
+	"% your runtime path (RTP). Be sure to add it too, e.g:
+	"% set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+	"%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	filetype plugin indent on
+	set grepprg=grep\ -nH\ $*
+	let g:tex_flavor = "latex"
+	set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
+endif
+
 let b:domainhost = split(hostname(), '\.')
 if len(b:domainhost) >= 1 && b:domainhost[0] == 'ipa'
 	set list ts=4 sw=4 et

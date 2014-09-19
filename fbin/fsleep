@@ -1,0 +1,35 @@
+#!/bin/bash
+function sleep2() {
+	sudo s2ram -f -a 3
+}
+
+function lock() {
+	xscreensaver-command -lock
+}
+
+function help2() {
+	cat <<EOF
+fsleep is short for frosty's sleep, and allows the user to put the computer to sleep.
+
+Commands: fsleep (sleep|lock)
+
+Arguments:
+	sleep	Put the computer to sleep
+	lock	Lock the computer THEN put it to sleep
+EOF
+}
+
+if [ "$(id -u)" != "0" ]; then
+	echo "Sorry, you are not root."
+	help2
+	exit 1
+fi
+#if [ "$(whoami)" != "root" ]; then
+#	echo "Sorry, you are not root."
+#	exit 1
+#fi
+case $@ in
+	sleep) sleep2;;
+	lock) lock;sleep 1;sleep2;;
+	*) help2;;
+esac
