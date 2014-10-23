@@ -35,10 +35,10 @@ function ssubtle() {
 	synclient MaxTapTime=0
 }
 function sdwm() {
-	xautolock -time 10 -locker "slimlock" &
+	xautolock -time 10 -locker "slock" &
 	sbg &
 	if [[ "$(hostname)" == "Ogre" ]]; then
-		xscreensaver &
+		#xscreensaver &
 	fi
 	dwmstatus &
 	dwm
