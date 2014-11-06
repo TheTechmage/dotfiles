@@ -8,6 +8,9 @@ aliases = {
     'df': '~/.files/',
     'f.net': '~/build/DropFrog/main/',
     'proxy': '/mnt/RAID/media/Aeirnieth/tmp/',
+    'engl': '/media/school/engl1010/',
+    '1410': '/media/school/cs1410/',
+    '2810': '/media/school/cs2810/',
     'b': '~/build/',
 }
 
