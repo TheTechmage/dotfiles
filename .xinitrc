@@ -37,9 +37,9 @@ function ssubtle() {
 function sdwm() {
 	xautolock -time 10 -locker "slock" &
 	sbg &
-	if [[ "$(hostname)" == "Ogre" ]]; then
+	#if [[ "$(hostname)" == "Ogre" ]]; then
 		#xscreensaver &
-	fi
+	#fi
 	dwmstatus &
 	dwm
 }
