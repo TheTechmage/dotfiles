@@ -93,6 +93,7 @@ Bundle 'msanders/snipmate.vim'
 "Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 " Arch disabled python
 Bundle 'szw/vim-tags'
+Bundle 'hynek/vim-python-pep8-indent'
 
 "C++ autocomplete
 Bundle 'Valloric/YouCompleteMe'
