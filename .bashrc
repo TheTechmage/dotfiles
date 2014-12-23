@@ -20,8 +20,8 @@ export HISTFILESIZE= HISTSIZE= HISTFILE=~/.bash4_history
 calc() {
 	echo "$*" | bc -l;
 }
-if [ -f .alias ]; then
-	. .alias
+if [ -f $HOME/.alias ]; then
+	. $HOME/.alias
 fi
 
 complete -cf sudo
