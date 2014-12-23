@@ -94,9 +94,27 @@ Bundle 'msanders/snipmate.vim'
 " Arch disabled python
 Bundle 'szw/vim-tags'
 
+"C++ autocomplete
+Bundle 'Valloric/YouCompleteMe'
+
+"Powerline Support
+"Note:
+"http://makandracards.com/jan0sch/18283-enable-powerline-fonts-with-rxvt-unicode-and-vim-airline
+Bundle 'bling/vim-airline'
+
 filetype indent on
 filetype plugin indent on
 " "}}}
+" Vundle Bundle Config {{{
+
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 3
+let g:airline#extensions#tabline#left_sep=''
+let g:airline#extensions#tabline#left_alt_sep=''
+let g:airline_theme="simple"
+set laststatus=2
+
+" }}}
 
 " Return to our last position in the file
 if has("autocmd")
