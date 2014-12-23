@@ -27,7 +27,7 @@ URxvt*fadeColor: black
 URxvt*transparent: true
 URxvt*shading: 20
 URxvt*depth:24
-URxvt*background: #000000
+URxvt*background: #101010
 URxvt*foreground: #C7C7C7
 URxvt*borderless: 1
 
