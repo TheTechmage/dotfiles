@@ -47,7 +47,28 @@ if [[ "$(hostname)" == "Toronto" ]]; then
 fi
 
 # Customize to your needs...
-export PATH=/usr/lib/surfraw:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/java/bin:/opt/java/db/bin:/opt/java/jre/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/colton/bin:/home/colton/fbin:/usr/lib/surfraw:~/.gem/ruby/2.0.0/bin
+
+# Old, BASH compatible method
+#export PATH=/usr/lib/surfraw:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/opt/java/bin:/opt/java/db/bin:/opt/java/jre/bin:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/colton/bin:/home/colton/fbin:/usr/lib/surfraw:~/.gem/ruby/2.0.0/bin:~/.gem/ruby/2.1.0/bin
+path=()
+path+=/usr/local/bin
+path+=/usr/bin
+path+=/bin
+path+=/usr/local/sbin
+path+=/usr/sbin
+path+=/sbin
+path+=/opt/java/bin
+path+=/opt/java/db/bin
+path+=/opt/java/jre/bin
+path+=/usr/bin/vendor_perl
+path+=/usr/bin/core_perl
+path+=/usr/lib/surfraw
+path+=~/bin
+path+=~/fbin
+path+=~/.gem/ruby/2.0.0/bin
+path+=~/.gem/ruby/2.1.0/bin
+# Only the ones that exist
+path=($^path(N))
 
 FPATH="$HOME/.files/.zsh_autocomplete:$FPATH"
 HISTSIZE=100000 # 10000
