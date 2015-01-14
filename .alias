@@ -8,6 +8,9 @@ alias music="ncmpcpp"
 #alias gt='nocorrect gt'
 alias psgrep='ps aux | grep '
 
+# Git Version Log
+alias gitvl='git log --date=iso --reverse --pretty="format:(git) [%h] - %s"'
+
 
 # Functions
 gt() {
