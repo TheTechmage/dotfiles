@@ -8,9 +8,12 @@ aliases = {
     'df': '~/.files/',
     'f.net': '~/build/DropFrog/main/',
     'proxy': '/mnt/RAID/media/Aeirnieth/tmp/',
-    'engl': '/media/school/engl1010/',
-    '1410': '/media/school/cs1410/',
-    '2810': '/media/school/cs2810/',
+    'engl1010': '/media/school/courses/semester1_fall/engl1010/',
+    'cs1410': '/media/school/courses/semester1_fall/cs1410/',
+    'cs2810': '/media/school/courses/semester1_fall/cs2810/',
+    'cs2420': '/media/school/courses/semester2_spring/cs2420/',
+    'engl2020': '/media/school/courses/semester2_spring/engl2020/',
+    'comm1020': '/media/school/courses/semester2_spring/comm1020/',
     'b': '~/build/',
 }
 
@@ -40,6 +43,8 @@ def arguments():
                         help="Testing mode! (Returns status code only)")
     parser.add_argument('-l', '--list', action='store', required=False,
                         nargs='?', default=False, help="Returns list of valid aliases")
+    #parser.add_argument('-w', '--whole-path', action='store_true', required=False,
+    #                    help="Display the whole path, even if it doesn't exist")
     parser.add_argument('alias', choices=aliases.keys(), type=str, nargs='?',
                         help="Your special alias ^.^")
 
