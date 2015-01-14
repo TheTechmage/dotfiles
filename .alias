@@ -106,3 +106,25 @@ if [[ "$SHELL" == "/bin/bash" ]]; then
 	alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 	alias gwip='git add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"'
 fi
+
+
+streaming() {
+	INRES="1600x900" # input resolution
+	OUTRES="1600x900" # output resolution
+	FPS="30" # target FPS
+	GOP="60" # i-frame interval, should be double of FPS, 
+	GOPMIN="30" # min i-frame interval, should be equal to fps, 
+	THREADS="4" # max 6
+	CBR="3000k" # constant bitrate (should be between 1000k - 3000k)
+	QUALITY="medium"  # one of the many FFMPEG preset slow, ultrafast fast medium
+	AUDIO_RATE="44100"
+	STREAM_KEY="$1" # use the terminal command Streaming streamkeyhere to stream your video to twitch or justin
+	SERVER="live-fra" # twitch server in frankfurt, see http://bashtech.net/twitch/ingest.php for list
+	SERVICE="rtmp://$SERVER.twitch.tv/app/$STREAM_KEY"
+	SERVICE="rtmp://172.24.0.2:1935/live/$STREAM_KEY"
+
+	ffmpeg -f x11grab -s "$INRES" -r "$FPS" -i :0.0 -f pulse -f flv -ac 2 -ar $AUDIO_RATE \
+	-vcodec libx264 -g $GOP -keyint_min $GOPMIN -b $CBR -minrate $CBR -maxrate $CBR -pix_fmt yuv420p\
+	-s $OUTRES -preset $QUALITY -tune film -acodec libmp3lame -threads $THREADS -strict normal \
+	-bufsize $CBR "$SERVICE"
+}

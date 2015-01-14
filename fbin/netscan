@@ -10,7 +10,8 @@ function list {
 	while [ $num -gt 0 ]; do
 		(
 			echo -n "${num}. "
-			sudo iwlist wlan0 scan|
+			#sudo iwlist wlan0 scan|
+			sudo iwlist wlp3s0 scan|
 			grep ESSID|
 			sed -e "s/[ \t]*ESSID://"|
 			sed 's/^"\|"$//g'|
@@ -25,9 +26,11 @@ function list {
 }
 
 export TMPDIR=`mktemp /tmp/netscan.XXXXXX`
-sudo ifconfig wlan0 up
+#sudo ifconfig wlan0 up
+sudo ifconfig wlp3s0 up
 sleep 4;
 list
-sudo ifconfig wlan0 down
+#sudo ifconfig wlan0 down
+sudo ifconfig wlp3s0 down
 cat $TMPDIR | less
 rm $TMPDIR
