@@ -116,3 +116,9 @@ endif
 "	echo "on work pc"
 "	set .. etc
 "endif
+"raise PSAPIException(msg = 'Debugging: %s' % e,
+"            code = 500,
+"            info = 'Debugging: %s' % e)
+let @b="oexcept Exception, e:raise PSAPIException(msg = 'Debugging: %s' % e,code = 500,info = 'Debugging: %s' % e)€ku€ku"
+set nolist
+match
