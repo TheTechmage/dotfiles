@@ -17,6 +17,9 @@ gt() {
 	fi
 	cd.py -t "$1"
 	if [ $? -eq 0 ]; then
+		echo -n "Attempting to cd to: "
+		cd.py -d "$1" | tr '\n' ', '
+		echo
 		cd $(cd.py "$1")
 	fi
 }
