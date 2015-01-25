@@ -17,6 +17,7 @@ PS1='\[\e[1;34m\]\u\[\e[0;31m\]\w\[\e[0;32m\]\$\[\e[0m\] '
 export EDITOR="vim"
 export pi=$(echo "scale=10; 4*a(1)" | bc -l)
 export HISTFILESIZE= HISTSIZE= HISTFILE=~/.bash4_history
+export HISTCONTROL=erasedups
 
 calc() {
 	echo "$*" | bc -l;
@@ -34,4 +35,6 @@ complete -cf sudo
 
 # If you get distorted sound in skype, try adding PULSE_LATENCY_MSEC=60 to your
 # env before starting skype. Something like 'export PULSE_LATENCY_MSEC=60' in .bashrc, for example.
-
+if [[ "$(hostname)" == "Ogre" ]]; then
+	export DOCKER_HOST=tcp://172.24.0.13:2375
+fi
