@@ -27,7 +27,7 @@ if hostname() == 'Ogre'
 	"% filetype plugin indent on
 	"% set grepprg=grep\ -nH\ $*
 	"% let g:tex_flavor = "latex"
-	"% 
+	"%
 	"% Also, this installs to /usr/share/vim/vimfiles, which may not be in
 	"% your runtime path (RTP). Be sure to add it too, e.g:
 	"% set runtimepath=~/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,~/.vim/after
@@ -141,3 +141,15 @@ endif
 let @b="oexcept Exception, e:raise PSAPIException(msg = 'Debugging: %s' % e,code = 500,info = 'Debugging: %s' % e)€ku€ku"
 set nolist
 match
+
+
+" ##    ##  #######  ######## ########  ######
+" ###   ## ##     ##    ##    ##       ##    ##
+" ####  ## ##     ##    ##    ##       ##
+" ## ## ## ##     ##    ##    ######    ######
+" ##  #### ##     ##    ##    ##             ##
+" ##   ### ##     ##    ##    ##       ##    ##
+" ##    ##  #######     ##    ########  ######
+"
+" Match command and syntax
+" http://vimdoc.sourceforge.net/htmldoc/pattern.html#:match
