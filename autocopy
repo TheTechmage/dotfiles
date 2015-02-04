@@ -38,6 +38,7 @@ function relink() {
 relink bin $HOME/bin
 relink .oh-my-zsh $HOME/.oh-my-zsh
 relink .vim $HOME/.vim
+relink fbin $HOME/fbin
 
 relink .alias $HOME/.alias
 relink .bashrc $HOME/.bashrc
