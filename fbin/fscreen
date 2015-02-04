@@ -6,27 +6,33 @@ else
 	export DISPLAY=:0
 fi
 
+laptopScreen=LVDS2
+externalScreen=VGA-1-0
+screenRes=1600x900
+
+screenResPos=${screenRes%x*}x0
+
 function projector() {
-	xrandr --output LVDS1 --off --output VGA1 --auto
+	xrandr --output $laptopScreen --off --output $externalScreen --auto
 	synergyf
 }
 function smallProjector() {
-	xrandr --output VGA1 --mode 1024x768 --output LVDS1 --off
+	xrandr --output $externalScreen --mode $screenRes --output $laptopScreen --off
 	synergyf
 }
 function netbook() {
-	xrandr --output VGA1 --off --output LVDS1 --auto
+	xrandr --output $externalScreen --off --output $laptopScreen --auto
 	synergyf
 }
 function both() {
-        xrandr --output VGA1 --auto --pos 1024x0
-	xrandr --output LVDS1 --auto
+        xrandr --output $externalScreen --auto --pos $screenResPos
+	xrandr --output $laptopScreen --auto
         synergyf
 }
 
 function bothr() {
-	xrandr --output LVDS1 --auto --pos 1280x0
-	xrandr --output VGA1 --auto
+	xrandr --output $laptopScreen --auto --pos 1280x0
+	xrandr --output $externalScreen --auto
 	synergyf
 }
 
@@ -39,7 +45,7 @@ function  synergyf() {
 		sleep 1
 		#synergyc 192.168.0.140
 		#synergyc --crypto-mode cfb --crypto-pass SoRaNoWoTo 10.10.9.88
-		synergyc 10.10.9.88
+		#synergyc 10.10.9.88
 	fi
 }
 case $@ in
