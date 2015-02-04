@@ -103,6 +103,9 @@ Bundle 'Valloric/YouCompleteMe'
 "http://makandracards.com/jan0sch/18283-enable-powerline-fonts-with-rxvt-unicode-and-vim-airline
 Bundle 'bling/vim-airline'
 
+" Vim Golang Support
+Bundle 'fatih/vim-go'
+
 filetype indent on
 filetype plugin indent on
 " "}}}
