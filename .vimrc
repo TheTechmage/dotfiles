@@ -106,6 +106,9 @@ Bundle 'bling/vim-airline'
 " Vim Golang Support
 Bundle 'fatih/vim-go'
 
+" Vim better js support
+Bundle 'pangloss/vim-javascript'
+
 filetype indent on
 filetype plugin indent on
 " "}}}
