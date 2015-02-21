@@ -65,6 +65,9 @@ nnoremap <C-D> :call SmoothScroll(0)<Enter>
 inoremap <C-U> <Esc>:call SmoothScroll(1)<Enter>i
 inoremap <C-D> <Esc>:call SmoothScroll(0)<Enter>i
 
+"nnoremap <F5> m'A<C-R>="\t".strftime('%Y-%m-%d %H:%M')<CR><Esc>``
+nnoremap <F5> m'A<C-R>="\t".strftime('%a %b %e %H:%M:%S %Z %Y')<CR><Esc>``
+
 "let &titlestring = hostname() . "[vim(" . expand("%:t") . ")]"
 let &titlestring = "vim(" . expand("%:t") . ")"
 let &titleold="-vim"
