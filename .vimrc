@@ -45,9 +45,9 @@ endif
 
 function SmoothScroll(up)
 	if a:up
-		let scrollaction="Y"
+		let scrollaction=""
 	else
-		let scrollaction="E"
+		let scrollaction=""
 	endif
 	exec "normal " . scrollaction
 	redraw
