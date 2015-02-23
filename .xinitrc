@@ -10,6 +10,9 @@ fi
 #if [[ "$(hostname)" == "Troll" ]]; then
 #	DEFAULT_SESSION='sxfce'
 #fi
+if [[ "$(hostname)" == "London" ]]; then
+	DEFAULT_SESSION='sxfce'
+fi
 
 function sxmonad() {
 	PATH=$PATH:~/bin:~/fbin
@@ -22,6 +25,12 @@ function sxmonad() {
         #xscreensaver &
 	pulseaudio --kill && pulseaudio --start &
         xmonad
+}
+function sxfce() {
+	if [[ "$(hostname)" == "London" ]]; then
+		xrandr --output DVI-0 --right-of HDMI-0 &
+	fi
+	xfce4-session
 }
 
 function ssubtle() {
