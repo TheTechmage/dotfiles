@@ -2,9 +2,11 @@
 user_name=frosty
 
 pacstrap /mnt base || exit 1
-pacstrap /mnt vim xorg-server{,-utils} slim syslinux xfce4 subtle git zsh libvirt xf86-video-{intel,nouveau} tmux screen openssh || exit 1
-pacstrap /mnt htop lsof samba ncdu tree nfs-utils sudo python virtualbox abs base-devel chromium xscreensaver || exit 1
-pacstrap /mnt mpd virt-manager sshfs qemu bridge-utils openbsd-netcat virtviewer || exit 1
+pacstrap /mnt vim slim syslinux xfce4 subtle git zsh libvirt tmux screen openssh || exit 1
+pacstrap /mnt xorg-server{,-utils} slim xfce4 xf86-video-{intel,nouveau} || exit 1
+pacstrap /mnt virtualbox chromium xscreensaver virt-manager virtviewer || exit 1
+pacstrap /mnt htop lsof samba ncdu tree nfs-utils sudo python abs base-devel || exit 1
+pacstrap /mnt mpd sshfs qemu bridge-utils openbsd-netcat || exit 1
 echo -e 'LANG="en_US.UTF-8"\nLC_COLLATE="C"'>> /mnt/etc/locale.conf
 sed -i 's/^#\(en_US\|ja_JP\)/\1/' /mnt/etc/locale.gen
 cat <<EOCHROOT | arch-chroot /mnt
