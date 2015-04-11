@@ -1,15 +1,131 @@
 #!/bin/bash
+
+ ######   #######  ##    ## ######## ####  ######   
+##    ## ##     ## ###   ## ##        ##  ##    ##  
+##       ##     ## ####  ## ##        ##  ##        
+##       ##     ## ## ## ## ######    ##  ##   #### 
+##       ##     ## ##  #### ##        ##  ##    ##  
+##    ## ##     ## ##   ### ##        ##  ##    ##  
+ ######   #######  ##    ## ##       ####  ######   
+
 user_name=frosty
 
+dwm=false
+slim=true
+subtle=false
+syslinux=true
+utils=true
+virtualize=true
+xfce=true
+xorg=true
+
+frostyrepo=false
+
+
+##     ## ######## ##       ########  ######## ########   ######  
+##     ## ##       ##       ##     ## ##       ##     ## ##    ## 
+##     ## ##       ##       ##     ## ##       ##     ## ##       
+######### ######   ##       ########  ######   ########   ######  
+##     ## ##       ##       ##        ##       ##   ##         ## 
+##     ## ##       ##       ##        ##       ##    ##  ##    ## 
+##     ## ######## ######## ##        ######## ##     ##  ######  
+
+function istrue() {
+	[ "$1" = true ]
+	return $?
+}
+
+
+#### ##    ##  ######  ########    ###    ##       ##       
+ ##  ###   ## ##    ##    ##      ## ##   ##       ##       
+ ##  ####  ## ##          ##     ##   ##  ##       ##       
+ ##  ## ## ##  ######     ##    ##     ## ##       ##       
+ ##  ##  ####       ##    ##    ######### ##       ##       
+ ##  ##   ### ##    ##    ##    ##     ## ##       ##       
+#### ##    ##  ######     ##    ##     ## ######## ######## 
+
 pacstrap /mnt base || exit 1
-pacstrap /mnt vim slim syslinux xfce4 subtle git zsh libvirt tmux screen openssh || exit 1
-pacstrap /mnt xorg-server{,-utils} slim xfce4 xf86-video-{intel,nouveau} || exit 1
-pacstrap /mnt virtualbox chromium xscreensaver virt-manager virtviewer || exit 1
-pacstrap /mnt htop lsof samba ncdu tree nfs-utils sudo python abs base-devel || exit 1
-pacstrap /mnt mpd sshfs qemu bridge-utils openbsd-netcat || exit 1
+packages=()
+	#packages+=('')
+
+if istrue $dwm; then
+	packages+=('dwm')
+fi
+if istrue $slim; then
+	packages+=('slim')
+fi
+if istrue $subtle; then
+	packages+=('subtle')
+fi
+if istrue $syslinux; then
+	packages+=('syslinux')
+fi
+if istrue $utils; then
+	packages+=('vim')
+	packages+=('git')
+	packages+=('zsh')
+	packages+=('tmux')
+	packages+=('screen')
+	packages+=('openssh')
+	packages+=('htop')
+	packages+=('lsof')
+	packages+=('samba')
+	packages+=('ncdu')
+	packages+=('tree')
+	packages+=('nfs-utils')
+	packages+=('sudo')
+	packages+=('python')
+	packages+=('abs')
+	packages+=('base-devel')
+	packages+=('mpd')
+	packages+=('sshfs')
+	packages+=('bridge-utils')
+	packages+=('openbsd-netcat')
+fi
+if istrue $virtualize; then
+	packages+=('libvirt')
+	packages+=('virtualbox')
+	packages+=('virt-manager')
+	packages+=('virt-viewer')
+	packages+=('qemu')
+fi
+if istrue $xfce; then
+	packages+=('xfce4')
+fi
+if istrue $xorg; then
+	packages+=(xorg-server{,-utils})
+	packages+=(xf86-video-{intel,nouveau})
+	packages+=('xscreensaver')
+	packages+=('chromium')
+fi
+
+if istrue $frostyrepo && (grep -v frostyfrog /etc/pacman.conf); then
+	sed "/\[core/i [frostyrepo]\nServer = http://repo.frostyfrog.net/\n\n" /etc/pacman.conf
+fi
+
+pacman -Syy ${packages[*]}
+
+ ######  ######## ######## ##     ## ########  
+##    ## ##          ##    ##     ## ##     ## 
+##       ##          ##    ##     ## ##     ## 
+ ######  ######      ##    ##     ## ########  
+      ## ##          ##    ##     ## ##        
+##    ## ##          ##    ##     ## ##        
+ ######  ########    ##     #######  ##        
+
 echo -e 'LANG="en_US.UTF-8"\nLC_COLLATE="C"'>> /mnt/etc/locale.conf
 sed -i 's/^#\(en_US\|ja_JP\)/\1/' /mnt/etc/locale.gen
 cat <<EOCHROOT | arch-chroot /mnt
+
+function istrue() {
+	[ "\$1" = true ]
+	return \$?
+}
+
+if istrue $frostyrepo; then
+	sed "/\\[core/i [frostyrepo]\\nServer = http://repo.frostyfrog.net/\\n\\n" -i /etc/pacman.conf
+fi
+
 mkinitcpio -p linux
 locale-gen
 ln -s /usr/share/zoneinfo/America/Denver /etc/localtime
@@ -24,7 +140,16 @@ polkit.addRule(function(action, subject) {
 });
 EOF
 
-useradd -m -G wheel,systemd-journal,mpd,vboxusers,libvirt -s /bin/zsh frosty
+useradd -m -G wheel,systemd-journal -s /bin/zsh frosty
+
+if istrue $utils; then
+	gpasswd -a $user_name mpd
+fi
+if istrue $virtualize; then
+	gpasswd -a $user_name vboxusers
+	gpasswd -a $user_name libvirt
+fi
+
 cat <<EOSU | su - $user_name
 	git clone https://github.com/frostyfrog/dotfiles.git .files
 	cd .files
@@ -32,9 +157,19 @@ cat <<EOSU | su - $user_name
 	./autocopy
 EOSU
 
-systemctl enable libvirtd sshd slim mpd
-pacman -S syslinux
-syslinux-install_update -i -a -m
+if istrue $utils; then
+	systemctl enable sshd mpd
+fi
+if istrue $slim; then
+	systemctl enable slim
+fi
+if istrue $virtualize; then
+	systemctl enable libvirtd
+fi
+
+if istrue $syslinux; then
+	syslinux-install_update -i -a -m
+fi
 
 EOCHROOT
 
