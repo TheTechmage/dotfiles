@@ -1,6 +1,7 @@
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
 typeset -A key
+DEBUG=false
 
 key[Home]=${terminfo[khome]}
 
@@ -13,6 +14,21 @@ key[Left]=${terminfo[kcub1]}
 key[Right]=${terminfo[kcuf1]}
 key[PageUp]=${terminfo[kpp]}
 key[PageDown]=${terminfo[knp]}
+
+if $DEBUG; then
+	(
+		echo "Home: ${key[Home]}"
+		echo "End: ${key[End]}"
+		echo "Insert: ${key[Insert]}"
+		echo "Delete: ${key[Delete]}"
+		echo "Up: ${key[Up]}"
+		echo "Down: ${key[Down]}"
+		echo "Left: ${key[Left]}"
+		echo "Right: ${key[Right]}"
+		echo "PageUp: ${key[PageUp]}"
+		echo "PageDown: ${key[PageDown]}"
+	)| vim -R -
+fi
 
 # setup key accordingly
 [[ -n "${key[Home]}"     ]]  && bindkey  "${key[Home]}"     beginning-of-line
