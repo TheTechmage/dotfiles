@@ -2,7 +2,7 @@
 termcapinfo xterm ti@:te@
 #shell -bash
 #screen -t htop htop
-screen -t sh
+#screen -t sh
 #screen -t bash3
 #screen -t bash4
 #screen -t bash5
