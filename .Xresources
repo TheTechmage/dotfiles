@@ -1,12 +1,20 @@
-URxvt.perl-ext-common: default,clipboard
 !Xcursor.theme: Steampunk
 
 xscreensaver.logFile:/var/log/xscreensaver.log
 xscreensaver.verbose:true
 
-! Nasty hack to act more like XTerm
-*URxvt*termName:		xterm-256color
+!------------------!
+!    URxvt Stuff   !
+!------------------!
 
+!--[perl]--!
+URxvt.perl-ext-common: default,clipboard,tabbed
+
+!--[terminal]--!
+! Nasty hack to act more like XTerm
+!*URxvt*termName:		xterm-256color
+
+!--[keybinds]--!
 ! Normal
 *URxvt*keysym.Home:		\033OH
 *URxvt*keysym.End:		\033OF
@@ -14,6 +22,11 @@ xscreensaver.verbose:true
 *URxvt*keysym.F2:		\033OQ
 *URxvt*keysym.F3:		\033OR
 *URxvt*keysym.F4:		\033OS
+
+!URxvt*keysym.Home: \033[1~
+!URxvt*keysym.End: \033[4~
+URxvt*keysym.Home: \033[7~
+URxvt*keysym.End: \033[8~
 
 ! Shift
 ! paste conflict
@@ -39,10 +52,10 @@ xscreensaver.verbose:true
 *URxvt*keysym.S-F12:		\033[24;2~
 
 ! tab navigation conflict (only when using tabs)
-*URxvt*keysym.S-Up:		\033[1;2A
-*URxvt*keysym.S-Down:		\033[1;2B
-*URxvt*keysym.S-Right:		\033[1;2C
-*URxvt*keysym.S-Left:		\033[1;2D
+!*URxvt*keysym.S-Up:		\033[1;2A
+!*URxvt*keysym.S-Down:		\033[1;2B
+!*URxvt*keysym.S-Right:		\033[1;2C
+!*URxvt*keysym.S-Left:		\033[1;2D
 
 ! Alt
 *URxvt*keysym.M-Insert:		\033[2;3~
@@ -199,16 +212,18 @@ xscreensaver.verbose:true
 *URxvt*keysym.S-M-C-Down:	\033[1;8B
 *URxvt*keysym.S-M-C-Right:	\033[1;8C
 *URxvt*keysym.S-M-C-Left:	\033[1;8D
+!--[end_keybinds]--!
 
-URxvt*keysym.Home: \033[1~
-URxvt*keysym.End: \033[4~
-!URxvt*keysym.Home: \033[7~
-!URxvt*keysym.End: \033[8~
+
+!--[tweaks]--!
 
 URxvt.visualBell: true
 !// this is SO AWESOME:
 URxvt.fading: 15
+URxvt.fading: 60
 !// URxvt spells "eightBitInput" as "meta8" and defaults it to false
+
+URxvt*cursorBlink: true
 
 !------------------!
 !   xterm Stuff    !
@@ -237,7 +252,7 @@ xterm*perl-ext-common: default
 !--[bell]--!
 xterm*urgentOnBell: true
 !--[cursor]--!
-xterm*cursorBlink: false
+xterm*cursorBlink: true
 !--[Colours]--! 
 xterm*cursorColor: #FFAF00
 ! black

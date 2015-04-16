@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEFAULT_SESSION='ssubtle'
+DEFAULT_SESSION='sdwm'
 if [[ "$(hostname)" == "Ogre" ]]; then
 	DEFAULT_SESSION='sdwm'
 	xrandr --setprovideroutputsource modesetting NVIDIA-0
@@ -43,6 +43,7 @@ function ssubtle() {
 	subtle
 	synclient MaxTapTime=0
 }
+
 function sdwm() {
 	xautolock -time 10 -locker "slock" &
 	sbg &
@@ -67,6 +68,8 @@ function sbg() {
 
 xset +fp /usr/share/fonts/local
 xset +fp /usr/share/fonts/100dpi/
+xrdb -merge ~/.Xresources
+
 case $1 in
 xmonad)
 	sxmonad
