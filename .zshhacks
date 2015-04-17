@@ -27,6 +27,15 @@ if $DEBUG; then
 		echo "Right: ${key[Right]}"
 		echo "PageUp: ${key[PageUp]}"
 		echo "PageDown: ${key[PageDown]}"
+		echo "===="
+		for i in ${(k)terminfo}; do
+			echo "$i: ${terminfo[$i]}"
+		done
+		echo "===="
+		for i in ${(k)key}; do
+			echo "$i: ${key[$i]}"
+		done
+		echo "meep?"
 	)| vim -R -
 fi
 
