@@ -50,6 +50,8 @@ packages=()
 
 if istrue $dwm; then
 	packages+=('dwm')
+	packages+=('xautolock')
+	packages+=('slock')
 fi
 if istrue $slim; then
 	packages+=('slim')
@@ -78,9 +80,13 @@ if istrue $utils; then
 	packages+=('abs')
 	packages+=('base-devel')
 	packages+=('mpd')
+	packages+=('ncmpcpp')
 	packages+=('sshfs')
 	packages+=('bridge-utils')
 	packages+=('openbsd-netcat')
+	packages+=('rxvt-unicode')
+	packages+=('syslog-ng')
+	packages+=('logrotate')
 fi
 if istrue $virtualize; then
 	packages+=('libvirt')
