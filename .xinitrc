@@ -10,9 +10,9 @@ fi
 #if [[ "$(hostname)" == "Troll" ]]; then
 #	DEFAULT_SESSION='sxfce'
 #fi
-if [[ "$(hostname)" == "London" ]]; then
-	DEFAULT_SESSION='sxfce'
-fi
+#if [[ "$(hostname)" == "London" ]]; then
+#	DEFAULT_SESSION='sxfce'
+#fi
 
 function sxmonad() {
 	PATH=$PATH:~/bin:~/fbin
