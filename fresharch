@@ -128,8 +128,12 @@ function istrue() {
 	return \$?
 }
 
+pacman-key init
+pacman-key --populate archlinux
+pacman-key -r 0x362db4a50060df7b
+
 if istrue $frostyrepo; then
-	sed "/\\[core/i [frostyrepo]\\nServer = http://repo.frostyfrog.net/\\n\\n" -i /etc/pacman.conf
+	sed "/\\[core/i [frostyrepo]\\nSigLevel = Required\\nServer = http://repo.frostyfrog.net/\\n\\n" -i /etc/pacman.conf
 fi
 
 mkinitcpio -p linux
