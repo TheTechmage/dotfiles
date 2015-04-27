@@ -112,6 +112,7 @@ if [[ "$SHELL" == "/bin/bash" ]]; then
 	alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
 	alias gwip='git add -A; git ls-files --deleted -z | xargs -r0 git rm; git commit -m "--wip--"'
 fi
+alias gl-summary='git --no-pager log --date=iso --reverse --pretty="format:(git) [%h] - %s"'
 
 
 streaming() {
