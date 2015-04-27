@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="eastwood"
+ZSH_THEME="ys"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -24,7 +24,7 @@ ZSH_THEME="eastwood"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+ DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
  COMPLETION_WAITING_DOTS="true"
@@ -35,10 +35,10 @@ ZSH_THEME="eastwood"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-if [ -f .alias ]; then
+if [ -f ~/.alias ]; then
 	source ~/.alias
 fi
-if [ -f .zshhacks ]; then
+if [ -f ~/.zshhacks ]; then
 	source ~/.zshhacks
 fi
 if [[ "$(hostname)" == "Toronto" ]]; then

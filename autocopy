@@ -55,6 +55,7 @@ relink .Xdefaults $HOME/.Xdefaults
 relink .xinitrc $HOME/.xinitrc
 relink .Xresources $HOME/.Xresources
 relink .zshrc $HOME/.zshrc
+relink .zshhacks $HOME/.zshhacks
 
 
 exit # Exit so we don't hit our template line

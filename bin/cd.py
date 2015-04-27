@@ -1,6 +1,7 @@
 #!/usr/bin/python
 import sys
 import os
+from string import Template
 
 aliases = {
     'scribes': '~/.Scribes/files/dev/' + 'e/i/e/i/o',
@@ -15,6 +16,9 @@ aliases = {
     'engl2020': '/media/school/courses/semester2_spring/engl2020/',
     'comm1020': '/media/school/courses/semester2_spring/comm1020/',
     'b': '~/build/',
+    'p': '~/projects/',
+    'rconfig': '~/projects/ruby/router_config/',
+    'bin': '$scriptdir',
 }
 
 
@@ -53,6 +57,11 @@ def arguments():
 
 if __name__ == '__main__':
     args = arguments()
+    d = {
+        'scriptdir': os.path.dirname(os.path.realpath(__file__)),
+    }
+    for (a, b) in aliases.items():
+        aliases[a] = Template(b).safe_substitute(d)
     if args.list != False:
         inlist = False
         if args.list is None:

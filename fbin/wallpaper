@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=$HOME/.wallpapers/multi\ monitor
+DIR=$HOME/.wallpapers/active
 FLOOR=1
 RANGE=`ls -1 "$DIR"/*.jpg "$DIR"/*.png | wc | awk '// {print $1}'`
 

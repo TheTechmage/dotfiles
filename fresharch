@@ -50,6 +50,8 @@ packages=()
 
 if istrue $dwm; then
 	packages+=('dwm')
+	packages+=('xautolock')
+	packages+=('slock')
 fi
 if istrue $slim; then
 	packages+=('slim')
@@ -78,9 +80,13 @@ if istrue $utils; then
 	packages+=('abs')
 	packages+=('base-devel')
 	packages+=('mpd')
+	packages+=('ncmpcpp')
 	packages+=('sshfs')
 	packages+=('bridge-utils')
 	packages+=('openbsd-netcat')
+	packages+=('rxvt-unicode')
+	packages+=('syslog-ng')
+	packages+=('logrotate')
 fi
 if istrue $virtualize; then
 	packages+=('libvirt')
@@ -122,8 +128,12 @@ function istrue() {
 	return \$?
 }
 
+pacman-key init
+pacman-key --populate archlinux
+pacman-key -r 0x362db4a50060df7b
+
 if istrue $frostyrepo; then
-	sed "/\\[core/i [frostyrepo]\\nServer = http://repo.frostyfrog.net/\\n\\n" -i /etc/pacman.conf
+	sed "/\\[core/i [frostyrepo]\\nSigLevel = Required\\nServer = http://repo.frostyfrog.net/\\n\\n" -i /etc/pacman.conf
 fi
 
 mkinitcpio -p linux
