@@ -1,0 +1,7 @@
+@^(https?://|www\.) = chromium --incognito
+image/              = ristretto
+video/              = mplayer
+audio/              = mplayer::urxvt
+text/               = $EDITOR?:urxvt
+application/pdf     = evince
+inode/directory     = ranger?:urxvt
