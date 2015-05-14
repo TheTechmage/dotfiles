@@ -88,6 +88,7 @@ match OverLength /\%81v.\+/
 " Vundle Stuff "{{{
 filetype off
 set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/autoload
 call vundle#rc()
 
 " Bundles!
@@ -111,6 +112,13 @@ Bundle 'fatih/vim-go'
 
 " Vim better js support
 Bundle 'pangloss/vim-javascript'
+
+call plug#begin()
+" Alignment
+Plug 'junegunn/vim-easy-align'
+" The below doesn't work
+" Bundle 'junegunn/vim-easy-align'
+call plug#end()
 
 filetype indent on
 filetype plugin indent on
