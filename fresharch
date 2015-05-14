@@ -133,14 +133,19 @@ function istrue() {
 
 pacman-key --init
 pacman-key --populate archlinux
-pacman-key -r 0x362db4a50060df7b
-
-pacman-db-upgrade
-pacman -Syy ${packages[*]}
+dirmngr < /dev/null
+pacman-key -r 0x362db4a50060df7b || exit 1
+pacman-key -f 0x362db4a50060df7b
+sleep 1m
+pacman-key --lsign 0x362db4a50060df7b
+kill -15 $(lsof /dev|grep '(gpg-agent|dirmgr)'|awk '{print $2;}'|uniq)
 
 if istrue $frostyrepo; then
 	sed "/\\[core/i [frostyrepo]\\nSigLevel = Required\\nServer = http://repo.frostyfrog.net/\\n\\n" -i /etc/pacman.conf
 fi
+
+pacman-db-upgrade
+pacman -Syy ${packages[*]} --noconfirm || exit 1
 
 mkinitcpio -p linux
 locale-gen
