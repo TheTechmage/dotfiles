@@ -103,6 +103,7 @@ if istrue $xorg; then
 	packages+=(xf86-video-{intel,nouveau})
 	packages+=('xscreensaver')
 	packages+=('chromium')
+	packages+=('firefox-developer')
 fi
 
 if istrue $frostyrepo && (grep -v frostyfrog /etc/pacman.conf); then
@@ -139,7 +140,10 @@ fi
 mkinitcpio -p linux
 locale-gen
 ln -s /usr/share/zoneinfo/America/Denver /etc/localtime
-groupadd libvirt
+
+if istrue $virtualize; then
+	groupadd libvirt
+fi
 
 cat <<EOF > /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
 polkit.addRule(function(action, subject) {
@@ -150,7 +154,7 @@ polkit.addRule(function(action, subject) {
 });
 EOF
 
-useradd -m -G wheel,systemd-journal -s /bin/zsh frosty
+useradd -m -G wheel,users,systemd-journal -s /bin/zsh frosty
 
 if istrue $utils; then
 	gpasswd -a $user_name mpd
@@ -166,6 +170,11 @@ cat <<EOSU | su - $user_name
 	git submodule update --init --recursive
 	./autocopy
 EOSU
+
+mkdir -p /var/lib/mpd/music/music
+ln -s /var/lib/mpd/music/music /home/$user_name/music
+chown $user_name:users /home/$user_name/music
+chown $user_name:users /var/lib/mpd/music/music
 
 if istrue $utils; then
 	systemctl enable sshd mpd
