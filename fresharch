@@ -10,6 +10,7 @@
 
 user_name=frosty
 
+development=true
 dwm=false
 slim=true
 subtle=false
@@ -48,6 +49,9 @@ pacstrap /mnt base || exit 1
 packages=()
 	#packages+=('')
 
+if istrue $development; then
+	packages+=(base-devel)
+fi
 if istrue $dwm; then
 	packages+=('dwm')
 	packages+=('xautolock')
