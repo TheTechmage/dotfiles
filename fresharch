@@ -96,7 +96,7 @@ if istrue $virtualize; then
 	packages+=('libvirt')
 	packages+=('virtualbox')
 	packages+=('virt-manager')
-	packages+=('virt-viewer')
+#	packages+=('virt-viewer')
 	packages+=('qemu')
 fi
 if istrue $xfce; then
