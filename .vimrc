@@ -151,6 +151,23 @@ let @b="oexcept Exception, e:raise PSAPIException(msg = 'Debugging: %s' % e,co
 set nolist
 match
 
+" ##    ## ######## ##    ##  ######  
+" ##   ##  ##        ##  ##  ##    ## 
+" ##  ##   ##         ####   ##       
+" #####    ######      ##     ######  
+" ##  ##   ##          ##          ## 
+" ##   ##  ##          ##    ##    ## 
+" ##    ## ########    ##     ######  
+
+" Splits
+" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+vnoremap <f2> :<c-u>exe join(getline("'<","'>"),'<bar>')<cr>
 
 " ##    ##  #######  ######## ########  ######
 " ###   ## ##     ##    ##    ##       ##    ##
