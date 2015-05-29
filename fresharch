@@ -10,6 +10,7 @@
 
 user_name=frosty
 
+development=true
 dwm=false
 slim=true
 subtle=false
@@ -48,6 +49,9 @@ pacstrap /mnt base || exit 1
 packages=()
 	#packages+=('')
 
+if istrue $development; then
+	packages+=(base-devel)
+fi
 if istrue $dwm; then
 	packages+=('dwm')
 	packages+=('xautolock')
@@ -92,7 +96,7 @@ if istrue $virtualize; then
 	packages+=('libvirt')
 	packages+=('virtualbox')
 	packages+=('virt-manager')
-	packages+=('virt-viewer')
+#	packages+=('virt-viewer')
 	packages+=('qemu')
 fi
 if istrue $xfce; then
@@ -103,13 +107,12 @@ if istrue $xorg; then
 	packages+=(xf86-video-{intel,nouveau})
 	packages+=('xscreensaver')
 	packages+=('chromium')
+	packages+=('firefox-developer')
 fi
 
 if istrue $frostyrepo && (grep -v frostyfrog /etc/pacman.conf); then
 	sed "/\[core/i [frostyrepo]\nServer = http://repo.frostyfrog.net/\n\n" /etc/pacman.conf
 fi
-
-pacman -Syy ${packages[*]}
 
  ######  ######## ######## ##     ## ########  
 ##    ## ##          ##    ##     ## ##     ## 
@@ -128,18 +131,29 @@ function istrue() {
 	return \$?
 }
 
-pacman-key init
+pacman-key --init
 pacman-key --populate archlinux
-pacman-key -r 0x362db4a50060df7b
+dirmngr < /dev/null
+pacman-key -r 0x362db4a50060df7b || exit 1
+pacman-key -f 0x362db4a50060df7b
+sleep 1m
+pacman-key --lsign 0x362db4a50060df7b
+kill -15 $(lsof /dev|grep '(gpg-agent|dirmgr)'|awk '{print $2;}'|uniq)
 
 if istrue $frostyrepo; then
 	sed "/\\[core/i [frostyrepo]\\nSigLevel = Required\\nServer = http://repo.frostyfrog.net/\\n\\n" -i /etc/pacman.conf
 fi
 
+pacman-db-upgrade
+pacman -Syy ${packages[*]} --noconfirm || exit 1
+
 mkinitcpio -p linux
 locale-gen
 ln -s /usr/share/zoneinfo/America/Denver /etc/localtime
-groupadd libvirt
+
+if istrue $virtualize; then
+	groupadd libvirt
+fi
 
 cat <<EOF > /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
 polkit.addRule(function(action, subject) {
@@ -150,7 +164,7 @@ polkit.addRule(function(action, subject) {
 });
 EOF
 
-useradd -m -G wheel,systemd-journal -s /bin/zsh frosty
+useradd -m -G wheel,users,systemd-journal -s /bin/zsh frosty
 
 if istrue $utils; then
 	gpasswd -a $user_name mpd
@@ -166,6 +180,11 @@ cat <<EOSU | su - $user_name
 	git submodule update --init --recursive
 	./autocopy
 EOSU
+
+mkdir -p /var/lib/mpd/music/music
+ln -s /var/lib/mpd/music/music /home/$user_name/music
+chown $user_name:users /home/$user_name/music
+chown $user_name:users /var/lib/mpd/music/music
 
 if istrue $utils; then
 	systemctl enable sshd mpd
