@@ -124,10 +124,11 @@ Bundle 'pangloss/vim-javascript'
 " }}}
 
 call plug#begin()
-" Alignment
-Plug 'junegunn/vim-easy-align'
-" The below doesn't work
-" Bundle 'junegunn/vim-easy-align'
+	" Alignment
+	Plug 'junegunn/vim-easy-align'
+	" The below doesn't work
+	" Bundle 'junegunn/vim-easy-align'
+	Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 filetype indent on
