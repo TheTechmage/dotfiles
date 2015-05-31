@@ -87,12 +87,13 @@ match OverLength /\%81v.\+/
 
 " Vundle Stuff "{{{
 filetype off
+"set rtp+=~/.vim/nonbundle
 set rtp+=~/.vim/bundle/vundle
 call vundle#rc()
 
 " Bundles!
 Bundle 'gmarik/vundle'
-Bundle 'msanders/snipmate.vim'
+"Bundle 'msanders/snipmate.vim'
 "Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 " Arch disabled python
 Bundle 'szw/vim-tags'
@@ -111,6 +112,15 @@ Bundle 'fatih/vim-go'
 
 " Vim better js support
 Bundle 'pangloss/vim-javascript'
+
+" Vim Snip-Mate {{{
+	Bundle "MarcWeber/vim-addon-mw-utils"
+	Bundle "tomtom/tlib_vim"
+	Bundle "garbas/vim-snipmate"
+
+	" Optional:
+	Bundle "honza/vim-snippets"
+" }}}
 
 filetype indent on
 filetype plugin indent on
