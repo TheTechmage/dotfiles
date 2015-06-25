@@ -172,6 +172,12 @@ call plug#begin()
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
 call plug#end()
 
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
 filetype indent on
 filetype plugin indent on
 " "}}}

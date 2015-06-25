@@ -1,4 +1,4 @@
-@^(https?://|www\.) = chromium --incognito
+@^(https?://|www\.) = surf
 image/              = ristretto
 video/              = mplayer
 audio/              = mplayer::urxvt
