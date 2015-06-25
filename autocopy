@@ -40,6 +40,7 @@ relink .oh-my-zsh $HOME/.oh-my-zsh
 relink .vim $HOME/.vim
 relink fbin $HOME/fbin
 
+relink .abcde.conf $HOME/.abcde.conf
 relink .alias $HOME/.alias
 relink .bashrc $HOME/.bashrc
 relink .conky $HOME/.conky
