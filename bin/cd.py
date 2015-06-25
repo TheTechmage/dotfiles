@@ -18,6 +18,7 @@ aliases = {
     'b': '~/build/',
     'p': '~/projects/',
     'rconfig': '~/projects/ruby/router_config/',
+    'school': '/media/school/',
     'bin': '$scriptdir',
     'repo': '/srv/http/www/outside/frostyrepo/',
 }
@@ -45,6 +46,8 @@ def arguments():
     parser.add_argument('-d', '--debug', action='store_true', required=False,
                         help="Debug mode!")
     parser.add_argument('-t', '--test', action='store_true', required=False,
+                        help="Testing mode! (Returns status code only)")
+    parser.add_argument('-e', '--test-exact', action='store_true', required=False,
                         help="Testing mode! (Returns status code only)")
     parser.add_argument('-l', '--list', action='store', required=False,
                         nargs='?', default=False, help="Returns list of valid aliases")
@@ -90,9 +93,31 @@ if __name__ == '__main__':
             args.debug, args.test)
         if not args.test:
             sys.stdout.write(path)
-    else:
+        sys.exit(0)
+    elif args.alias:
+        inlist = False
+        for k in aliases.keys():
+            if k.startswith(args.alias):
+                args.alias = k
+                inlist = True
+                break
+        if not inlist:
+            error(args)
+        path = traverse_path(
+            os.path.abspath(
+                os.path.expanduser(
+                    os.path.expandvars(aliases[args.alias])
+                    )
+                ),
+            args.debug, args.test)
         if not args.test:
-            sys.stderr.write('Error: Invalid alias!')
-        sys.exit(1)
+            sys.stdout.write(path)
+        sys.exit(0)
+    error(args)
+
+def error(args):
+    if not args.test:
+        sys.stderr.write('Error: Invalid alias!')
+    sys.exit(1)
 
 # vim: set sw=4 ts=4 ai et :

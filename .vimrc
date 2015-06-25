@@ -87,12 +87,14 @@ match OverLength /\%81v.\+/
 
 " Vundle Stuff "{{{
 filetype off
+"set rtp+=~/.vim/nonbundle
 set rtp+=~/.vim/bundle/vundle
+set rtp+=~/.vim/autoload
 call vundle#rc()
 
 " Bundles!
 Bundle 'gmarik/vundle'
-Bundle 'msanders/snipmate.vim'
+"Bundle 'msanders/snipmate.vim'
 "Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 " Arch disabled python
 Bundle 'szw/vim-tags'
@@ -111,6 +113,28 @@ Bundle 'fatih/vim-go'
 
 " Vim better js support
 Bundle 'pangloss/vim-javascript'
+
+" Vim Snip-Mate {{{
+	Bundle "MarcWeber/vim-addon-mw-utils"
+	Bundle "tomtom/tlib_vim"
+	Bundle "garbas/vim-snipmate"
+
+	" Optional:
+	Bundle "honza/vim-snippets"
+" }}}
+
+call plug#begin()
+" Alignment
+Plug 'junegunn/vim-easy-align'
+" The below doesn't work
+" Bundle 'junegunn/vim-easy-align'
+call plug#end()
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 filetype indent on
 filetype plugin indent on
@@ -151,6 +175,23 @@ let @b="oexcept Exception, e:raise PSAPIException(msg = 'Debugging: %s' % e,co
 set nolist
 match
 
+" ##    ## ######## ##    ##  ######  
+" ##   ##  ##        ##  ##  ##    ## 
+" ##  ##   ##         ####   ##       
+" #####    ######      ##     ######  
+" ##  ##   ##          ##          ## 
+" ##   ##  ##          ##    ##    ## 
+" ##    ## ########    ##     ######  
+
+" Splits
+" https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+set splitbelow
+set splitright
+vnoremap <f2> :<c-u>exe join(getline("'<","'>"),'<bar>')<cr>
 
 " ##    ##  #######  ######## ########  ######
 " ###   ## ##     ##    ##    ##       ##    ##

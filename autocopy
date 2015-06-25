@@ -57,6 +57,9 @@ relink .Xresources $HOME/.Xresources
 relink .zshrc $HOME/.zshrc
 relink .zshhacks $HOME/.zshhacks
 
+relink .config/busking/config $HOME/.config/busking/config
+relink .config/dunst $HOME/.config/dunst
+
 
 exit # Exit so we don't hit our template line
 relink REPLACE $HOME/REPLACE
