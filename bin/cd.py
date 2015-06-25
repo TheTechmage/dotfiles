@@ -19,6 +19,7 @@ aliases = {
     'p': '~/projects/',
     'rconfig': '~/projects/ruby/router_config/',
     'bin': '$scriptdir',
+    'repo': '/srv/http/www/outside/frostyrepo/',
 }
 
 
