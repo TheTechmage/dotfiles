@@ -88,47 +88,88 @@ match OverLength /\%81v.\+/
 " Vundle Stuff "{{{
 filetype off
 "set rtp+=~/.vim/nonbundle
-set rtp+=~/.vim/bundle/vundle
+"set rtp+=~/.vim/bundle/vundle
 set rtp+=~/.vim/autoload
-call vundle#rc()
+"call vundle#rc()
 
 " Bundles!
-Bundle 'gmarik/vundle'
+"Bundle 'gmarik/vundle'
 "Bundle 'msanders/snipmate.vim'
 "Bundle 'Lokaltog/vim-powerline', {'rtp': 'powerline/bindings/vim/'}
 " Arch disabled python
-Bundle 'szw/vim-tags'
-Bundle 'hynek/vim-python-pep8-indent'
+"Bundle 'szw/vim-tags'
+"Bundle 'hynek/vim-python-pep8-indent'
 
 "C++ autocomplete
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 
 "Powerline Support
 "Note:
 "http://makandracards.com/jan0sch/18283-enable-powerline-fonts-with-rxvt-unicode-and-vim-airline
-Bundle 'bling/vim-airline'
+"Bundle 'bling/vim-airline'
 
 " Vim Golang Support
-Bundle 'fatih/vim-go'
+"Bundle 'fatih/vim-go'
 
 " Vim better js support
-Bundle 'pangloss/vim-javascript'
+"Bundle 'pangloss/vim-javascript'
 
 " Vim Snip-Mate {{{
-	Bundle "MarcWeber/vim-addon-mw-utils"
-	Bundle "tomtom/tlib_vim"
-	Bundle "garbas/vim-snipmate"
+	"Bundle "MarcWeber/vim-addon-mw-utils"
+	"Bundle "tomtom/tlib_vim"
+	"Bundle "garbas/vim-snipmate"
 
 	" Optional:
-	Bundle "honza/vim-snippets"
+	"Bundle "honza/vim-snippets"
 " }}}
+
+function! BuildYCM(info)
+  " info is a dictionary with 3 fields
+  " - name:   name of the plugin
+  " - status: 'installed', 'updated', or 'unchanged'
+  " - force:  set on PlugInstall! or PlugUpdate!
+  if a:info.status == 'installed' || a:info.force
+    !./install.sh
+  endif
+endfunction
 
 call plug#begin()
 	" Alignment
 	Plug 'junegunn/vim-easy-align'
 	" The below doesn't work
 	" Bundle 'junegunn/vim-easy-align'
+	
+	"Powerline Support
+	"Note:
+	"http://makandracards.com/jan0sch/18283-enable-powerline-fonts-with-rxvt-unicode-and-vim-airline
+	Plug 'bling/vim-airline'
+
+	Plug 'szw/vim-tags'
+	Plug 'hynek/vim-python-pep8-indent'
+
+	" .editorconfig support
 	Plug 'editorconfig/editorconfig-vim'
+
+	" Vim better js support
+	Plug 'pangloss/vim-javascript'
+
+	Plug 'tpope/vim-surround'
+	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+	" Tmux
+	Plug 'tpope/vim-tbone'
+
+
+	" Git
+	Plug 'tpope/vim-fugitive'
+	
+	" Group dependencies, vim-snippets depends on ultisnips
+	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+	
+	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+	" Code to execute when the plugin is loaded on demand
+	Plug 'Valloric/YouCompleteMe', { 'for': 'cpp', 'do': function('BuildYCM') }
+	autocmd! User YouCompleteMe call youcompleteme#Enable()
 call plug#end()
 
 filetype indent on
