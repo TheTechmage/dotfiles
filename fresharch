@@ -54,6 +54,8 @@ if istrue $development; then
 fi
 if istrue $dwm; then
 	packages+=('dwm')
+	packages+=('dunst')
+	packages+=('busking')
 	packages+=('xautolock')
 	packages+=('slock')
 fi
