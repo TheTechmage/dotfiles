@@ -138,3 +138,6 @@ streaming() {
 	-s $OUTRES -preset $QUALITY -tune film -acodec libmp3lame -threads $THREADS -strict normal \
 	-bufsize $CBR "$SERVICE"
 }
+
+alias allbuild="cssh hamal naos rigel sigma vega"
+ABSROOT=~/abs
