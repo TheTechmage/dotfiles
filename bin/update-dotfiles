@@ -1,0 +1,83 @@
+#!/bin/bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd -P )"
+cd $DIR/..
+
+function echodf() {
+	args=
+	while [[ $1 == -* ]]; do
+		args+=" $1"
+		shift
+	done
+	echo -e$args "\e[0;33m[.files]\e[0m" $*
+}
+function echosub() {
+	args=
+	while [[ $1 == -* ]]; do
+		args+=" $1"
+		shift
+	done
+	echo -e$args "\e[0;34m[submodules]\e[0m" $*
+}
+
+echodf "Pulling new changes from remote repository"
+git pull
+if [ $? -ne 0 ]; then
+	echodf "Unable to pull from remote repository" >&2
+	echodf "Continuing in 5 seconds" >&2
+	sleep 3
+	echodf "2.." >&2
+	sleep 1
+	echodf "1.." >&2
+	sleep 1
+fi
+echosub "Initializing and updating submodules"
+git submodule update --init --recursive
+if [ $? -ne 0 ]; then
+	echosub "Failed to initialize and/or update submodules"
+else
+	cd .vim
+	echosub "Adding a push-url to origin"
+	grep -A3 '"origin"' ../.git/modules/.vim/config | grep push
+	if [ $? -ne 0 ]; then
+		git remote set-url --push origin git+ssh://git@github.com/frostyfrog/dotfiles.git
+	else
+		echosub "push-url already set, skipping..."
+	fi
+	echosub -n "Would you like to install all vim plugins now? "
+	# No need for a prompt with -p, we already asked
+	read -r response
+	case $response in
+		[nN][oO]|[nN])
+			vimsetup=false
+			;;
+		*)
+			vimsetup=true
+			;;
+	esac
+	if $vimsetup; then
+		echosub "Making sure all plugins are installed"
+		vim -c "PlugInstall | echo 'Finished installing, sleeeping for 10 seconds' | sleep 10 | qall"
+	fi
+
+	#echosub "Updating .vim's origin"
+	#echosub "Renaming origin to origin_http"
+	#git remote rename origin origin_http
+	#if [ $? -ne 0]; then
+	#	echosub "Rename failed, attempting removal"
+	#	git remote remove origin
+	#	if [ $? -ne 0 ]; then
+	#		echosub "Unable to remove origin, does it exist?" >&2
+	#		echosub "Continuing in 5 seconds" >&2
+	#		sleep 3
+	#		echosub "2.." >&2
+	#		sleep 1
+	#		echosub "1.." >&2
+	#		sleep 1
+	#	fi
+	#fi
+	# git+ssh://git@github.com/frostyfrog/dotfiles.git
+	echosub "Finished setting up .vim repository"
+fi
+
+# vim: set ft=sh :
