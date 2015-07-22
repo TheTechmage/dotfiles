@@ -45,6 +45,8 @@ else
 		echosub "push-url already set, skipping..."
 	fi
 	echosub -n "Would you like to install all vim plugins now? "
+	# The space doesn't work in the previous line
+	echo -n " "
 	# No need for a prompt with -p, we already asked
 	read -r response
 	case $response in
