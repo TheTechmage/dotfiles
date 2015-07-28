@@ -139,4 +139,5 @@ streaming() {
 	-bufsize $CBR "$SERVICE"
 }
 
+alias allbuild="cssh hamal naos rigel sigma vega"
 ABSROOT=~/abs

@@ -3,9 +3,21 @@ die () {
 	echo >&2 "$@"
 	exit 1
 }
+ssh_key=
+if [ "$#" -eq 3 ]; then
+	if [ $1 == "-i" ]; then
+		shift
+		ssh_key=$1
+		shift
+	fi
+fi
 
 [ "$#" -eq 1 ] || die "1 argument required, $# provided"
 #echo $1 | grep -E -q '^(([0-9]{1,3}\.){1,3}[0-9]{1,3}|[a-b0-9\.]{1,25})$' || die "IP or hostname argument required, $1 provided"
 
-ssh $1 mkdir -p .terminfo/r
-scp /usr/share/terminfo/r/rxvt-unicode* $1:.terminfo/r/
+args=
+if [ ! -z "${ssh_key}" ]; then
+	args="-i ${ssh_key}"
+fi
+ssh $args $1 mkdir -p .terminfo/r
+scp $args /usr/share/terminfo/r/rxvt-unicode* $1:.terminfo/r/
