@@ -138,3 +138,5 @@ streaming() {
 	-s $OUTRES -preset $QUALITY -tune film -acodec libmp3lame -threads $THREADS -strict normal \
 	-bufsize $CBR "$SERVICE"
 }
+
+ABSROOT=~/abs
