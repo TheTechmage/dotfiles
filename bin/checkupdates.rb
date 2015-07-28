@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'net/smtp'
 require 'pry'
 require 'pry-nav'
