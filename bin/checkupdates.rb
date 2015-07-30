@@ -1,17 +1,18 @@
 #!/usr/bin/env ruby
 require 'net/smtp'
-require 'pry'
-require 'pry-nav'
+#require 'pry'
+#require 'pry-nav'
 
 CountFile = "../tmp/checkupdates.count"
 DIR = File.expand_path(File.dirname(__FILE__))
 Dir.chdir DIR
+Hostname = Socket.gethostbyname(Socket.gethostname).first
 
 def send_email(to, opts)
 	opts[:server]     ||= 'localhost'
 	opts[:from]       ||= 'status@cron.frostyfrog.net'
 	opts[:from_alias] ||= 'Cron'
-	opts[:subject]    ||= '[FF] PS Cron'
+	opts[:subject]    ||= "[FF] #{Hostname} Cron"
 	opts[:body]       ||= 'Unset Body'
 
 	msg = <<EOM
@@ -59,7 +60,7 @@ end
 unless pkgtotal == newpkgs
 	newpkgs = pkgtotal - newpkgs
 	message = <<EOM
-Detected #{newpkgs} new packages for a total of #{pkgtotal}.
+Detected #{newpkgs} new packages for a total of #{pkgtotal} on #{Hostname}.
 
 #{packages}
 EOM
