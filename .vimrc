@@ -166,6 +166,7 @@ call plug#begin()
 	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 	
 	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+	let NERDTreeIgnore=['\.vim$', '\~$', '\.o$']
 
 	" Code to execute when the plugin is loaded on demand
 	Plug 'Valloric/YouCompleteMe', { 'for': 'cpp', 'do': function('BuildYCM') }
@@ -181,7 +182,7 @@ nmap ga <Plug>(EasyAlign)
 filetype indent on
 filetype plugin indent on
 " "}}}
-" Vundle Bundle Config {{{
+" Airline Config {{{
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 3
