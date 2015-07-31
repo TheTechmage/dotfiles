@@ -1,5 +1,6 @@
 .netrwhist
 /bundle/*
+/tmp/*
 !/bundle/vundle
 *.swp
 *.orig

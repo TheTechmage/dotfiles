@@ -162,8 +162,10 @@ call plug#begin()
 	" Git
 	Plug 'tpope/vim-fugitive'
 	
-	" Group dependencies, vim-snippets depends on ultisnips
-	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+	if v:version >= 704
+		" Group dependencies, vim-snippets depends on ultisnips
+		Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+	endif
 	
 	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 	let NERDTreeIgnore=['\.vim$', '\~$', '\.o$']
