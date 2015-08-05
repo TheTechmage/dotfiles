@@ -35,17 +35,6 @@ ZSH_THEME="ys"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-if [ -f ~/.alias ]; then
-	source ~/.alias
-fi
-if [ -f ~/.zshhacks ]; then
-	source ~/.zshhacks
-fi
-if [[ "$(hostname)" == "Toronto" ]]; then
-#	eval $(ssh-agent)
-	eval $(keychain --eval --agents ssh -Q --quiet)
-fi
-
 # Customize to your needs...
 
 # Old, BASH compatible method
@@ -73,3 +62,22 @@ path=($^path(N))
 FPATH="$HOME/.files/.zsh_autocomplete:$FPATH"
 HISTSIZE=100000 # 10000
 SAVEHIST=100000
+
+# Enable bash-style interactive comments
+setopt interactivecomments
+
+# Use ^W instead of interactive comments?
+bindkey "^W" push-input
+
+# Useful aliases and tweaks
+if [ -f ~/.alias ]; then
+	source ~/.alias
+fi
+if [ -f ~/.zshhacks ]; then
+	source ~/.zshhacks
+fi
+if [[ "$(hostname)" == "Toronto" ]]; then
+#	eval $(ssh-agent)
+	eval $(keychain --eval --agents ssh -Q --quiet)
+fi
+
