@@ -30,8 +30,8 @@ Debug = false
 
 def send_email(to, opts)
 	opts[:server]     ||= 'localhost'
-	opts[:from]       ||= 'status@cron.frostyfrog.net'
-	opts[:from_alias] ||= 'Cron'
+	opts[:from]       ||= "#{Hostname}@status.frostyfrog.net"
+	opts[:from_alias] ||= "#{Hostname.split(".").first}"
 	opts[:subject]    ||= "Cron"
 	opts[:body]       ||= 'Unset Body'
 
