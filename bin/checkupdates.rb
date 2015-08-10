@@ -126,9 +126,11 @@ def run_git
 	file = File.join DFCommitFiles, "ahead.hash"
 	File.open(file, "w") {|f| f.write("0")} unless File.exists?(file)
 	File.open(file, "r") {|f| f.read()}
+	behind_message = ""
+	ahead_message = ""
 	if behind_short.length > 1
 		behind_message = <<EOM
-#{behind_short.split("\n").length} commits behind origin:
+#{behind_short.split("\n").length} commit(s) behind origin:
 #{behind_short}
 #{behind}
 ========
@@ -136,7 +138,7 @@ EOM
 	end
 	if ahead_short.length > 1
 		ahead_message = <<EOM
-#{ahead_short.split("\n").length} commits ahead of origin:
+#{ahead_short.split("\n").length} commit(s) ahead of origin:
 #{ahead_short}
 #{ahead}
 EOM
