@@ -84,11 +84,6 @@ def packages_check
 	cfile.write(pkgtotal.to_s)
 	cfile.close()
 
-	if pkgtotal == 0 and newpkgs != 0
-		send_email EMAILADDR, :body => "(You've updated recently... Yay! I'm happy naow~nya!)>  ฅ(^ω^ฅ)", :subject => "Pacman"
-		exit
-	end
-
 	unless pkgtotal == newpkgs
 		newpkgs = pkgtotal - newpkgs
 		message = <<EOM
@@ -98,7 +93,25 @@ Detected #{newpkgs} new packages for a total of #{pkgtotal} on #{Hostname}.
 EOM
 		#puts message
 		send_email EMAILADDR, :body => message, :subject => "Pacman"
+	else if pkgtotal == 0 and newpkgs != 0
+		message = "(You've updated recently... Yay! I'm happy naow~nya!)>  ฅ(^ω^ฅ)"
+		send_email EMAILADDR, :body => message, :subject => "Pacman"
+	else if pkgtotal < newpkgs
+		message = <<EOM
+「　   You've updated recently... Yay!
+　　I'd be extremely happy, except...
+　　 There are even more packages for
+　　   you to update. Whaaaahaaahaaa!　」> .·´¯`(>▂<)´¯`·.
+
+---------------------------------------------------------------------------
+
+Detected #{newpkgs} new packages on #{Hostname}.
+
+#{packages}
+EOM
+		send_email EMAILADDR, :body => message, :subject => "Pacman"
 	end
+
 end
 
 def run_git
