@@ -84,7 +84,7 @@ def packages_check
 	cfile.write(pkgtotal.to_s)
 	cfile.close()
 
-	if pkgtotal != newpkgs
+	if pkgtotal >= newpkgs
 		newpkgs = pkgtotal - newpkgs
 		message = <<EOM
 Detected #{newpkgs} new packages for a total of #{pkgtotal} on #{Hostname}.
@@ -101,7 +101,7 @@ EOM
 「　   You've updated recently... Yay!
 　　I'd be extremely happy, except...
 　　 There are even more packages for
-　　   you to update. Whaaaahaaahaaa!　」> .·´¯`(>▂<)´¯`·.
+　　   you to update. Whaaaahaaahaha!　」> .·´¯`(>▂<)´¯`·.
 
 ---------------------------------------------------------------------------
 
