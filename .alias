@@ -51,6 +51,9 @@ diff_folder() {
 	fi
 	diff -rqb $1 $2|grep differ|grep -v .bzr|awk '{print $2 " -> " $4;}'|grep '\->'
 }
+bzrdiff() {
+	bzr diff $* |highlight --syntax diff -O xterm256
+}
 alias killwindow='kill -15 $(DISPLAY=:0 xprop _NET_WM_PID | cut -d" " -f3)'
 alias xephyrclip='reset; xephyr-clipboard-share :0 :1'
 alias copyclip='xsel -po|xsel --display :0 -bi'
@@ -155,6 +158,7 @@ streaming() {
 	-bufsize $CBR "$SERVICE"
 }
 
+alias Skype="skype --dbpath=$HOME/furcadia/.Skype"
 alias allbuild="cssh hamal naos rigel sigma vega"
 export ABSROOT=~/abs
 
