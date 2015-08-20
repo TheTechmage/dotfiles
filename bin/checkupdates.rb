@@ -84,7 +84,7 @@ def packages_check
 	cfile.write(pkgtotal.to_s)
 	cfile.close()
 
-	if pkgtotal >= newpkgs
+	if pkgtotal > newpkgs
 		newpkgs = pkgtotal - newpkgs
 		message = <<EOM
 Detected #{newpkgs} new packages for a total of #{pkgtotal} on #{Hostname}.
