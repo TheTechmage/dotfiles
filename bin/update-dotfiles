@@ -19,19 +19,19 @@ function echosub() {
 	done
 	echo -e$args "\e[0;34m[submodules]\e[0m" $*
 }
-echosub "Correcting pull-url for main repo's origin"
+echodf "Correcting pull-url for main repo's origin"
 grep -A3 '"origin"' .git/config | grep -E "[ \t]url =" | grep http >/dev/null
 if [ $? -ne 0 ]; then
 	git remote set-url origin http://github.com/frostyfrog/dotfiles.git
 else
-	echosub "pull-url already set, skipping..."
+	echodf "pull-url already set, skipping..."
 fi
-echosub "Adding a push-url for main repo's origin"
+echodf "Adding a push-url for main repo's origin"
 grep -A3 '"origin"' .git/config | grep pushurl >/dev/null
 if [ $? -ne 0 ]; then
 	git remote set-url --push origin git+ssh://git@github.com/frostyfrog/dotfiles.git
 else
-	echosub "push-url already set, skipping..."
+	echodf "push-url already set, skipping..."
 fi
 
 echodf "Pulling new changes from remote repository"
