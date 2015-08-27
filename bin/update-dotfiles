@@ -52,9 +52,9 @@ if [ $? -ne 0 ]; then
 else
 	cd .vim
 	echosub "Adding a push-url to .vim's origin"
-	grep -A3 '"origin"' ../.git/modules/.vim/config | grep pushurl >/dev/null
+	grep -A3 '"origin"' ../.git/modules/.vim/config | grep pushurl | grep vimfiles >/dev/null
 	if [ $? -ne 0 ]; then
-		git remote set-url --push origin git+ssh://git@github.com/frostyfrog/dotfiles.git
+		git remote set-url --push origin git+ssh://git@github.com/frostyfrog/vimfiles.git
 	else
 		echosub "push-url already set, skipping..."
 	fi
