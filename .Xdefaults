@@ -37,6 +37,13 @@ URxvt*borderless: 1
 !URxvt*font: xft:Anonymous Pro Powerline:size=7
 !URxvt*font: xft:Sauce Code Powerline:size=8
 !URxvt*font: xft:Terminess Powerline:size=7
+!Xft.autohint: 0
+!Xft.lcdfilter:  lcddefault
+!Xft.hintstyle:  hintfull
+!Xft.hinting: 1
+!Xft.antialias: 1
+!Xft.rgba: none
+!URxvt*font: xft:OpenDyslexicMono:size=11:autohint=true
 
 !--[scrolling]--! 
 URxvt*scrollBar: false
