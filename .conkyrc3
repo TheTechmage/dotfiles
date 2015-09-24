@@ -9,13 +9,13 @@ own_window_type normal                                                          
 own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
 
 
-background yes
+#background yes
 use_xft yes
 xftfont Tamsyn:pixelsize=12
 xftalpha 0.6
 update_interval 1.0
 total_run_times 0
-own_window no
+#own_window no
 double_buffer yes
 draw_shades yes
 draw_borders no
@@ -25,7 +25,7 @@ minimum_size 100 5
 maximum_width 250
 default_color f1f1f1
 draw_outline no
-alignment tr
+alignment tl
 gap_x 20
 gap_y  40
 no_buffers yes
@@ -35,61 +35,33 @@ override_utf8_locale yes
 uppercase no
 use_spacer none
 
-#${image ~/.conky/icons/Television-Alt.png -s 32x32} ${image ~/.conky/icons/Task-Manager.png -p 225 -s 32x32}         ${image ~/.conky/icons/Memory.png -p 390 -s 32x32}  ${image ~/.conky/icons/Hard-Drive.png -p 655 -s 32x32}                                             ${image ~/.conky/icons/Connectiions.png -p 980 -s 32x32}                               ${image ~/.conky/icons/Gear.png -p 1230 -s 32x32}    ${image ~/.conky/icons/Media-Player.png -p 1385 -s 32x32}
-#${image ~/.conky/icons/Background.png -p 0,75}
-
-# Taken from cpu section under CPU$alignr...
-#CPU1 ${cpubar cpu1 4,100}$alignr${cpu cpu1}
-#CPU2 ${cpubar cpu2 4,100}$alignr${cpu cpu2}
-#CPU3 ${cpubar cpu3 4,100}$alignr${cpu cpu3}
-#CPU4 ${cpubar cpu4 4,100}$alignr${cpu cpu4}
-
 TEXT
-${font winks:size=20}${color Tan1}SYSTEM${color DarkSlateGray}${hr 2}${color}${font}
-$nodename - $sysname $kernel on $machine
-$stippled_hr
-Uptime$alignr${uptime_short}${color cd5c5c}${color}
-Updates$alignr${texeci 43200 checkupdates|wc -l}
-Vol$alignr${execi 20 ~/.conky/vol.sh}
-FAN$alignr${hwmon fan 1}RPM
-Mobo$alignr${if_existing /sys/class/hwmon/hwmon0/temp2_input}${hwmon 0 temp 2}${else}${hwmon 1 temp 2}${endif}C
-${font winks:size=20}${color Tan1}Processors${color DarkSlateGray}${hr 2}${color}${font}
-Proc: $processes
-CPU$alignr${if_existing /sys/class/hwmon/hwmon0/temp1_input}${hwmon 0 temp 1}${else}${hwmon 1 temp 1}${endif}C
-${cpugraph cpu1 12,250 00ff00 ff0000 -t}
-${cpugraph cpu2 12,250 00ff00 ff0000 -t}
-${cpugraph cpu3 12,250 00ff00 ff0000 -t}
-${cpugraph cpu4 12,250 00ff00 ff0000 -t}
-${cpugraph cpu5 12,250 00ff00 ff0000 -t}
-${cpugraph cpu6 12,250 00ff00 ff0000 -t}
-${cpugraph cpu7 12,250 00ff00 ff0000 -t}
-${cpugraph cpu8 12,250 00ff00 ff0000 -t}
-
 ${font winks:size=20}${color Tan1}RAM${color DarkSlateGray}${hr 2}${color}${font}
 RAM : ${membar 4,100} $memperc%$alignr$mem
 ${exec ~/.conky/ramusage.sh}
-${font winks:size=20}${color Tan1}HDD${color DarkSlateGray}${hr 2}${color}${font}
+
+
+${font winks:size=20}$alignr${color Tan1}HDD${color DarkSlateGray}${color}${font}
 Root : ${fs_bar 4,120 /}$alignr${fs_free /}
 Home : ${fs_bar 4,120 /home}$alignr${fs_free /home}
 sda: ${hddtemp /dev/sda}C
+
 ${font winks:size=20}${color Tan1}Network${color DarkSlateGray}${hr 2}${color}${font}
-IP addr$alignr${if_up enp6s0}${addr enp6s0}${else}${color red}down${endif}${color}
-Tx Rate$alignr${upspeed enp6s0}
-Rx Rate$alignr${downspeed enp6s0}
-Rx Total$alignr${totaldown enp6s0}
+${if_up wlan0}
+IP addr$alignr${if_up wlan0}${addr wlan0}${else}${color red}down${endif}${color}
+Tx Rate$alignr${upspeed wlan0}
+Rx Rate$alignr${downspeed wlan0}
+Rx Total$alignr${totaldown wlan0}${else}IP addr$alignr${if_up eth0}${addr eth0}${else}${color red}down${endif}${color}
+Tx Rate$alignr${upspeed eth0}
+Rx Rate$alignr${downspeed eth0}
+Rx Total$alignr${totaldown eth0}${endif}
 ${font winks:size=20}${color Tan1}MPD${color DarkSlateGray}${hr 2}${color}${font}
 ${mpd_smart}
 ${mpd_album}
 ${mpd_bar 4,250}
 ${mpd_status} ${mpd_elapsed}/${mpd_length}
-
-
 ${font winks:size=20}${color Tan1}Misc${color DarkSlateGray}${hr 2}${color}${font}
-${font wargames:size=16}
-${time %H:%M, %A %d %b}
-${font}
+${font wargames:size=12}${time %H:%M, %A %d %b}${font}
 ${color fea63c}Furcadia LW Status: ${color 21face}${texeci 480 ~/.conky/misc.sh}$color
-${color fea63c}Furcadia Pounce:
-${color 21face}${texeci 480 echo "REPLACE ME"}$color
+${color fea63c}Furcadia Pounce:${color 21face}${texeci 480 echo "REPLACE ME"}$color
 ${execi 1280 cal}                        
-

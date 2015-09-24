@@ -1,0 +1,100 @@
+# vim: set nowrap :
+######
+## conky behaviour
+background yes
+# 
+own_window yes                                                                  # window for conky
+own_window_class conky-system                                                   # 
+own_window_type normal                                                          # normal window
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
+
+
+#background yes
+use_xft yes
+xftfont Tamsyn:pixelsize=12
+xftalpha 0.6
+update_interval 1.0
+total_run_times 0
+own_window no
+double_buffer yes
+draw_shades yes
+draw_borders no
+draw_graph_borders yes
+default_bar_size 100 4
+minimum_size 100 5
+maximum_width 460
+default_color f1f1f1
+draw_outline no
+alignment tr
+gap_x 20
+gap_y  40
+no_buffers yes
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale yes
+uppercase no
+use_spacer none
+
+#If the todo.txt gets cutoff, increase this
+text_buffer_size 512
+
+#${image ~/.conky/icons/Television-Alt.png -s 32x32} ${image ~/.conky/icons/Task-Manager.png -p 225 -s 32x32}         ${image ~/.conky/icons/Memory.png -p 390 -s 32x32}  ${image ~/.conky/icons/Hard-Drive.png -p 655 -s 32x32}                                             ${image ~/.conky/icons/Connectiions.png -p 980 -s 32x32}                               ${image ~/.conky/icons/Gear.png -p 1230 -s 32x32}    ${image ~/.conky/icons/Media-Player.png -p 1385 -s 32x32}
+#${image ~/.conky/icons/Background.png -p 0,75}
+
+# Taken from cpu section under CPU: ...
+#CPU1 ${cpubar cpu1 4,100}: ${cpu cpu1}
+#CPU2 ${cpubar cpu2 4,100}: ${cpu cpu2}
+#CPU3 ${cpubar cpu3 4,100}: ${cpu cpu3}
+#CPU4 ${cpubar cpu4 4,100}: ${cpu cpu4}
+
+lua_load ~/.conky/widgets.lua
+lua_draw_hook_pre widgets
+
+TEXT
+${voffset -10}${offset 250}${color #7365BC}|${color #348a8f}$nodename:  ${color #a49a30}$kernel
+${offset 250}${color #348a8f}${color #7365BC}|${color #348a8f}Uptime: ${color #a49a30}$uptime
+${voffset 54}${offset 309}${color #348a8f}${font winks:size=16}CPU${font}
+${voffset -2}${offset 309}${font Tamsyn:size=9}${freq}MHz ${execi 15 sensors | grep -A 1 'temp1' | head --lines 1 | cut -c 16-22}${font}
+${voffset 4}${offset 309}${font Tamsyn:size=8}${color #7365BC}7${color #942a36}6${color #b55511}5${color #a49a30}4${color #32a445}3${color #348a8f}2${color #34678F}1${color #7365BC}0${font}
+${voffset 90}${offset 323}${font Tamsyn:size=9}${color #7365BC}$memperc% of $memmax
+${voffset 6}${offset 371}${color #348a8f}${font winks:size=14}RAM${font}
+${voffset 36}${offset 302}${font Tamsyn:size=6}${color #32a445}root [${fs_free /}]
+${offset 302}${color #a49a30}School [${fs_free /media/school}]
+${offset 302}${color #7365BC}/home [${fs_free /home}]${font}
+${voffset 30}${offset 280}${color #348a8f}${font winks:size=14}HDD${font}
+${voffset 74}${offset 302}${font Tamsyn:size=9}${color #7365BC}${execi 60 ~/.conky/baddery.sh}
+${voffset 10}${offset 361}${color #348a8f}${font winks:size=14}Battery${font}
+${voffset 55}${offset 246}${color #7365BC}${font winks:size=14}Network
+${voffset -12}${offset 326}${font Tamsyn:size=8}${execi 600 ~/.conky/getip.sh}${font}
+${voffset -5}${offset 276}${font Tamsyn:size=8}${color #348a8f}eth0            ${color #a49a30}wlan0${font}
+${voffset -06}${offset 264}${font Tamsyn:size=7}${color #348a8f}up        down${offset 56}${color #a49a30}up       down${font}
+${voffset 152}${offset 248}${font Tamsyn:size=7}${color #348a8f}${upspeedf eth0}k
+${voffset -10}${offset 292}${color #348a8f}${downspeedf eth0}k
+${voffset -10}${offset 364}${color #a49a30}${upspeedf wlan0}k
+${voffset -10}${offset 408}${downspeedf wlan0}k${font}
+${voffset 1070}
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+
+${voffset -1900}${offset 400}
+${voffset 10}${offset 40}
+${font winks:size=20}${color Tan1}SYSTEM${color DarkSlateGray}${color}${font}
+$nodename - $sysname $kernel on $machine
+Updates: ${texeci 20 cat ~/.files/tmp/checkupdates.count}
+Vol: ${execi 20 ~/.conky/vol.sh}
+FAN: ${hwmon fan 1}RPM
+Mobo: ${if_existing /sys/class/hwmon/hwmon0/temp2_input}${hwmon 0 temp 2}${else}${hwmon 1 temp 2}${endif}C
+${font winks:size=20}${color Tan1}Processors${color DarkSlateGray}${color}${font}
+Proc: $processes
+CPU: ${if_existing /sys/class/hwmon/hwmon0/temp1_input}${hwmon 0 temp 1}${else}${hwmon 1 temp 1}${endif}C
+${font winks:size=20}${color Tan1}RAM${color DarkSlateGray}${color}${font}
+RAM: $mem / $memmax
+${exec ~/.conky/ramusage.sh}
+${font winks:size=20}${color Tan1}Misc${color DarkSlateGray}${color}${font}
+${font wargames:size=12}${time %I:%M, %A %d %b}${font}
+${execpi 20 ~/.conky/misc.sh}$color
+${font winks:size=20}${color Tan1}MPD${color DarkSlateGray}${color}${font}
+${mpd_album}
+${mpd_bar 4,220}
+${mpd_status} ${mpd_elapsed}/${mpd_length}
+${color #a49a30}${offset 120}TODO:
+${font Tamsyn:size=8}${execpi 60 ~/.conky/todo.rb}${font}
