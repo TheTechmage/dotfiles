@@ -161,6 +161,8 @@ call plug#begin()
 
 	" Git
 	Plug 'tpope/vim-fugitive'
+
+	Plug 'raymond-w-ko/vim-lua-indent'
 	
 	if v:version >= 704
 		" Group dependencies, vim-snippets depends on ultisnips
