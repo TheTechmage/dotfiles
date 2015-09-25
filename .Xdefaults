@@ -37,6 +37,10 @@ URxvt*borderless: 1
 !URxvt*font: xft:Anonymous Pro Powerline:size=7
 !URxvt*font: xft:Sauce Code Powerline:size=8
 !URxvt*font: xft:Terminess Powerline:size=7
+!URxvt*font: xft:Hasklig:size=7
+URxvt*font: xft:Source Code Pro:size=7,style=regular
+!URxvt.font: -misc-fixed-medium-r-normal--15-140-75-75-c-90-iso10646-1
+URxvt*letterSpace: -1
 
 !--[scrolling]--! 
 URxvt*scrollBar: false
