@@ -13,6 +13,19 @@ fi
 #if [[ "$(hostname)" == "London" ]]; then
 #	DEFAULT_SESSION='sxfce'
 #fi
+function japanese() {
+	export XMODIFIERS=@im=SCIM
+	export GTK_IM_MODULE="scim"
+	export QT_IM_MODULE="scim"
+	scim -d
+}
+
+function common() {
+	sbg &
+	sleep 1
+	japanese
+	conky # Need conky-lua
+}
 
 function sxmonad() {
 	PATH=$PATH:~/bin:~/fbin
@@ -39,19 +52,17 @@ function ssubtle() {
 	if [[ "$(hostname)" == "Troll" ]]; then
 		xrandr --output DVI-I-2 --right-of DVI-I-1 &
 	fi
-	sbg &
 	subtle
 	synclient MaxTapTime=0
 }
 
 function sdwm() {
 	xautolock -time 10 -locker "slock" &
-	sbg &
 	#if [[ "$(hostname)" == "Ogre" ]]; then
 		#xscreensaver &
 	#fi
 	dwmstatus &
-	dwm
+	exec dwm
 }
 function sxfce() {
 	xscreensaver &
@@ -61,6 +72,8 @@ function sbg() {
 	sleep 1;
 	if [ "$(hostname)" == "Troll" ]; then
 		feh --bg-fill ~/bg.jpg;
+	elif [ "$(hostname)" == "Ogre" ]; then
+		feh --bg-fill ~/minimalist_arch_linux_wallpaper__1920x1200__by_jesuisnerd-d4x1ofc.png;
 	else
 		feh --bg-fill ~/.wallpapers/archlinux-wallpaper-1.3/archlinux-deep-aurora.jpg;
 	fi;
@@ -72,15 +85,21 @@ xrdb -merge ~/.Xresources
 
 case $1 in
 xmonad)
+	common &
 	sxmonad
 	;;
 subtle)
+	common &
 	ssubtle
 	;;
 dwm)
+	common &
+	feh --bg-fill ~/.wallpapers/archlinux-wallpaper-1.3/archlinux-deep-aurora.jpg;
+	sleep 5;
 	sdwm
 	;;
 xfce)
+	common &
 	sxfce
 	;;
 bg)

@@ -13,6 +13,7 @@ require 'digest'
 ##  ######   #######  ##    ## ##       ####  ######   
 
 CountFile = "../tmp/checkupdates.count"
+PKGFile = "../tmp/checkupdates.pkgs"
 DFCommitFiles = "../tmp/dotfiles"
 DIR = File.expand_path(File.dirname(__FILE__))
 Dir.chdir DIR
@@ -75,9 +76,29 @@ def packages_check
 	unless File.exists? CountFile
 		File.open(CountFile, "w") {|f| f.write("0")}
 	end
+	unless File.exists? PKGFile
+		File.open(PKGFile, "w") {|f| f.write("")}
+	end
 	#binding.pry
 
 	cfile = File.open(CountFile, "r+")
+	pkgfile = File.open(PKGFile, "r+")
+
+	file1lines = pkgfile.readlines
+	updated_pkgs = []
+	packages.lines.each do |e|
+		if(!file1lines.include?(e))
+			updated_pkgs.push e
+		end
+	end
+	updated_pkgs = updated_pkgs.join "\n"
+	def update_pkglist(pkgfile, updated_pkgs)
+		pkgfile.truncate(0)
+		pkgfile.seek(0)
+		pkgfile.write(updated_pkgs)
+		pkgfile.close()
+	end
+
 	newpkgs = cfile.read.strip.to_i
 	cfile.truncate(0)
 	cfile.seek(0)
@@ -89,13 +110,19 @@ def packages_check
 		message = <<EOM
 Detected #{newpkgs} new packages for a total of #{pkgtotal} on #{Hostname}.
 
+New Packages:
+#{updated_pkgs}
+
+All Packages:
 #{packages}
 EOM
 		#puts message
 		send_email EMAILADDR, :body => message, :subject => "Pacman"
+		update_pkglist pkgfile, packages
 	elsif pkgtotal == 0 and newpkgs != 0
 		message = "(You've updated recently... Yay! I'm happy naow~nya!)>  ฅ(^ω^ฅ)"
 		send_email EMAILADDR, :body => message, :subject => "Pacman"
+		update_pkglist pkgfile, packages
 	elsif pkgtotal < newpkgs
 		message = <<EOM
 「　   You've updated recently... Yay!
@@ -107,9 +134,11 @@ EOM
 
 Detected #{newpkgs} new packages on #{Hostname}.
 
+All Packages:
 #{packages}
 EOM
 		send_email EMAILADDR, :body => message, :subject => "Pacman"
+		update_pkglist pkgfile, packages
 	end
 
 end

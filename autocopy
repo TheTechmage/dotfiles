@@ -54,6 +54,7 @@ relink .tmux.conf $HOME/.tmux.conf
 relink .vimrc $HOME/.vimrc
 relink .Xdefaults $HOME/.Xdefaults
 relink .xinitrc $HOME/.xinitrc
+relink .xprofile $HOME/.xprofile
 relink .Xresources $HOME/.Xresources
 relink .zshrc $HOME/.zshrc
 relink .zshhacks $HOME/.zshhacks

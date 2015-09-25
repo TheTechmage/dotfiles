@@ -1,0 +1,67 @@
+# vim: set nowrap :
+######
+## conky behaviour
+#background yes
+# 
+own_window yes                                                                  # window for conky
+own_window_class conky-system                                                   # 
+own_window_type normal                                                          # normal window
+own_window_hints undecorate,sticky,skip_taskbar,skip_pager 
+
+
+#background yes
+use_xft yes
+xftfont Tamsyn:pixelsize=12
+xftalpha 0.6
+update_interval 1.0
+total_run_times 0
+#own_window no
+double_buffer yes
+draw_shades yes
+draw_borders no
+draw_graph_borders yes
+default_bar_size 100 4
+minimum_size 100 5
+maximum_width 250
+default_color f1f1f1
+draw_outline no
+alignment tl
+gap_x 20
+gap_y  40
+no_buffers yes
+cpu_avg_samples 2
+net_avg_samples 2
+override_utf8_locale yes
+uppercase no
+use_spacer none
+
+TEXT
+${font winks:size=20}${color Tan1}RAM${color DarkSlateGray}${hr 2}${color}${font}
+RAM : ${membar 4,100} $memperc%$alignr$mem
+${exec ~/.conky/ramusage.sh}
+
+
+${font winks:size=20}$alignr${color Tan1}HDD${color DarkSlateGray}${color}${font}
+Root : ${fs_bar 4,120 /}$alignr${fs_free /}
+Home : ${fs_bar 4,120 /home}$alignr${fs_free /home}
+sda: ${hddtemp /dev/sda}C
+
+${font winks:size=20}${color Tan1}Network${color DarkSlateGray}${hr 2}${color}${font}
+${if_up wlan0}
+IP addr$alignr${if_up wlan0}${addr wlan0}${else}${color red}down${endif}${color}
+Tx Rate$alignr${upspeed wlan0}
+Rx Rate$alignr${downspeed wlan0}
+Rx Total$alignr${totaldown wlan0}${else}IP addr$alignr${if_up eth0}${addr eth0}${else}${color red}down${endif}${color}
+Tx Rate$alignr${upspeed eth0}
+Rx Rate$alignr${downspeed eth0}
+Rx Total$alignr${totaldown eth0}${endif}
+${font winks:size=20}${color Tan1}MPD${color DarkSlateGray}${hr 2}${color}${font}
+${mpd_smart}
+${mpd_album}
+${mpd_bar 4,250}
+${mpd_status} ${mpd_elapsed}/${mpd_length}
+${font winks:size=20}${color Tan1}Misc${color DarkSlateGray}${hr 2}${color}${font}
+${font wargames:size=12}${time %H:%M, %A %d %b}${font}
+${color fea63c}Furcadia LW Status: ${color 21face}${texeci 480 ~/.conky/misc.sh}$color
+${color fea63c}Furcadia Pounce:${color 21face}${texeci 480 echo "REPLACE ME"}$color
+${execi 1280 cal}                        
