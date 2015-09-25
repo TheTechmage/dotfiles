@@ -170,6 +170,12 @@ call plug#begin()
 	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 	let NERDTreeIgnore=['\.vim$', '\~$', '\.o$']
 
+	" Conque Shell - Shell for vim
+	Plug 'frostyfrog/conque'
+
+	" Vimwiki - A Personal Wiki For Vim
+	Plug 'vimwiki/vimwiki'
+
 	" Code to execute when the plugin is loaded on demand
 	Plug 'Valloric/YouCompleteMe', { 'for': 'cpp', 'do': function('BuildYCM') }
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
