@@ -91,7 +91,7 @@ def packages_check
 			updated_pkgs.push e
 		end
 	end
-	updated_pkgs = updated_pkgs.join "\n"
+	updated_pkgs = updated_pkgs.join
 	def update_pkglist(pkgfile, updated_pkgs)
 		pkgfile.truncate(0)
 		pkgfile.seek(0)
