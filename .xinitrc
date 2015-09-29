@@ -24,7 +24,7 @@ function common() {
 	sbg &
 	sleep 1
 	japanese
-	conky # Need conky-lua
+	conky & # Need conky-lua
 }
 
 function sxmonad() {
@@ -83,23 +83,26 @@ xset +fp /usr/share/fonts/local
 xset +fp /usr/share/fonts/100dpi/
 xrdb -merge ~/.Xresources
 
+env >> /tmp/test
+echo >> /tmp/test
+
 case $1 in
 xmonad)
-	common &
+	common
 	sxmonad
 	;;
 subtle)
-	common &
+	common
 	ssubtle
 	;;
 dwm)
-	common &
+	common
 	feh --bg-fill ~/.wallpapers/archlinux-wallpaper-1.3/archlinux-deep-aurora.jpg;
 	sleep 5;
 	sdwm
 	;;
 xfce)
-	common &
+	common
 	sxfce
 	;;
 bg)
@@ -107,6 +110,7 @@ bg)
 	;;
 *)
 	#exec $0 $DEFAULT_SESSION
-	$DEFAULT_SESSION
+	exec $0 dwm
+	#$DEFAULT_SESSION
 	;;
 esac
