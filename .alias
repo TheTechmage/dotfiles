@@ -162,5 +162,6 @@ streaming() {
 alias Skype="skype --dbpath=$HOME/furcadia/.Skype"
 alias allbuild="cssh hamal naos rigel sigma vega"
 export ABSROOT=~/abs
+export GOPATH=~/go
 
 cat $DOTFILES/.shbanner
