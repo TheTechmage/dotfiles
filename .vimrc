@@ -180,8 +180,13 @@ call plug#begin()
 
 	" Code to execute when the plugin is loaded on demand
 	Plug 'Valloric/YouCompleteMe', { 'for': 'cpp', 'do': function('BuildYCM') }
+
+	" Vim golang shorcuts and bindings
+	Plug 'fatih/vim-go'
+
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
 call plug#end()
+	let g:go_fmt_command = "goimports"
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
