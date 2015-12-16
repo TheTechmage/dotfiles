@@ -68,6 +68,7 @@ alias wgetc="wget --content-disposition"
 alias lockdisable='xautolock -disable'
 alias lockenable='xautolock -enable'
 alias todo=todo.sh
+alias termhelp='man 7 urxvt'
 
 if [[ "$SHELL" == "/bin/bash" ]]; then
 	# Git aliases from oh-my-zsh (for bash)
