@@ -163,10 +163,19 @@ call plug#begin()
 	Plug 'tpope/vim-fugitive'
 
 	Plug 'raymond-w-ko/vim-lua-indent'
+
+	" Code to execute when the plugin is loaded on demand
+	Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM') }
 	
-	if v:version >= 704
+	if v:version >= 700
 		" Group dependencies, vim-snippets depends on ultisnips
 		Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+		let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
+		let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+
+		let g:UltiSnipsExpandTrigger="<tab>"
+		let g:UltiSnipsJumpForwardTrigger="<tab>"
+		let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 	endif
 	
 	Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -178,13 +187,18 @@ call plug#begin()
 	" Vimwiki - A Personal Wiki For Vim
 	Plug 'vimwiki/vimwiki'
 
-	" Code to execute when the plugin is loaded on demand
-	Plug 'Valloric/YouCompleteMe', { 'for': 'cpp', 'do': function('BuildYCM') }
+	" Browser for ctags
+	Plug 'vim-scripts/taglist.vim'
 
 	" Vim golang shorcuts and bindings
 	Plug 'fatih/vim-go'
 
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
+	" If you prefer the Omni-Completion tip window to close when a selection is
+	" made, these lines close it on movement in insert mode or when leaving
+	" insert mode
+	autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+	autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 call plug#end()
 	let g:go_fmt_command = "goimports"
 
