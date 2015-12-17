@@ -36,7 +36,8 @@ uppercase no
 use_spacer none
 
 #If the todo.txt gets cutoff, increase this
-text_buffer_size 512
+#text_buffer_size 512
+text_buffer_size 1024
 
 #${image ~/.conky/icons/Television-Alt.png -s 32x32} ${image ~/.conky/icons/Task-Manager.png -p 225 -s 32x32}         ${image ~/.conky/icons/Memory.png -p 390 -s 32x32}  ${image ~/.conky/icons/Hard-Drive.png -p 655 -s 32x32}                                             ${image ~/.conky/icons/Connectiions.png -p 980 -s 32x32}                               ${image ~/.conky/icons/Gear.png -p 1230 -s 32x32}    ${image ~/.conky/icons/Media-Player.png -p 1385 -s 32x32}
 #${image ~/.conky/icons/Background.png -p 0,75}

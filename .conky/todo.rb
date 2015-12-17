@@ -53,7 +53,7 @@ grammar Conky
 		}
 	end
 	rule string
-		[a-zA-Z0-9_\=\#\(\)\@\+\'\" ]+ <StringLiteral>
+		[a-zA-Z0-9_/?\=\#\(\)\@\+\'\" ]+ <StringLiteral>
 		{
 			def content
 				[:string, text_value]
