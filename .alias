@@ -13,6 +13,7 @@
 #done
 export DOTFILES="$(cd.py df)"
 export FROSTYFROG=true
+export EDITOR=vim
 #unset DIR
 #unset SOURCE
 
