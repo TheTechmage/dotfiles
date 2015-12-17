@@ -218,6 +218,12 @@ let g:airline#extensions#tabline#enabled = 3
 let g:airline#extensions#tabline#left_sep=''
 let g:airline#extensions#tabline#left_alt_sep=''
 let g:airline_theme="simple"
+function! AirlineInit()
+	call airline#parts#define_raw('linenr', '%l')
+	call airline#parts#define_accent('linenr', 'bold')
+	let g:airline_section_z = airline#section#create(['%3p%%', g:airline_symbols.linenr, 'linenr', ':%c%V'])
+endfunction
+autocmd VimEnter * call AirlineInit()
 set laststatus=2
 
 " }}}
