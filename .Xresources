@@ -8,7 +8,7 @@ xscreensaver.verbose:true
 !------------------!
 
 !--[perl]--!
-URxvt.perl-ext-common: default,clipboard,tabbed
+URxvt.perl-ext-common: default,clipboard
 
 !--[terminal]--!
 ! Nasty hack to act more like XTerm
