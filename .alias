@@ -56,6 +56,15 @@ diff_folder() {
 bzrdiff() {
 	bzr diff $* |highlight --syntax diff -O xterm256
 }
+landhcpd() {
+	sudo ip link set dev eth0 up
+	sudo ip addr add 172.31.255.100/24 dev eth0
+	sudo dhcpd -f eth0
+	#sudo systemctl restart dhcpd4
+}
+connectlan() {
+	ssh colton@172.31.255.101
+}
 alias killwindow='kill -15 $(DISPLAY=:0 xprop _NET_WM_PID | cut -d" " -f3)'
 alias xephyrclip='reset; xephyr-clipboard-share :0 :1'
 alias copyclip='xsel -po|xsel --display :0 -bi'
