@@ -1,8 +1,9 @@
 #!/bin/bash
+# Source: https://gist.github.com/anonymous/df51d12829bb1dac40e0
 # This script needs mp3splt, cdrtools, vorbis-tools
 
-CREATE_OGG="true";
-CREATE_FLAC="false";
+CREATE_OGG="false";
+CREATE_FLAC="true";
 CREATE_MKA="false";
 
 WORKING_DIRECTORY=$(pwd)
