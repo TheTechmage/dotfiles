@@ -1,0 +1,8 @@
+#!/bin/bash
+#1600x900
+#ffmpeg -f x11grab -video_size 1600x900 -i $DISPLAY -f alsa -i default -c:v ffvhuff -c:a flac test.mkv
+#ffmpeg -f x11grab -video_size 1600x900 -r 25 -i $DISPLAY -f alsa -i default -c:v libx264 -b:v 200k test.mkv
+ffmpeg -f x11grab -video_size 1600x900 -r 60 -i $DISPLAY -f alsa -i default -c:v libx264 -preset ultrafast test.mkv
+#ffmpeg -f x11grab -r 25 -s 1600x900 -i :0.0+0,0 -vcodec libx264 -vpre ultrafast -threads 0 test.mkv
+# ffmpeg -f alsa -i pulse -f x11grab -r 25 -s 1280x720 -i :0.0+0,24 -acodec pcm_s16le -vcodec libx264 -vpre lossless_ultrafast -threads 0 output.mkv
+
