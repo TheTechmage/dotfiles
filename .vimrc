@@ -281,3 +281,6 @@ vnoremap <f2> :<c-u>exe join(getline("'<","'>"),'<bar>')<cr>
 "
 " Match command and syntax
 " http://vimdoc.sourceforge.net/htmldoc/pattern.html#:match
+"
+" TODO: Create a function that puts this in the current buffer:
+" :echo system("strings -n 1 < /dev/urandom | tr -cd '[[:alnum:]]'  | head -c30")
