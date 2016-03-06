@@ -5,3 +5,6 @@
 	path = .vim
 	pushURL = git@github.com:frostyfrog/vimfiles.git
 	url = https://github.com/frostyfrog/vimfiles.git
+[submodule "color"]
+	path = color
+	url = https://github.com/gstk/Color-Scripts.git
