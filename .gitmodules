@@ -8,3 +8,6 @@
 [submodule "color"]
 	path = color
 	url = https://github.com/gstk/Color-Scripts.git
+[submodule "PowerlineFonts"]
+	path = PowerlineFonts
+	url = https://github.com/powerline/fonts.git
