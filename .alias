@@ -24,6 +24,7 @@ alias atlanta="ssh shell.frostyfrog.net"
 alias music="ncmpcpp"
 #alias gt='nocorrect gt'
 alias psgrep='ps aux | grep '
+alias lockscreen='date; sleep 1; xautolock -locknow'
 
 # Git Version Log
 alias gitvl='git log --date=iso --reverse --pretty="format:(git) [%h] - %s"'
