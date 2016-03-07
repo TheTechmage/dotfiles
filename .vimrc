@@ -172,6 +172,8 @@ call plug#begin()
 		Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 		let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
 		let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+		let g:ycm_server_keep_logfiles = 1
+		let g:ycm_server_log_level = 'debug'
 
 		let g:UltiSnipsExpandTrigger="<tab>"
 		let g:UltiSnipsJumpForwardTrigger="<tab>"
