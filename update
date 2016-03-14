@@ -1,0 +1,39 @@
+# colton at London in ~/.files on git:master o [15:09:52]
+$ gl
+remote: Counting objects: 54, done.
+remote: Compressing objects: 100% (20/20), done.
+remote: Total 54 (delta 14), reused 7 (delta 7), pack-reused 27
+Unpacking objects: 100% (54/54), done.
+From http://github.com/frostyfrog/dotfiles
+   3aaff28..38ddbac  master     -> origin/master
+Updating 3aaff28..38ddbac
+Fast-forward
+ .Xdefaults          |  11 ++++++
+ .alias              |   1 +
+ .conky/baddery.sh   |  42 ++++++++++++++++++++
+ .conky/getip.sh     |   1 +
+ .conky/misc.sh      |  11 ++++--
+ .conky/todo-conky   |  20 ++++++++++
+ .conky/todo.rb      | 112 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ .conky/vol.sh       |   8 ++--
+ .conky/widgets.lua  | 633 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ .conkyrc            | 107 ++++++++++++++++++++++++++------------------------
+ .conkyrc3           |  67 +++++++++++++++++++++++++++++++
+ .vimrc              |   8 ++++
+ .xinitrc            |  31 +++++++++++++--
+ .xprofile           |   4 ++
+ .zshrc              |   2 +-
+ autocopy            |   1 +
+ bin/checkupdates.rb |  29 ++++++++++++++
+ 17 files changed, 1026 insertions(+), 62 deletions(-)
+ create mode 100755 .conky/baddery.sh
+ create mode 100755 .conky/getip.sh
+ create mode 100644 .conky/todo-conky
+ create mode 100755 .conky/todo.rb
+ create mode 100644 .conky/widgets.lua
+ create mode 100644 .conkyrc3
+ create mode 100644 .xprofile
+
+# colton at London in ~/.files on git:master o [15:09:55]
+$ 
+

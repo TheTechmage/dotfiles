@@ -1,0 +1,37 @@
+# colton at London in ~ [1:30:01]
+$ sudo pacman -S go   
+resolving dependencies...
+looking for conflicting packages...
+
+Packages (1) go-2:1.6-1
+
+Total Download Size:    31.40 MiB
+Total Installed Size:  206.54 MiB
+
+:: Proceed with installation? [Y/n] 
+:: Retrieving packages ...
+ go-2:1.6-1-x86_64                                                                31.4 MiB  6.63M/s 00:05 [--------------------------------------------------------------] 100%
+(1/1) checking keys in keyring                                                                            [--------------------------------------------------------------] 100%
+(1/1) checking package integrity                                                                          [--------------------------------------------------------------] 100%
+(1/1) loading package files                                                                               [--------------------------------------------------------------] 100%
+(1/1) checking for file conflicts                                                                         [--------------------------------------------------------------] 100%
+(1/1) checking available disk space                                                                       [--------------------------------------------------------------] 100%
+:: Processing package changes...
+(1/1) installing go                                                                                       [--------------------------------------------------------------] 100%
+
+The "liteide" package provides an IDE for editing and building Go projects.
+
+Example use of the "go" tool:
+
+    mkdir ~/go
+    export GOPATH=~/go
+    export PATH=$PATH:~/go/bin
+    go get golang.org/x/tour/gotour
+
+Optional dependencies for go
+    mercurial: for fetching sources from mercurial repositories [installed]
+    git: for fetching sources from git repositories [installed]
+    bzr: for fetching sources from bazaar repositories
+    subversion: for fetching sources from subversion repositories [installed]
+    go-tools: godoc, goimports, gorename, and other tools.
+
