@@ -165,7 +165,14 @@ call plug#begin()
 	Plug 'raymond-w-ko/vim-lua-indent'
 
 	" Code to execute when the plugin is loaded on demand
+	"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM'), 'on': 'YcmRestartServer' }
 	Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM') }
+
+	"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
+
+	" Plugin completion using VimAwesome API
+	"Plug 'https://gist.github.com/5dff641d68d20ba309ce.git'
+	"			\ { 'as': 'VimAwesome', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
 	
 	if v:version >= 700
 		" Group dependencies, vim-snippets depends on ultisnips
