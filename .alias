@@ -176,4 +176,9 @@ alias allbuild="cssh hamal naos rigel sigma vega"
 export ABSROOT=~/abs
 export GOPATH=~/go
 
-cat $DOTFILES/.shbanner
+#cat $DOTFILES/.shbanner
+
+# Fix the annoying quoted string filenames
+# See: http://unix.stackexchange.com/questions/258679/why-is-ls-suddenly-wrapping-items-with-spaces-in-single-quotes
+alias lls='ls --color=auto'
+alias ls='ls --color=auto -N'
