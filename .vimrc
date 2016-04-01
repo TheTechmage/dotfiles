@@ -201,6 +201,8 @@ call plug#begin()
 
 	" Vim golang shorcuts and bindings
 	Plug 'fatih/vim-go'
+	Plug 'davidhalter/jedi-vim'
+	Plug 'scrooloose/syntastic'
 
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
 	" If you prefer the Omni-Completion tip window to close when a selection is
@@ -237,6 +239,18 @@ endfunction
 autocmd VimEnter * call AirlineInit()
 set laststatus=2
 
+" }}}
+
+" Airline Config {{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+hi Search cterm=NONE ctermfg=white ctermbg=darkblue
 " }}}
 
 " Return to our last position in the file
