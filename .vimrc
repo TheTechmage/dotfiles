@@ -143,6 +143,7 @@ call plug#begin()
 	"Note:
 	"http://makandracards.com/jan0sch/18283-enable-powerline-fonts-with-rxvt-unicode-and-vim-airline
 	Plug 'bling/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
 
 	Plug 'szw/vim-tags'
 	Plug 'hynek/vim-python-pep8-indent'
@@ -167,6 +168,7 @@ call plug#begin()
 	" Code to execute when the plugin is loaded on demand
 	"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM'), 'on': 'YcmRestartServer' }
 	Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM') }
+	"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('youcompleteme#Enable') }
 
 	"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 
