@@ -182,3 +182,6 @@ export GOPATH=~/go
 # See: http://unix.stackexchange.com/questions/258679/why-is-ls-suddenly-wrapping-items-with-spaces-in-single-quotes
 alias lls='ls --color=auto'
 alias ls='ls --color=auto -N'
+
+# Convenience functions installed by sadm
+test -r $HOME/sadm/sadm-bash-commands.sh && source $HOME/sadm/sadm-bash-commands.sh

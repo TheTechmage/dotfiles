@@ -71,7 +71,7 @@ end
 
 def packages_check
 	packages = `checkupdates`
-	pkgtotal = packages.split.length
+	pkgtotal = packages.split("\n").length
 
 	unless File.exists? CountFile
 		File.open(CountFile, "w") {|f| f.write("0")}

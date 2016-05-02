@@ -56,6 +56,8 @@ path+=~/bin
 path+=~/fbin
 path+=~/.gem/ruby/2.0.0/bin
 path+=~/.gem/ruby/2.1.0/bin
+path+=~/.gem/ruby/2.2.0/bin
+path+=~/sadm
 # Only the ones that exist
 path=($^path(N))
 

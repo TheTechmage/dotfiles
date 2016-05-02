@@ -209,6 +209,15 @@
 # NOTE: It might be helpful to run dunst -print in a terminal in order
 # to find fitting options for rules.
 
+[kvirc]
+    appname = KVIrc
+    summary = *
+    urgency = critical
+    icon_position = off
+    format = "%a - <b>%s</b>\n%b"
+    alignment = left
+    word_wrap = yes
+
 #[espeak]
 #    summary = "*"
 #    script = dunst_espeak.sh
