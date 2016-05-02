@@ -1,4 +1,5 @@
 @^(https?://|www\.) = surf
+.epub               = calibre
 image/              = ristretto
 video/              = mplayer
 audio/              = mplayer::urxvt
