@@ -83,6 +83,7 @@ au BufRead,BufNewFile *.less setfiletype css
 
 " Line 80 "Helpful Correction Reminder"
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+highlight Search term=reverse ctermfg=15 ctermbg=4 guibg=Yellow
 match OverLength /\%81v.\+/
 
 " Vundle Stuff "{{{
