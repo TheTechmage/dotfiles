@@ -166,9 +166,13 @@ call plug#begin()
 	Plug 'raymond-w-ko/vim-lua-indent'
 
 	" Code to execute when the plugin is loaded on demand
-	"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM'), 'on': 'YcmRestartServer' }
-	Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM') }
-	"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('youcompleteme#Enable') }
+	if hostname() == 'frostydev' || hostname() == 'pythondev'
+		Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+	else
+		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM'), 'on': 'YcmRestartServer' }
+		Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM') }
+		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('youcompleteme#Enable') }
+	endif
 
 	"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 
