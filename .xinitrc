@@ -24,7 +24,7 @@ function common() {
 	sbg &
 	sleep 1
 	japanese
-	conky & # Need conky-lua
+	#conky & # Need conky-lua
 }
 
 function sxmonad() {
@@ -98,7 +98,7 @@ subtle)
 dwm)
 	common
 	feh --bg-fill ~/.wallpapers/archlinux-wallpaper-1.3/archlinux-deep-aurora.jpg;
-	sleep 5;
+	#sleep 5;
 	sdwm
 	;;
 xfce)
