@@ -11,7 +11,11 @@ scriptencoding utf-8
 set encoding=utf-8
 
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
-set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<,nbsp:%
+set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<
+if v:version >= 704
+	set listchars+=space:ﾐ
+	"set listchars+=space:｡
+endif
 
 set ts=2 sw=2 ai
 
@@ -160,6 +164,9 @@ call plug#begin()
 	" Tmux
 	Plug 'tpope/vim-tbone'
 
+	" Buffer Explorer :help bufexplorer
+	Plug 'jlanzarotta/bufexplorer'
+
 
 	" Git
 	Plug 'tpope/vim-fugitive'
@@ -281,7 +288,7 @@ endif
 "raise PSAPIException(msg = 'Debugging: %s' % e,
 "            code = 500,
 "            info = 'Debugging: %s' % e)
-let @b="oexcept Exception, e:raise PSAPIException(msg = 'Debugging: %s' % e,code = 500,info = 'Debugging: %s' % e)�ku�ku"
+let @b="oexcept Exception, e:raise PSAPIException(msg = 'Debugging: %s' % e,code = 500,info = 'Debugging: %s' % e)kuku"
 set nolist
 match
 
