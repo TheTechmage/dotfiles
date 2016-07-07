@@ -12,7 +12,7 @@ set encoding=utf-8
 
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 set listchars=eol:¶,tab:>-,trail:·,extends:>,precedes:<
-if v:version >= 704
+if v:version > 704 || ( v:version == 704 && has('patch710') )
 	set listchars+=space:ﾐ
 	"set listchars+=space:｡
 endif
