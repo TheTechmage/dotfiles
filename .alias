@@ -66,6 +66,13 @@ landhcpd() {
 connectlan() {
 	ssh colton@172.31.255.101
 }
+savediff() {
+	if [ "$#" -ne 2 ]; then
+		echo "Usage: savediff <host> <file>.patch" >&2
+		return 1
+	fi
+	ssh $(whoami)@$1 "bash -c 'cat > $2.patch'"
+}
 alias killwindow='kill -15 $(DISPLAY=:0 xprop _NET_WM_PID | cut -d" " -f3)'
 alias xephyrclip='reset; xephyr-clipboard-share :0 :1'
 alias copyclip='xsel -po|xsel --display :0 -bi'
