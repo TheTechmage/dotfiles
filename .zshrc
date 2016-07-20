@@ -87,3 +87,4 @@ fi
 bindkey '^R' history-incremental-pattern-search-backward
 bindkey "^P" vi-up-line-or-history
 bindkey "^N" vi-down-line-or-history
+setopt rm_star_silent
