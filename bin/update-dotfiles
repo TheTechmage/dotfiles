@@ -63,9 +63,14 @@ else
 	echo -n " "
 	# No need for a prompt with -p, we already asked
 	read -r response
+	vimwait=true
 	case $response in
 		[nN][oO]|[nN])
 			vimsetup=false
+			;;
+		yq)
+			vimsetup=true
+			vimwait=false
 			;;
 		*)
 			vimsetup=true
@@ -73,7 +78,11 @@ else
 	esac
 	if $vimsetup; then
 		echosub "Making sure all plugins are installed"
-		vim -c "PlugInstall | echo 'Finished installing, sleeeping for 10 seconds' | sleep 10 | qall"
+		if $vimwait; then
+			vim -c "PlugInstall | echo 'Finished installing, sleeeping for 10 seconds' | sleep 10 | qall"
+		else
+			vim -c "PlugInstall | qall"
+		fi
 	fi
 
 	#echosub "Updating .vim's origin"
