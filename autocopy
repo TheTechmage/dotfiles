@@ -35,29 +35,31 @@ function relink() {
 }
 
 #relink .tmp
-relink bin $HOME/bin
 relink .oh-my-zsh $HOME/.oh-my-zsh
 relink .vim $HOME/.vim
+relink bin $HOME/bin
 relink fbin $HOME/fbin
 
 relink .abcde.conf $HOME/.abcde.conf
 relink .alias $HOME/.alias
 relink .bashrc $HOME/.bashrc
-relink .conky $HOME/.conky
-relink .conkyrc $HOME/.conkyrc
 relink .dircolors $HOME/.dircolors
 relink .lynxrc $HOME/.lynxrc
 relink .nanorc $HOME/.nanorc
 relink .screenrc $HOME/.screenrc
-relink .surfraw.conf $HOME/.surfraw.conf
 relink .tmux.conf $HOME/.tmux.conf
 relink .vimrc $HOME/.vimrc
+relink .ycm_extra_conf.py $HOME/.ycm_extra_conf.py
+relink .zshhacks $HOME/.zshhacks
+relink .zshrc $HOME/.zshrc
+
+relink .conky $HOME/.conky
+relink .conkyrc $HOME/.conkyrc
+relink .surfraw.conf $HOME/.surfraw.conf
 relink .Xdefaults $HOME/.Xdefaults
 relink .xinitrc $HOME/.xinitrc
-relink .xprofile $HOME/.xprofile
 relink .Xresources $HOME/.Xresources
-relink .zshrc $HOME/.zshrc
-relink .zshhacks $HOME/.zshhacks
+relink .xprofile $HOME/.xprofile
 
 relink .config/busking/config $HOME/.config/busking/config
 relink .config/dunst $HOME/.config/dunst
