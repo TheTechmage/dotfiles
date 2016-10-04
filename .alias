@@ -66,11 +66,17 @@ landhcpd() {
 connectlan() {
 	ssh colton@172.31.255.101
 }
+savediff() {
+	if [ "$#" -ne 2 ]; then
+		echo "Usage: savediff <host> <file>.patch" >&2
+		return 1
+	fi
+	ssh $(whoami)@$1 "bash -c 'cat > $2.patch'"
+}
 alias killwindow='kill -15 $(DISPLAY=:0 xprop _NET_WM_PID | cut -d" " -f3)'
 alias xephyrclip='reset; xephyr-clipboard-share :0 :1'
 alias copyclip='xsel -po|xsel --display :0 -bi'
 alias resetmon='xrandr --output DVI-I-3 --auto --right-of DVI-I-2 --output DVI-I-2 --auto'
-alias league='killwine; playonlinux --run "League of Legends"'
 alias xeph='Xephyr :1 -ac -br -noreset -screen 1905x1045 &> /dev/null &; sleep 4; DISPLAY=:1.0 xfce4-session &> /dev/null &;'
 alias disabletitle='export DISABLE_AUTO_TITLE="true"'
 alias resynergy='pkill synergyc; synergyc troll'
@@ -80,6 +86,7 @@ alias lockdisable='xautolock -disable'
 alias lockenable='xautolock -enable'
 alias todo=todo.sh
 alias termhelp='man 7 urxvt'
+alias dumplocal='sudo tcpdump -AnnvvXS -i lo -w capture'
 
 if [[ "$SHELL" == "/bin/bash" ]]; then
 	# Git aliases from oh-my-zsh (for bash)
