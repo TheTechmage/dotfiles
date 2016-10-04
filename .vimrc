@@ -134,7 +134,7 @@ function! BuildYCM(info)
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
-    !./install.sh
+    !./install.sh --clang-completer --system-libclang --system-boost --gocode-completer
   endif
 endfunction
 
@@ -173,12 +173,16 @@ call plug#begin()
 
 	Plug 'raymond-w-ko/vim-lua-indent'
 
+	" Syntastic code completion GUI
+	Plug 'scrooloose/syntastic'
+
 	" Code to execute when the plugin is loaded on demand
 	if hostname() == 'frostydev' || hostname() == 'pythondev'
 		Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
+		Plug 'davidhalter/jedi-vim'
 	else
 		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM'), 'on': 'YcmRestartServer' }
-		Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM') }
+		Plug 'Valloric/YouCompleteMe', { 'for': ['html', 'cpp', 'c', 'go'], 'do': function('BuildYCM') }
 		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('youcompleteme#Enable') }
 	endif
 
@@ -195,6 +199,10 @@ call plug#begin()
 		let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 		let g:ycm_server_keep_logfiles = 1
 		let g:ycm_server_log_level = 'debug'
+		let g:ycm_show_diagnostics_ui = 0
+		let g:ycm_key_invoke_completion = '<C-Z>'
+		let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+		let g:ycm_seed_identifiers_with_syntax = 1
 
 		let g:UltiSnipsExpandTrigger="<tab>"
 		let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -215,8 +223,6 @@ call plug#begin()
 
 	" Vim golang shorcuts and bindings
 	Plug 'fatih/vim-go'
-	Plug 'davidhalter/jedi-vim'
-	Plug 'scrooloose/syntastic'
 
 	autocmd! User YouCompleteMe call youcompleteme#Enable()
 	" If you prefer the Omni-Completion tip window to close when a selection is

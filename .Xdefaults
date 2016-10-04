@@ -29,6 +29,8 @@ URxvt*shading: 20
 URxvt*depth:24
 URxvt*background: #101010
 URxvt*foreground: #C7C7C7
+!URxvt*background: #C7C7C7
+!URxvt*foreground: #101010
 URxvt*borderless: 1
 
 !--[font]--! 

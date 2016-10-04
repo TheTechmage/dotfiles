@@ -22,6 +22,7 @@ function japanese() {
 
 function common() {
 	sbg &
+	dunst &
 	sleep 1
 	japanese
 	#conky & # Need conky-lua
