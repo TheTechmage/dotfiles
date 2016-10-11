@@ -167,7 +167,7 @@ if istrue $utils; then
 	packages+=('sqlitemanager')
 	packages+=('surf')
 	packages+=('synergy')
-	packages+=('terminus')
+	#packages+=('terminus')
 	packages+=('todotxt')
 	packages+=('ttf-ms-fonts')
 	packages+=('wget')
