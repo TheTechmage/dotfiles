@@ -24,6 +24,7 @@ xorg=true
 
 frostyrepo=false
 
+dhcpcd=true
 
 ##     ## ######## ##       ########  ######## ########   ######  
 ##     ## ##       ##       ##     ## ##       ##     ## ##    ## 
@@ -208,6 +209,10 @@ if istrue $frostyrepo && (grep -v frostyfrog /etc/pacman.conf); then
 	sed "/\[core/i [frostyrepo]\nServer = http://repo.frostyfrog.net/\n\n" /etc/pacman.conf
 fi
 
+if istrue $dhcpcd; then
+	packages+=('dhcpcd')
+fi
+
  ######  ######## ######## ##     ## ########  
 ##    ## ##          ##    ##     ## ##     ## 
 ##       ##          ##    ##     ## ##     ## 
@@ -280,6 +285,9 @@ ln -s /var/lib/mpd/music/music /home/$user_name/music
 chown $user_name:users /home/$user_name/music
 chown $user_name:users /var/lib/mpd/music/music
 
+if istrue $dhcpcd; then
+	systemctl enable dhcpcd
+fi
 if istrue $utils; then
 	systemctl enable sshd mpd
 fi
