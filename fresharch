@@ -273,6 +273,7 @@ if istrue $virtualize; then
 	gpasswd -a $user_name libvirt
 fi
 
+update-ca-certificates # https://www.archlinux.org/news/ca-certificates-update/
 cat <<EOSU | su - $user_name
 	git clone https://github.com/frostyfrog/dotfiles.git .files
 	cd .files
