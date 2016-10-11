@@ -18,6 +18,7 @@ subtle=false
 syslinux=true
 utils=true
 virtualize=true
+virt_box_guest=false
 xfce=true
 xorg=true
 
@@ -71,7 +72,7 @@ if istrue $syslinux; then
 fi
 if istrue $pulse; then
 	packages+=('alsa-utils')
-	packages+=('alsamixer')
+	#packages+=('alsamixer')
 	packages+=('paprefs')
 	packages+=('pavucontrol')
 	packages+=('ponymix')
@@ -81,7 +82,7 @@ fi
 # TODO sort this list
 if istrue $utils; then
 	packages+=(nvidia{,-libgl})
-	packages+=(pep8-python{,2})
+	packages+=({,python2-}autopep8)
 	packages+=(python{,2}-pip)
 	packages+=('abs')
 	packages+=('base-devel')
@@ -160,8 +161,8 @@ if istrue $utils; then
 	packages+=('scim-anthy')
 	packages+=('scrot')
 	packages+=('scudcloud')
-	packages+=('sendmail')
-	packages+=('skype')
+	#packages+=('sendmail')
+	#packages+=('skype')
 	packages+=('sqlite')
 	packages+=('sqlitemanager')
 	packages+=('surf')
@@ -171,7 +172,6 @@ if istrue $utils; then
 	packages+=('ttf-ms-fonts')
 	packages+=('wget')
 	packages+=('xcompmgr')
-	packages+=('xfce4')
 	packages+=('xorg-xauth')
 	packages+=('xorg-xclock')
 	packages+=('xorg-xfontsel')
@@ -188,6 +188,10 @@ if istrue $virtualize; then
 	packages+=('virtualbox')
 	packages+=('virt-manager')
 #	packages+=('virt-viewer')
+fi
+if istrue $dwm; then
+	packages+=('virtualbox-guest-utils')
+	packages+=('virtualbox-guest-modules-arch')
 fi
 if istrue $xfce; then
 	packages+=('xfce4')
