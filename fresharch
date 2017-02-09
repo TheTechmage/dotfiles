@@ -22,6 +22,8 @@ virt_box_guest=false
 xfce=true
 xorg=true
 
+UEFI=false
+
 frostyrepo=false
 
 dhcpcd=true
@@ -182,6 +184,11 @@ if istrue $utils; then
 	packages+=('youtube-dl')
 	packages+=('zim')
 	packages+=('zsh')
+
+	packages+=('ctags')
+	packages+=('xautolock')
+	packages+=('slock')
+	packages+=('sshguard')
 fi
 if istrue $virtualize; then
 	packages+=('libvirt')
@@ -203,6 +210,9 @@ if istrue $xorg; then
 	packages+=('chromium')
 	packages+=('firefox-developer')
 	packages+=('xscreensaver')
+fi
+if istrue $UEFI; then
+	packages+=('efibootmgr')
 fi
 
 if istrue $frostyrepo && (grep -v frostyfrog /etc/pacman.conf); then
@@ -263,7 +273,7 @@ polkit.addRule(function(action, subject) {
 });
 EOF
 
-useradd -m -G wheel,users,systemd-journal -s /bin/zsh frosty
+useradd -m -G wheel,users,systemd-journal -s /bin/zsh $user_name
 
 if istrue $utils; then
 	gpasswd -a $user_name mpd
