@@ -2,6 +2,7 @@
 
 xscreensaver.logFile:/var/log/xscreensaver.log
 xscreensaver.verbose:true
+Xcursor.size: 16
 
 !------------------!
 !    URxvt Stuff   !
