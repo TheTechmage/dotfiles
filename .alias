@@ -68,7 +68,7 @@ connectlan() {
 }
 savediff() {
 	if [ "$#" -ne 2 ]; then
-		echo "Usage: savediff <host> <file>.patch" >&2
+		echo "Usage: diff | savediff <host> <file>.patch" >&2
 		return 1
 	fi
 	ssh $(whoami)@$1 "bash -c 'cat > $2.patch'"
