@@ -34,7 +34,7 @@ EMAILADDR = "system-status@frostyfrog.net"
 
 def send_email(to, opts)
 	hostname = "#{Hostname.split(".").first}"
-	domain = "#{Hostname.split(".", 1).last}"
+	domain = "#{Hostname.split(".", 2).last}"
 	opts[:server]     ||= 'localhost'
 	opts[:from]       ||= "#{hostname}@#{domain}"
 	opts[:from_alias] ||= "#{hostname}"
