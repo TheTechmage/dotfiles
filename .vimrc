@@ -190,6 +190,9 @@ call plug#begin()
 		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('youcompleteme#Enable') }
 	endif
 
+	" CScope
+	"Plug 'http://cscope.sourceforge.net/cscope_maps.vim', { 'as': 'cscope', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
+
 	"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 
 	" Plugin completion using VimAwesome API
