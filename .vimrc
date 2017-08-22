@@ -134,7 +134,11 @@ function! BuildYCM(info)
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
-    !./install.sh --clang-completer --system-libclang --system-boost --gocode-completer
+		if hostname() == 'frostydev'
+			!./install.sh --clang-completer --gocode-completer
+		else
+			!./install.sh --clang-completer --system-libclang --system-boost --gocode-completer
+		endif
   endif
 endfunction
 
