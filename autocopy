@@ -64,6 +64,8 @@ relink .xprofile $HOME/.xprofile
 relink .config/busking/config $HOME/.config/busking/config
 relink .config/dunst $HOME/.config/dunst
 
+relink .zsh/themes/frosty.zsh-theme $HOME/.oh-my-zsh/custom/themes/frosty.zsh-theme
+
 
 exit # Exit so we don't hit our template line
 relink REPLACE $HOME/REPLACE
