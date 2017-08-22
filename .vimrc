@@ -178,7 +178,7 @@ call plug#begin()
 	Plug 'raymond-w-ko/vim-lua-indent'
 
 	" Syntastic code completion GUI
-	Plug 'scrooloose/syntastic'
+	"Plug 'scrooloose/syntastic'
 
 	" Code to execute when the plugin is loaded on demand
 	if hostname() == 'frostydev' || hostname() == 'pythondev'
