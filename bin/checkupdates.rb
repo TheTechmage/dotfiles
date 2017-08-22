@@ -150,6 +150,7 @@ def run_git
 	myhash = `git rev-parse --verify HEAD`
 	remotehash = `git rev-parse --verify origin/master`
 	if myhash == remotehash then
+	#	send_email EMAILADDR, :body => "test", :subject => "[TEST] Git needs updating!"
 		return
 	end
 
@@ -191,7 +192,10 @@ EOM
 	send_email EMAILADDR, :body => message, :subject => "Git needs updating!"
 end
 
-packages_check
+system("which checkupdates 2>&1| grep /check")
+if $?.exitstatus == 0 then
+	packages_check
+end
 run_git
 
 __END__
