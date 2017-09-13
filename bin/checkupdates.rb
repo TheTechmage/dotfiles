@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+#Encoding: UTF-8
 require 'net/smtp'
 require 'digest'
 #require 'pry'
