@@ -338,3 +338,41 @@ vnoremap <f2> :<c-u>exe join(getline("'<","'>"),'<bar>')<cr>
 "
 " TODO: Create a function that puts this in the current buffer:
 " :echo system("strings -n 1 < /dev/urandom | tr -cd '[[:alnum:]]'  | head -c30")
+
+let wiki_1 = {}
+let wiki_1.path = '~/vimwiki/'
+"let wiki_1.html_template = '~/vimwiki/templates/template.tpl'
+let wiki_1.css_name = 'style.css'
+let wiki_1.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+
+let wiki_2 = {}
+let wiki_2.path = '~/project_docs/'
+let wiki_2.index = 'main'
+
+let g:vimwiki_list = [wiki_1, wiki_2]
+
+" g:vimwiki_list [
+" {'maxhi': 0,
+" 'css_name': 'style.css',
+" 'auto_export': 0,
+" 'diary_index': 'diary',
+" 'template_default': 'default',
+" 'nested_syntaxes': {},
+" 'auto_toc': 0,
+" 'auto_tags': 0,
+" 'diary_sort': 'desc',
+" 'path': '/home/colton/vimwiki/',
+" 'diary_link_fmt': '%Y-%m-%d',
+" 'template_ext': '.tpl',
+" 'syntax': 'default',
+" 'custom_wiki2html': '',
+" 'automatic_nested_syntaxes': 1,
+" 'index': 'index',
+" 'diary_header': 'Diary',
+" 'ext': '.wiki',
+" 'path_html': '/home/colton/vimwiki_html/',
+" 'temp': 0,
+" 'template_path': '/home/colton/vimwiki/templates/',
+" 'list_margin': -1,
+" 'diary_rel_path': 'diary/'}
+" ]
