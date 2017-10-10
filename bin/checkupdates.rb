@@ -193,7 +193,7 @@ EOM
 	send_email EMAILADDR, :body => message, :subject => "Git needs updating!"
 end
 
-system("which checkupdates 2>&1| grep /check")
+_ = `which checkupdates 2>&1| grep /check`
 if $?.exitstatus == 0 then
 	packages_check
 end
