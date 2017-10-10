@@ -16,6 +16,9 @@ fi
 if [[ "$(hostname)" == "Brownie" ]]; then
 	xsetroot -xcf /usr/share/icons/Adwaita/cursors/left_ptr 8
 fi
+if [ -e "${HOME}/.screenlayout/main.sh" ]; then
+	. "${HOME}/.screenlayout/main.sh"
+fi
 function japanese() {
 	export XMODIFIERS=@im=SCIM
 	export GTK_IM_MODULE="scim"
