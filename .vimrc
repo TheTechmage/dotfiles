@@ -171,6 +171,8 @@ call plug#begin()
 	" Buffer Explorer :help bufexplorer
 	Plug 'jlanzarotta/bufexplorer'
 
+	" Base64 encode/decode
+	Plug 'christianrondeau/vim-base64'
 
 	" Git
 	Plug 'tpope/vim-fugitive'
