@@ -184,8 +184,8 @@ call plug#begin()
 
 	" Code to execute when the plugin is loaded on demand
 	if hostname() == 'frostydev' || hostname() == 'pythondev'
-		Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-		Plug 'davidhalter/jedi-vim'
+		Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'commit': '61b5aa76fecd50f6aae5bd787a7b2231b26374b2' }
+		"Plug 'davidhalter/jedi-vim'
 	else
 		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM'), 'on': 'YcmRestartServer' }
 		Plug 'Valloric/YouCompleteMe', { 'for': ['html', 'cpp', 'c', 'go'], 'do': function('BuildYCM') }
