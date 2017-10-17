@@ -386,6 +386,6 @@ function! s:generate_diff()
 	exe "%y p"
 	" TODO: Figure out how to delete the last line when we do the put
 	vnew | exe "put! p" | exe '%!diff -aur ' . expand("#:p") . ' -'
-	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=diff"
 endfunction
 command! Diff silent! call s:generate_diff()
