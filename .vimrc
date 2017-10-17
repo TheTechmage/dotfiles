@@ -378,3 +378,14 @@ let g:vimwiki_list = [wiki_1, wiki_2]
 " 'list_margin': -1,
 " 'diary_rel_path': 'diary/'}
 " ]
+
+" TODO: Move this to it's own plugin
+function! s:generate_diff()
+	let filetype=&ft
+	let my_view = winsaveview()
+	exe "%y p"
+	" TODO: Figure out how to delete the last line when we do the put
+	vnew | exe "put! p" | exe '%!diff -aur ' . expand("#:p") . ' -'
+	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+command! Diff silent! call s:generate_diff()
