@@ -62,8 +62,8 @@ path+=~/sadm
 path=($^path(N))
 
 FPATH="$HOME/.files/.zsh_autocomplete:$FPATH"
-HISTSIZE=100000 # 10000
-SAVEHIST=100000
+HISTSIZE=1000000 # 10000
+SAVEHIST=1000000
 
 # Enable bash-style interactive comments
 setopt interactivecomments
