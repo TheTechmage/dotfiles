@@ -191,5 +191,7 @@ cat $DOTFILES/.shbanner
 alias lls='ls --color=auto'
 alias ls='ls --color=auto -N'
 
+alias ipa='ip a|grep "inet "|awk "{gsub(/\/[0-9]+/, \"\"); print \$2}"'
+
 # Convenience functions installed by sadm
 test -r $HOME/sadm/sadm-bash-commands.sh && source $HOME/sadm/sadm-bash-commands.sh
