@@ -1,0 +1,34 @@
+[Added Associations]
+image/jpeg=ristretto.desktop;evince.desktop;
+image/png=ristretto.desktop;
+video/x-matroska=mplayer.desktop;
+x-scheme-handler/http=userapp-Firefox Developer Edition-41TQYX.desktop;
+x-scheme-handler/https=userapp-Firefox Developer Edition-41TQYX.desktop;
+x-scheme-handler/ftp=userapp-Firefox Developer Edition-41TQYX.desktop;
+x-scheme-handler/chrome=userapp-Firefox Developer Edition-41TQYX.desktop;
+text/html=userapp-Firefox Developer Edition-41TQYX.desktop;
+application/x-extension-htm=userapp-Firefox Developer Edition-41TQYX.desktop;
+application/x-extension-html=userapp-Firefox Developer Edition-41TQYX.desktop;
+application/x-extension-shtml=userapp-Firefox Developer Edition-41TQYX.desktop;
+application/xhtml+xml=userapp-Firefox Developer Edition-41TQYX.desktop;
+application/x-extension-xhtml=userapp-Firefox Developer Edition-41TQYX.desktop;
+application/x-extension-xht=userapp-Firefox Developer Edition-41TQYX.desktop;
+video/mp4=ghb.desktop;userapp-xdg-open-WKI4PY.desktop;
+
+[Default Applications]
+image/jpeg=ristretto.desktop
+image/png=ristretto.desktop
+video/x-matroska=mplayer.desktop
+x-scheme-handler/http=userapp-Firefox Developer Edition-41TQYX.desktop
+x-scheme-handler/https=userapp-Firefox Developer Edition-41TQYX.desktop
+x-scheme-handler/ftp=userapp-Firefox Developer Edition-41TQYX.desktop
+x-scheme-handler/chrome=userapp-Firefox Developer Edition-41TQYX.desktop
+text/html=userapp-Firefox Developer Edition-41TQYX.desktop
+application/x-extension-htm=userapp-Firefox Developer Edition-41TQYX.desktop
+application/x-extension-html=userapp-Firefox Developer Edition-41TQYX.desktop
+application/x-extension-shtml=userapp-Firefox Developer Edition-41TQYX.desktop
+application/xhtml+xml=userapp-Firefox Developer Edition-41TQYX.desktop
+application/x-extension-xhtml=userapp-Firefox Developer Edition-41TQYX.desktop
+application/x-extension-xht=userapp-Firefox Developer Edition-41TQYX.desktop
+video/mp4=userapp-xdg-open-frosty.desktop
+*=userapp-xdg-open-frosty.desktop

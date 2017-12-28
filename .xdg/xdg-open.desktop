@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=Busking
+Exec=xdg-open %F
+Categories=Other;
+NoDisplay=true
+MimeType=*/*
+Terminal=false
+
+Encoding=UTF-8
+Version=1.0
+Comment=Official desktop version of Telegram messaging app
+Icon=telegram
+X-Desktop-File-Install-Version=0.23

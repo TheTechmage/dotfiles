@@ -61,8 +61,11 @@ relink .xinitrc $HOME/.xinitrc
 relink .Xresources $HOME/.Xresources
 relink .xprofile $HOME/.xprofile
 
+mkdir -p $HOME/.config/busking/ $HOME/.local/share/applications/
 relink .config/busking/config $HOME/.config/busking/config
 relink .config/dunst $HOME/.config/dunst
+relink .xdg/xdg-open.desktop $HOME/.local/share/applications/userapp-xdg-open-frosty.desktop
+relink .xdg/dwm-mimeapps.list $HOME/.config/dwm-mimeapps.list
 
 
 exit # Exit so we don't hit our template line
