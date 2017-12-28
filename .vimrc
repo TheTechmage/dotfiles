@@ -167,6 +167,8 @@ call plug#begin()
 	" Buffer Explorer :help bufexplorer
 	Plug 'jlanzarotta/bufexplorer'
 
+	" Auto :set paste and :set nopaste when pasting
+	Plug 'roxma/vim-paste-easy'
 
 	" Git
 	Plug 'tpope/vim-fugitive'
@@ -232,6 +234,11 @@ call plug#begin()
 	autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 call plug#end()
 	let g:go_fmt_command = "goimports"
+if !exists("autocommands_loaded")
+	let autocommands_loaded = 1
+	autocmd BufWritePost *.go :GoBuild
+	autocmd BufWritePost *_test.go :GoTest
+endif
 
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)

@@ -23,6 +23,7 @@ function japanese() {
 function common() {
 	sbg &
 	dunst &
+	export XDG_CURRENT_DESKTOP=dwm
 	sleep 1
 	japanese
 	#conky & # Need conky-lua
