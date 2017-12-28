@@ -104,5 +104,13 @@ else
 	# git+ssh://git@github.com/frostyfrog/dotfiles.git
 	echosub "Finished setting up .vim repository"
 fi
+eval `ssh-agent -s` >/dev/null
+ssh -q -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes atlanta.frostyfrog.net "/bin/true"
+if [ $? -eq 0 ]; then
+	git clone git@atlanta.frostyfrog.net:DropFrog/wiki.git .wiki
+else
+	mkdir .wiki
+fi
+kill $SSH_AGENT_PID
 
 # vim: set ft=sh :

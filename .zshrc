@@ -5,7 +5,9 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="ys"
+#ZSH_THEME="ys"
+#ZSH_THEME="clean"
+ZSH_THEME="frosty"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -58,6 +60,7 @@ path+=~/.gem/ruby/2.0.0/bin
 path+=~/.gem/ruby/2.1.0/bin
 path+=~/.gem/ruby/2.2.0/bin
 path+=~/sadm
+path+=/opt/sandman/bin
 # Only the ones that exist
 path=($^path(N))
 
@@ -89,3 +92,9 @@ bindkey "^P" vi-up-line-or-history
 bindkey "^N" vi-down-line-or-history
 setopt rm_star_silent
 export REPORTTIME=2
+
+PATH="/home/colton/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/colton/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/colton/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/colton/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/colton/perl5"; export PERL_MM_OPT;

@@ -68,7 +68,7 @@ connectlan() {
 }
 savediff() {
 	if [ "$#" -ne 2 ]; then
-		echo "Usage: savediff <host> <file>.patch" >&2
+		echo "Usage: diff | savediff <host> <file>.patch" >&2
 		return 1
 	fi
 	ssh $(whoami)@$1 "bash -c 'cat > $2.patch'"
@@ -195,3 +195,5 @@ alias ipa='ip a|grep "inet "|awk "{gsub(/\/[0-9]+/, \"\"); print \$2}"'
 
 # Convenience functions installed by sadm
 test -r $HOME/sadm/sadm-bash-commands.sh && source $HOME/sadm/sadm-bash-commands.sh
+alias ipa='ip a|grep inet|sort|perl -n -e "/([0-9a-f:.]+)\/[0-9]+/ && print \"\$1\n\""'
+alias ip4="ip a |grep inet' '|awk '{print gensub(/(.+)\/.+/, \"\\1\", \"g\", $2)|\"sort -n\";}'"

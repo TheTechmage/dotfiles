@@ -134,7 +134,11 @@ function! BuildYCM(info)
   " - status: 'installed', 'updated', or 'unchanged'
   " - force:  set on PlugInstall! or PlugUpdate!
   if a:info.status == 'installed' || a:info.force
-    !./install.sh --clang-completer --system-libclang --system-boost --gocode-completer
+		if hostname() == 'frostydev'
+			!./install.sh --clang-completer --gocode-completer
+		else
+			!./install.sh --clang-completer --system-libclang --system-boost --gocode-completer
+		endif
   endif
 endfunction
 
@@ -170,23 +174,29 @@ call plug#begin()
 	" Auto :set paste and :set nopaste when pasting
 	Plug 'roxma/vim-paste-easy'
 
+	" Base64 encode/decode
+	Plug 'christianrondeau/vim-base64'
+
 	" Git
 	Plug 'tpope/vim-fugitive'
 
 	Plug 'raymond-w-ko/vim-lua-indent'
 
 	" Syntastic code completion GUI
-	Plug 'scrooloose/syntastic'
+	"Plug 'scrooloose/syntastic'
 
 	" Code to execute when the plugin is loaded on demand
 	if hostname() == 'frostydev' || hostname() == 'pythondev'
-		Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-		Plug 'davidhalter/jedi-vim'
+		Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'commit': '61b5aa76fecd50f6aae5bd787a7b2231b26374b2' }
+		"Plug 'davidhalter/jedi-vim'
 	else
 		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM'), 'on': 'YcmRestartServer' }
 		Plug 'Valloric/YouCompleteMe', { 'for': ['html', 'cpp', 'c', 'go'], 'do': function('BuildYCM') }
 		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('youcompleteme#Enable') }
 	endif
+
+	" CScope
+	"Plug 'http://cscope.sourceforge.net/cscope_maps.vim', { 'as': 'cscope', 'do': 'mkdir -p plugin; cp -f *.vim plugin/' }
 
 	"autocmd! User YouCompleteMe if !has('vim_starting') | call youcompleteme#Enable() | endif
 
@@ -278,6 +288,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 hi Search cterm=NONE ctermfg=white ctermbg=darkblue
+hi DiffRemoved term=bold ctermfg=197 guifg=Orange
+hi DiffAdded term=bold ctermfg=73 guifg=Teal
 " }}}
 
 " Return to our last position in the file
@@ -336,3 +348,52 @@ vnoremap <f2> :<c-u>exe join(getline("'<","'>"),'<bar>')<cr>
 "
 " TODO: Create a function that puts this in the current buffer:
 " :echo system("strings -n 1 < /dev/urandom | tr -cd '[[:alnum:]]'  | head -c30")
+
+let wiki_1 = {}
+let wiki_1.path = '~/vimwiki/'
+"let wiki_1.html_template = '~/vimwiki/templates/template.tpl'
+let wiki_1.css_name = 'style.css'
+let wiki_1.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+
+let wiki_2 = {}
+let wiki_2.path = '~/project_docs/'
+let wiki_2.index = 'main'
+
+let g:vimwiki_list = [wiki_1, wiki_2]
+
+" g:vimwiki_list [
+" {'maxhi': 0,
+" 'css_name': 'style.css',
+" 'auto_export': 0,
+" 'diary_index': 'diary',
+" 'template_default': 'default',
+" 'nested_syntaxes': {},
+" 'auto_toc': 0,
+" 'auto_tags': 0,
+" 'diary_sort': 'desc',
+" 'path': '/home/colton/vimwiki/',
+" 'diary_link_fmt': '%Y-%m-%d',
+" 'template_ext': '.tpl',
+" 'syntax': 'default',
+" 'custom_wiki2html': '',
+" 'automatic_nested_syntaxes': 1,
+" 'index': 'index',
+" 'diary_header': 'Diary',
+" 'ext': '.wiki',
+" 'path_html': '/home/colton/vimwiki_html/',
+" 'temp': 0,
+" 'template_path': '/home/colton/vimwiki/templates/',
+" 'list_margin': -1,
+" 'diary_rel_path': 'diary/'}
+" ]
+
+" TODO: Move this to it's own plugin
+function! s:generate_diff()
+	let filetype=&ft
+	let my_view = winsaveview()
+	exe "%y p"
+	" TODO: Figure out how to delete the last line when we do the put
+	vnew | exe "put! p" | exe '%!diff -aur ' . expand("#:p") . ' -'
+	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=diff"
+endfunction
+command! Diff silent! call s:generate_diff()

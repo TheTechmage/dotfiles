@@ -67,6 +67,8 @@ relink .config/dunst $HOME/.config/dunst
 relink .xdg/xdg-open.desktop $HOME/.local/share/applications/userapp-xdg-open-frosty.desktop
 relink .xdg/dwm-mimeapps.list $HOME/.config/dwm-mimeapps.list
 
+relink .zsh/themes/frosty.zsh-theme $HOME/.oh-my-zsh/custom/themes/frosty.zsh-theme
+
 
 exit # Exit so we don't hit our template line
 relink REPLACE $HOME/REPLACE

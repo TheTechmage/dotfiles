@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+#Encoding: UTF-8
 require 'net/smtp'
 require 'digest'
 #require 'pry'
@@ -28,18 +29,23 @@ Debug = false
 ##  ##       ##     ## #########  ##  ##       
 ##  ##       ##     ## ##     ##  ##  ##       
 ##  ######## ##     ## ##     ## #### ######## 
+#
+
+EMAILADDR = "system-status@frostyfrog.net"
 
 def send_email(to, opts)
+	hostname = "#{Hostname.split(".").first}"
+	domain = "#{Hostname.split(".", 2).last}"
 	opts[:server]     ||= 'localhost'
-	opts[:from]       ||= "#{Hostname}@status.frostyfrog.net"
-	opts[:from_alias] ||= "#{Hostname.split(".").first}"
+	opts[:from]       ||= "#{hostname}@#{domain}"
+	opts[:from_alias] ||= "#{hostname}"
 	opts[:subject]    ||= "Cron"
 	opts[:body]       ||= 'Unset Body'
 
 	msg = <<EOM
 From: #{opts[:from_alias]} <#{opts[:from]}>
 To: <#{to}>
-Subject: [FF - #{Hostname.split(".").first}] #{opts[:subject]}
+Subject: [FF2 - #{Hostname.split(".").first}] #{opts[:subject]}
 
 #{opts[:body]}
 EOM
@@ -62,12 +68,6 @@ end
 ##   ######   #######  ########  ########
 
 ColorString = Debug ? "--color=always" : "--color=never"
-
-if Hostname.split(".")[1] == "psearch"
-	EMAILADDR = "colton.wolkins@perfectsearchcorp.com"
-else
-	EMAILADDR = "frostyfrog2@gmail.com"
-end
 
 def packages_check
 	packages = `checkupdates`
@@ -145,12 +145,13 @@ end
 
 def run_git
 	Dir.mkdir(DFCommitFiles) unless File.exists?(DFCommitFiles)
-	sha256 = Digest::SHA256.new
+	#sha256 = Digest::SHA256.new
 	`git fetch -q origin master`
 
 	myhash = `git rev-parse --verify HEAD`
 	remotehash = `git rev-parse --verify origin/master`
 	if myhash == remotehash then
+	#	send_email EMAILADDR, :body => "test", :subject => "[TEST] Git needs updating!"
 		return
 	end
 
@@ -192,7 +193,10 @@ EOM
 	send_email EMAILADDR, :body => message, :subject => "Git needs updating!"
 end
 
-packages_check
+_ = `which checkupdates 2>&1| grep /check`
+if $?.exitstatus == 0 then
+	packages_check
+end
 run_git
 
 __END__

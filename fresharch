@@ -18,11 +18,15 @@ subtle=false
 syslinux=true
 utils=true
 virtualize=true
+virt_box_guest=false
 xfce=true
 xorg=true
 
+UEFI=false
+
 frostyrepo=false
 
+dhcpcd=true
 
 ##     ## ######## ##       ########  ######## ########   ######  
 ##     ## ##       ##       ##     ## ##       ##     ## ##    ## 
@@ -71,7 +75,7 @@ if istrue $syslinux; then
 fi
 if istrue $pulse; then
 	packages+=('alsa-utils')
-	packages+=('alsamixer')
+	#packages+=('alsamixer')
 	packages+=('paprefs')
 	packages+=('pavucontrol')
 	packages+=('ponymix')
@@ -81,7 +85,7 @@ fi
 # TODO sort this list
 if istrue $utils; then
 	packages+=(nvidia{,-libgl})
-	packages+=(pep8-python{,2})
+	packages+=({,python2-}autopep8)
 	packages+=(python{,2}-pip)
 	packages+=('abs')
 	packages+=('base-devel')
@@ -160,18 +164,17 @@ if istrue $utils; then
 	packages+=('scim-anthy')
 	packages+=('scrot')
 	packages+=('scudcloud')
-	packages+=('sendmail')
-	packages+=('skype')
+	#packages+=('sendmail')
+	#packages+=('skype')
 	packages+=('sqlite')
 	packages+=('sqlitemanager')
 	packages+=('surf')
 	packages+=('synergy')
-	packages+=('terminus')
+	#packages+=('terminus')
 	packages+=('todotxt')
 	packages+=('ttf-ms-fonts')
 	packages+=('wget')
 	packages+=('xcompmgr')
-	packages+=('xfce4')
 	packages+=('xorg-xauth')
 	packages+=('xorg-xclock')
 	packages+=('xorg-xfontsel')
@@ -181,6 +184,11 @@ if istrue $utils; then
 	packages+=('youtube-dl')
 	packages+=('zim')
 	packages+=('zsh')
+
+	packages+=('ctags')
+	packages+=('xautolock')
+	packages+=('slock')
+	packages+=('sshguard')
 fi
 if istrue $virtualize; then
 	packages+=('libvirt')
@@ -188,6 +196,10 @@ if istrue $virtualize; then
 	packages+=('virtualbox')
 	packages+=('virt-manager')
 #	packages+=('virt-viewer')
+fi
+if istrue $dwm; then
+	packages+=('virtualbox-guest-utils')
+	packages+=('virtualbox-guest-modules-arch')
 fi
 if istrue $xfce; then
 	packages+=('xfce4')
@@ -199,9 +211,16 @@ if istrue $xorg; then
 	packages+=('firefox-developer')
 	packages+=('xscreensaver')
 fi
+if istrue $UEFI; then
+	packages+=('efibootmgr')
+fi
 
 if istrue $frostyrepo && (grep -v frostyfrog /etc/pacman.conf); then
 	sed "/\[core/i [frostyrepo]\nServer = http://repo.frostyfrog.net/\n\n" /etc/pacman.conf
+fi
+
+if istrue $dhcpcd; then
+	packages+=('dhcpcd')
 fi
 
  ######  ######## ######## ##     ## ########  
@@ -254,7 +273,7 @@ polkit.addRule(function(action, subject) {
 });
 EOF
 
-useradd -m -G wheel,users,systemd-journal -s /bin/zsh frosty
+useradd -m -G wheel,users,systemd-journal -s /bin/zsh $user_name
 
 if istrue $utils; then
 	gpasswd -a $user_name mpd
@@ -264,6 +283,7 @@ if istrue $virtualize; then
 	gpasswd -a $user_name libvirt
 fi
 
+update-ca-certificates # https://www.archlinux.org/news/ca-certificates-update/
 cat <<EOSU | su - $user_name
 	git clone https://github.com/frostyfrog/dotfiles.git .files
 	cd .files
@@ -276,6 +296,9 @@ ln -s /var/lib/mpd/music/music /home/$user_name/music
 chown $user_name:users /home/$user_name/music
 chown $user_name:users /var/lib/mpd/music/music
 
+if istrue $dhcpcd; then
+	systemctl enable dhcpcd
+fi
 if istrue $utils; then
 	systemctl enable sshd mpd
 fi
