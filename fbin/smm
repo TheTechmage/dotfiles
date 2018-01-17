@@ -1,0 +1,31 @@
+#!/bin/bash
+
+function show_help() {
+	echo -e "  smm <verb> <component1> [<component2> [<component3> [...]]] <sandboxSuffix>\n" >&2
+	echo -e "\tverb          - The verb to pass to sandman" >&2
+	echo -e "\tcomponentX    - The component (or components) to run the sandman command with" >&2
+	echo -e "\tsandboxSuffix - The suffix to append to each component name." >&2
+	echo -e "\t                (Typically this is a branch and sandbox type)" >&2
+}
+
+if [ $# -lt 3 ]; then
+	echo "Not enough arguments, expected 2 or more, got ${#}" >&2
+	echo >&2
+	show_help
+	exit 1
+fi
+
+verb=$1
+length=$(($#-1))
+sandboxes="${@:2:$length-1}"
+suffix="${@:$length+1}"
+
+
+if [[ "${verb}" == "help" || "${suffix}" == "help" ]]; then
+	show_help
+	exit 0
+fi
+
+for sandbox in $sandboxes; do
+	sm $1 "${sandbox}.${suffix}"
+done
