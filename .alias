@@ -26,6 +26,8 @@ alias music="ncmpcpp"
 alias psgrep='ps aux | grep '
 alias lockscreen='date; sleep 1; xautolock -locknow'
 
+alias rescuemode-bg="feh --bg-fill ~/Pictures/frog-wallpaper-by-dilan.jpg; convert ~/Pictures/frog-wallpaper-by-dilan2.jpg -fill 'rgba(20,20,20,0.80)' -draw 'rectangle 0,880 4096,1280' -fill red -strokewidth 4 -stroke 'rgba(90,50,50,1)' -gravity Center -weight 800 -pointsize 120 -encoding Unicode -font '思源宋體-TW-SemiBold' -annotate 0 '死モード' - | feh --bg-fill -"
+
 # Git Version Log
 alias gitvl='git log --date=iso --reverse --pretty="format:(git) [%h] - %s"'
 
@@ -197,3 +199,4 @@ alias ipa='ip a|grep "inet "|awk "{gsub(/\/[0-9]+/, \"\"); print \$2}"'
 test -r $HOME/sadm/sadm-bash-commands.sh && source $HOME/sadm/sadm-bash-commands.sh
 alias ipa='ip a|grep inet|sort|perl -n -e "/([0-9a-f:.]+)\/[0-9]+/ && print \"\$1\n\""'
 alias ip4="ip a |grep inet' '|awk '{print gensub(/(.+)\/.+/, \"\\1\", \"g\", $2)|\"sort -n\";}'"
+# feh --bg-fill ~/Pictures/frog-wallpaper-by-dilan.jpg; convert ~/Pictures/frog-wallpaper-by-dilan2.jpg -fill 'rgba(20,20,20,0.80)' -draw 'rectangle 0,880 4096,1280' -fill red -strokewidth 2 -stroke 'rgba(90,50,50,1)' -gravity Center -weight 800 -pointsize 120 -encoding Unicode -font '思源宋體-TW-SemiBold' -annotate 0 '瀕死\n回復モード' - | feh --bg-fill -
