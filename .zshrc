@@ -59,6 +59,8 @@ path+=~/fbin
 path+=~/.gem/ruby/2.0.0/bin
 path+=~/.gem/ruby/2.1.0/bin
 path+=~/.gem/ruby/2.2.0/bin
+path+=~/.gem/ruby/2.3.0/bin
+path+=~/.gem/ruby/2.4.0/bin
 path+=~/sadm
 path+=/opt/sandman/bin
 # Only the ones that exist
@@ -98,3 +100,6 @@ PERL5LIB="/home/colton/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LI
 PERL_LOCAL_LIB_ROOT="/home/colton/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/colton/perl5\""; export PERL_MB_OPT;
 PERL_MM_OPT="INSTALL_BASE=/home/colton/perl5"; export PERL_MM_OPT;
+
+export SSH_AUTH_SOCK="/run/user/$(id -u)/gnupg/S.gpg-agent.ssh"
+export GPG_TTY=$(tty)
