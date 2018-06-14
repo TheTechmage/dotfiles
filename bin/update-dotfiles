@@ -104,13 +104,39 @@ else
 	# git+ssh://git@github.com/frostyfrog/dotfiles.git
 	echosub "Finished setting up .vim repository"
 fi
-eval `ssh-agent -s` >/dev/null
-ssh -q -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes atlanta.frostyfrog.net "/bin/true"
-if [ $? -eq 0 ]; then
-	git clone git@atlanta.frostyfrog.net:DropFrog/wiki.git .wiki
-else
-	mkdir .wiki
+
+set -x
+echosub -n "Would you like to sync the vim wiki now? "
+# The space doesn't work in the previous line
+echo -n " "
+read -r response
+case $response in
+	[yY][eE][sS]|[yY])
+		vimwiki=true
+		;;
+	*)
+		vimwiki=false
+		;;
+esac
+if $vimwiki; then
+	eval `ssh-agent -s`
+	ssh-add
+	if [ $retval -eq 0 ]; then
+		ssh -q -o StrictHostKeyChecking=no -o PubkeyAuthentication=yes atlanta.frostyfrog.net "/bin/true"
+		retval=$?
+		if [ $retval -eq 0 ] && [ -d .wiki ]; then
+			pushd .wiki
+			git fetch
+			popd
+		elif [ $retval -eq 0 ]; then
+			git clone git@atlanta.frostyfrog.net:DropFrog/wiki.git .wiki
+		else
+			mkdir .wiki
+		fi
+	else
+		echosub "Failed to add ssh key"
+	fi
+	kill $SSH_AGENT_PID
 fi
-kill $SSH_AGENT_PID
 
 # vim: set ft=sh :
