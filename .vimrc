@@ -191,7 +191,7 @@ call plug#begin()
 		"Plug 'davidhalter/jedi-vim'
 	else
 		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('BuildYCM'), 'on': 'YcmRestartServer' }
-		Plug 'Valloric/YouCompleteMe', { 'for': ['html', 'cpp', 'c', 'go'], 'do': function('BuildYCM') }
+		"Plug 'Valloric/YouCompleteMe', { 'for': ['html', 'cpp', 'c', 'go'], 'do': function('BuildYCM') }
 		"Plug 'Valloric/YouCompleteMe', { 'for': ['cpp', 'c', 'go'], 'do': function('youcompleteme#Enable') }
 	endif
 
