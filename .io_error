@@ -1,0 +1,4 @@
+$ ./dwmstatus
+XIO:  fatal IO error 2 (No such file or directory) on X server ":0.0"
+      after 12263570 requests (12263570 known processed) with 0 events remaining.
+./dwmstatus  600.72s user 751.87s system 0% cpu 1706:30:40.59 total
