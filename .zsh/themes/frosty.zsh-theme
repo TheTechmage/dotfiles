@@ -56,6 +56,17 @@ frosty_bzr_prompt_info() {
 
 local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 
+local frostyhostname='$(frosty_hostname)'
+frosty_hostname() {
+	local frostyhostname="$(hostname)"
+	if [[ "$frostyhostname" == *Desktop ]];
+	then
+		echo -n "Brownie"
+	else
+		echo -n "${frostyhostname}"
+	fi
+}
+
 # Prompt format:
 #
 # PRIVILEGES USER @ MACHINE in DIRECTORY on git:BRANCH STATE [TIME] C:LAST_EXIT_CODE
@@ -69,7 +80,7 @@ PROMPT="
 %{$terminfo[bold]$fg[blue]%}#%{$reset_color%} \
 %(#,%{$bg[yellow]%}%{$fg[black]%}%n%{$reset_color%},%{$fg[cyan]%}%n) \
 %{$fg[white]%}@ \
-%{$fg[green]%}%m \
+%{$fg[green]%}${frostyhostname} \
 %{$fg[white]%}in \
 %{$terminfo[bold]$fg[yellow]%}%~%{$reset_color%}\
 ${bzr_info}\
