@@ -59,7 +59,7 @@ local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 local frostyhostname='$(frosty_hostname)'
 frosty_hostname() {
 	local frostyhostname="$(hostname)"
-	if [[ "$frostyhostname" == *Desktop ]];
+	if [[ "$frostyhostname" == *desktop ]];
 	then
 		echo -n "Brownie"
 	else

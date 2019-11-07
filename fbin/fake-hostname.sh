@@ -2,7 +2,7 @@
 
 frosty_hostname() {
 	local frostyhostname="$(hostname)"
-	if [[ "$frostyhostname" == *Desktop ]];
+	if [[ "$frostyhostname" == *desktop ]];
 	then
 		echo -n "Brownie"
 	else
