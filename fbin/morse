@@ -1,0 +1,58 @@
+e1="\x1b(0"
+e2="\x1b(B"
+uc_br=$(printf "${e1}j${e2}")
+uc_tr=$(printf "${e1}k${e2}")
+uc_tl=$(printf "${e1}l${e2}")
+uc_bl=$(printf "${e1}m${e2}")
+uc_cc=$(printf "${e1}n${e2}")
+uc_hl=$(printf "${e1}q${e2}")
+uc_lc=$(printf "${e1}t${e2}")
+uc_rc=$(printf "${e1}u${e2}")
+uc_bc=$(printf "${e1}v${e2}")
+uc_tc=$(printf "${e1}w${e2}")
+uc_vl=$(printf "${e1}x${e2}")
+
+linewidth_hl="$(printf "${uc_hl}%.0s" {1..11})"
+
+#echo -e '\016ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz\017'
+cat <<EOF
+${uc_tl}${linewidth_hl}${uc_tr}
+${uc_vl} A ${uc_vl} .-    ${uc_vl}
+${uc_vl} B ${uc_vl} -...  ${uc_vl}
+${uc_vl} C ${uc_vl} -.-.  ${uc_vl}
+${uc_vl} D ${uc_vl} -..   ${uc_vl}
+${uc_vl} E ${uc_vl} .     ${uc_vl}
+${uc_vl} F ${uc_vl} ..-.  ${uc_vl}
+${uc_vl} G ${uc_vl} --.   ${uc_vl}
+${uc_vl} H ${uc_vl} ....  ${uc_vl}
+${uc_vl} I ${uc_vl} ..    ${uc_vl}
+${uc_vl} J ${uc_vl} .---  ${uc_vl}
+${uc_vl} K ${uc_vl} -.-   ${uc_vl}
+${uc_vl} L ${uc_vl} .-..  ${uc_vl}
+${uc_vl} M ${uc_vl} --    ${uc_vl}
+${uc_vl} N ${uc_vl} -.    ${uc_vl}
+${uc_vl} O ${uc_vl} ---   ${uc_vl}
+${uc_vl} P ${uc_vl} .--.  ${uc_vl}
+${uc_vl} Q ${uc_vl} --.-  ${uc_vl}
+${uc_vl} R ${uc_vl} .-.   ${uc_vl}
+${uc_vl} S ${uc_vl} ...   ${uc_vl}
+${uc_vl} T ${uc_vl} -     ${uc_vl}
+${uc_vl} U ${uc_vl} ..-   ${uc_vl}
+${uc_vl} V ${uc_vl} ...-  ${uc_vl}
+${uc_vl} W ${uc_vl} .--   ${uc_vl}
+${uc_vl} X ${uc_vl} -..-  ${uc_vl}
+${uc_vl} Y ${uc_vl} -.--  ${uc_vl}
+${uc_vl} Z ${uc_vl} --..  ${uc_vl}
+${uc_lc}${linewidth_hl}${uc_rc}
+${uc_vl} 1 ${uc_vl} .---- ${uc_vl}
+${uc_vl} 2 ${uc_vl} ..--- ${uc_vl}
+${uc_vl} 3 ${uc_vl} ...-- ${uc_vl}
+${uc_vl} 4 ${uc_vl} ....- ${uc_vl}
+${uc_vl} 5 ${uc_vl} ..... ${uc_vl}
+${uc_vl} 6 ${uc_vl} -.... ${uc_vl}
+${uc_vl} 7 ${uc_vl} --... ${uc_vl}
+${uc_vl} 8 ${uc_vl} ---.. ${uc_vl}
+${uc_vl} 9 ${uc_vl} ----. ${uc_vl}
+${uc_vl} 0 ${uc_vl} ----- ${uc_vl}
+${uc_bl}${linewidth_hl}${uc_br}
+EOF

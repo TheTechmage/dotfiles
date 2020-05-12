@@ -17,11 +17,19 @@ aliases = {
     'comm1020': '/media/school/courses/semester2_spring/comm1020/',
     'b': '~/build/',
     'p': '~/projects/',
+    'pgo': '~/projects/go/',
+    'go': '~/go/src/',
     'rconfig': '~/projects/ruby/router_config/',
     'school': '/media/school/',
     'bin': '$scriptdir',
     'repo': '/srv/http/www/outside/frostyrepo/',
 }
+
+
+def error(args):
+    if not args.test:
+        sys.stderr.write('Error: Invalid alias!')
+    sys.exit(1)
 
 
 def traverse_path(path, debug=False, test=False):
@@ -114,10 +122,5 @@ if __name__ == '__main__':
             sys.stdout.write(path)
         sys.exit(0)
     error(args)
-
-def error(args):
-    if not args.test:
-        sys.stderr.write('Error: Invalid alias!')
-    sys.exit(1)
 
 # vim: set sw=4 ts=4 ai et :

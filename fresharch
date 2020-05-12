@@ -50,6 +50,18 @@ function istrue() {
  ##  ##   ### ##    ##    ##    ##     ## ##       ##       
 #### ##    ##  ######     ##    ##     ## ######## ######## 
 
+#
+# Broken Packages:
+#  kvirc
+#  livestreamer
+#  scim-anthy
+#  sqlitemanager
+#  xorg-server-utils
+#  abs
+#  nvidia*
+#  firefox-developer
+#
+
 pacstrap /mnt base || exit 1
 packages=()
 	#packages+=('')
