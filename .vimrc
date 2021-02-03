@@ -397,3 +397,9 @@ function! s:generate_diff()
 	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=diff"
 endfunction
 command! Diff silent! call s:generate_diff()
+
+function! s:make_executable()
+	" Set scripts to be executable from the shell
+	au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod +x <afile> | endif | endif
+endfunction
+command! exc silent! call s:make_executable()
