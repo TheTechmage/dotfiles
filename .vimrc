@@ -280,7 +280,7 @@ set laststatus=2
 
 " Airline Config {{{
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
@@ -397,3 +397,9 @@ function! s:generate_diff()
 	exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=diff"
 endfunction
 command! Diff silent! call s:generate_diff()
+
+function! s:make_executable()
+	" Set scripts to be executable from the shell
+	au BufWritePost * if getline(1) =~ "^#!" | if getline(1) =~ "/bin/" | silent !chmod +x <afile> | endif | endif
+endfunction
+command! EX silent! call s:make_executable()
